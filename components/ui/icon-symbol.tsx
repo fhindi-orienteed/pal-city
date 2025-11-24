@@ -28,6 +28,13 @@ const MAPPING = {
   'heart.fill': 'favorite',
   'calendar': 'calendar-today',
   'tag.fill': 'local-offer',
+  'chevron.left': 'chevron-left',
+  'phone.fill': 'phone',
+  'map.fill': 'map',
+  'globe': 'public',
+  'square.and.arrow.up': 'share',
+  'clock.fill': 'schedule',
+  'location.fill': 'place',
 } as IconMapping;
 
 /**

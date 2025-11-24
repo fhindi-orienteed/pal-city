@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Image } from 'expo-image';
+import { Link } from 'expo-router';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 const BUSINESSES = [
@@ -40,33 +41,35 @@ export function HomeBusiness() {
         contentContainerStyle={styles.scrollContent}
       >
         {BUSINESSES.map((business) => (
-          <TouchableOpacity key={business.id} style={styles.card}>
-            <Image source={business.image} style={styles.image} />
-            
-            {business.isFeatured && (
-              <View style={styles.featuredBadge}>
-                <ThemedText style={styles.featuredText}>Featured</ThemedText>
+          <Link key={business.id} href={`/business/${business.id}`} asChild>
+            <TouchableOpacity style={styles.card}>
+              <Image source={business.image} style={styles.image} />
+              
+              {business.isFeatured && (
+                <View style={styles.featuredBadge}>
+                  <ThemedText style={styles.featuredText}>Featured</ThemedText>
+                </View>
+              )}
+
+              <View style={styles.ratingBadge}>
+                <IconSymbol name="star.fill" size={12} color="#FFD700" />
+                <ThemedText style={styles.ratingText}>{business.rating}</ThemedText>
               </View>
-            )}
 
-            <View style={styles.ratingBadge}>
-              <IconSymbol name="star.fill" size={12} color="#FFD700" />
-              <ThemedText style={styles.ratingText}>{business.rating}</ThemedText>
-            </View>
+              <TouchableOpacity style={styles.favoriteButton}>
+                <IconSymbol 
+                  name={business.isFavorite ? "heart.fill" : "heart"} 
+                  size={20} 
+                  color={business.isFavorite ? "#E25822" : "#FFF"} 
+                />
+              </TouchableOpacity>
 
-            <TouchableOpacity style={styles.favoriteButton}>
-              <IconSymbol 
-                name={business.isFavorite ? "heart.fill" : "heart"} 
-                size={20} 
-                color={business.isFavorite ? "#E25822" : "#FFF"} 
-              />
+              <View style={styles.cardContent}>
+                <ThemedText style={styles.category}>{business.category}</ThemedText>
+                <ThemedText style={styles.name}>{business.name}</ThemedText>
+              </View>
             </TouchableOpacity>
-
-            <View style={styles.cardContent}>
-              <ThemedText style={styles.category}>{business.category}</ThemedText>
-              <ThemedText style={styles.name}>{business.name}</ThemedText>
-            </View>
-          </TouchableOpacity>
+          </Link>
         ))}
       </ScrollView>
     </View>

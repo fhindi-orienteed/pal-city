@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Image } from 'expo-image';
+import { Link } from 'expo-router';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 const OFFERS = [
@@ -9,7 +10,7 @@ const OFFERS = [
     title: '50% Off Lunch',
     businessName: 'Lucha Restaurant',
     discount: '50% OFF',
-    image: require('@/assets/images/home_background.jpg'), // Using placeholder
+    image: require('@/assets/images/home_background.jpg'), // placeholder
     expiresIn: '2 days left',
   },
   {
@@ -17,7 +18,7 @@ const OFFERS = [
     title: 'Buy 1 Get 1 Free',
     businessName: 'City Cinema',
     discount: 'BOGO',
-    image: require('@/assets/images/home_background.jpg'), // Using placeholder
+    image: require('@/assets/images/home_background.jpg'), // placeholder
     expiresIn: '5 hours left',
   },
 ] as const;
@@ -31,27 +32,26 @@ export function HomeOffers() {
           <ThemedText style={styles.viewAll}>More</ThemedText>
         </TouchableOpacity>
       </View>
-      
-      <ScrollView 
-        horizontal 
+      <ScrollView
+        horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
         {OFFERS.map((offer) => (
-          <TouchableOpacity key={offer.id} style={styles.card}>
-            <Image source={offer.image} style={styles.image} />
-            
-            <View style={styles.discountBadge}>
-              <IconSymbol name="tag.fill" size={12} color="#FFF" />
-              <ThemedText style={styles.discountText}>{offer.discount}</ThemedText>
-            </View>
-
-            <View style={styles.cardContent}>
-              <ThemedText style={styles.expiresIn}>{offer.expiresIn}</ThemedText>
-              <ThemedText style={styles.title} numberOfLines={1}>{offer.title}</ThemedText>
-              <ThemedText style={styles.businessName} numberOfLines={1}>{offer.businessName}</ThemedText>
-            </View>
-          </TouchableOpacity>
+          <Link href={`/offer/${offer.id}`} asChild key={offer.id}>
+            <TouchableOpacity style={styles.card}>
+              <Image source={offer.image} style={styles.image} />
+              <View style={styles.discountBadge}>
+                <IconSymbol name="tag.fill" size={12} color="#FFF" />
+                <ThemedText style={styles.discountText}>{offer.discount}</ThemedText>
+              </View>
+              <View style={styles.cardContent}>
+                <ThemedText style={styles.expiresIn}>{offer.expiresIn}</ThemedText>
+                <ThemedText style={styles.title} numberOfLines={1}>{offer.title}</ThemedText>
+                <ThemedText style={styles.businessName} numberOfLines={1}>{offer.businessName}</ThemedText>
+              </View>
+            </TouchableOpacity>
+          </Link>
         ))}
       </ScrollView>
     </View>
