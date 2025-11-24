@@ -1,26 +1,42 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
+import { Text, TextInput } from 'react-native';
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#FFFFFF', dark: '#FFFFFF' }}
       headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
+        <View style={{ flex: 1 }}>
+          <Image
+            source={require('@/assets/images/home_background.jpg')}
+            style={styles.background}
+          />
+         
+          <ThemedView style={styles.searchContainer}>
+            <Text style={styles.title}>Good morning, Fathi</Text>
+            <ThemedView style={styles.searchInputContainer}>
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search..."
+                placeholderTextColor="#888"
+              />
+            </ThemedView>
+          </ThemedView>
+        </View>
+      }>     
+
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
+
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
@@ -36,6 +52,7 @@ export default function HomeScreen() {
           to open developer tools.
         </ThemedText>
       </ThemedView>
+
       <ThemedView style={styles.stepContainer}>
         <Link href="/modal">
           <Link.Trigger>
@@ -88,11 +105,51 @@ const styles = StyleSheet.create({
     gap: 8,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
+  background: {
+    height: 250,
+    width: '100%',
+    top: 0,
     left: 0,
     position: 'absolute',
+    borderBottomStartRadius: 20,
+    borderBottomEndRadius: 20,
+    overflow: 'hidden',
+  },
+  searchContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
+    zIndex: 10,
+    padding: 5,
+    gap: 8,
+    backgroundColor: 'transparent',
+  },
+  searchInputContainer: {
+    opacity: 0.7,
+    padding: 10,
+    borderRadius: 10,
+    gap: 8,
+    backgroundColor: '#ffffff',
+  },
+  searchInput: {
+    height: 35,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    fontSize: 14,
+    shadowColor: '#000',
+    paddingHorizontal: 10,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },  
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
