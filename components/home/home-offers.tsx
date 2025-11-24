@@ -1,0 +1,134 @@
+import { ThemedText } from '@/components/themed-text';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Image } from 'expo-image';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+
+const OFFERS = [
+  {
+    id: '1',
+    title: '50% Off Lunch',
+    businessName: 'Lucha Restaurant',
+    discount: '50% OFF',
+    image: require('@/assets/images/home_background.jpg'), // Using placeholder
+    expiresIn: '2 days left',
+  },
+  {
+    id: '2',
+    title: 'Buy 1 Get 1 Free',
+    businessName: 'City Cinema',
+    discount: 'BOGO',
+    image: require('@/assets/images/home_background.jpg'), // Using placeholder
+    expiresIn: '5 hours left',
+  },
+] as const;
+
+export function HomeOffers() {
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <ThemedText type="subtitle">Offers</ThemedText>
+        <TouchableOpacity>
+          <ThemedText style={styles.viewAll}>More</ThemedText>
+        </TouchableOpacity>
+      </View>
+      
+      <ScrollView 
+        horizontal 
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {OFFERS.map((offer) => (
+          <TouchableOpacity key={offer.id} style={styles.card}>
+            <Image source={offer.image} style={styles.image} />
+            
+            <View style={styles.discountBadge}>
+              <IconSymbol name="tag.fill" size={12} color="#FFF" />
+              <ThemedText style={styles.discountText}>{offer.discount}</ThemedText>
+            </View>
+
+            <View style={styles.cardContent}>
+              <ThemedText style={styles.expiresIn}>{offer.expiresIn}</ThemedText>
+              <ThemedText style={styles.title} numberOfLines={1}>{offer.title}</ThemedText>
+              <ThemedText style={styles.businessName} numberOfLines={1}>{offer.businessName}</ThemedText>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 16,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginBottom: 16,
+  },
+  viewAll: {
+    color: '#E25822',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  scrollContent: {
+    paddingHorizontal: 12,
+    gap: 16,
+  },
+  card: {
+    width: 200,
+    height: 240,
+    borderRadius: 20,
+    overflow: 'hidden',
+    backgroundColor: '#f0f0f0',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  discountBadge: {
+    position: 'absolute',
+    top: 12,
+    left: 12,
+    backgroundColor: '#E25822',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    gap: 4,
+  },
+  discountText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#FFF',
+  },
+  cardContent: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  expiresIn: {
+    color: '#FFD700',
+    fontSize: 10,
+    fontWeight: 'bold',
+    marginBottom: 4,
+    textTransform: 'uppercase',
+  },
+  title: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 2,
+  },
+  businessName: {
+    color: '#EEE',
+    fontSize: 12,
+  },
+});
