@@ -29,12 +29,16 @@ const MAPPING = {
   'calendar': 'calendar-today',
   'tag.fill': 'local-offer',
   'chevron.left': 'chevron-left',
+  'magnifyingglass': 'search',
+  'envelope.fill': 'mail',
   'phone.fill': 'phone',
   'map.fill': 'map',
   'globe': 'public',
   'square.and.arrow.up': 'share',
   'clock.fill': 'schedule',
   'location.fill': 'place',
+  'person.fill': 'person',
+  'ellipsis': 'more-horiz',
 } as IconMapping;
 
 /**
