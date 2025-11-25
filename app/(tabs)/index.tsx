@@ -1,15 +1,17 @@
 import { RefreshControl, StyleSheet } from 'react-native';
 
 import { HomeBusiness } from '@/components/home/business';
+import { HomeEvents } from '@/components/home/events';
 import { HomeCategories } from '@/components/home/home-categories';
-import { HomeEvents } from '@/components/home/home-events';
 import { HomeHeader } from '@/components/home/home-header';
 import { HomeOffers } from '@/components/home/home-offers';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { useBusinesses } from '@/hooks/useBusinesses';
+import { useEvents } from '@/hooks/useEvents';
 
 export default function HomeScreen() {
-  const { businesses, loading, error, refetch, refreshing } = useBusinesses();
+  const { businesses, loading: loadingBusinesses, error: errorBusinesses, refetch, refreshing } = useBusinesses();
+  const { events, loading: loadingEvents, error: errorEvents } = useEvents();
 
   return (
     <ParallaxScrollView
@@ -29,13 +31,17 @@ export default function HomeScreen() {
       
       <HomeBusiness 
         businesses={businesses}
-        loading={loading}
-        error={error}
+        loading={loadingBusinesses}
+        error={errorBusinesses}
       />
       
       <HomeOffers />
 
-      <HomeEvents />
+      <HomeEvents 
+        events={events}
+        loading={loadingEvents}
+        error={errorEvents}
+      />
         
     </ParallaxScrollView>
   );

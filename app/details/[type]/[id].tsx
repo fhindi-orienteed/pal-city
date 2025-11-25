@@ -4,7 +4,7 @@ import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Image } from 'expo-image';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { StyleSheet, TouchableOpacity, View, ScrollView, Linking } from 'react-native';
+import { Linking, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 // Mock data for various venue types
 const MOCK_DATA = {
@@ -105,7 +105,7 @@ export default function DetailsScreen() {
             </TouchableOpacity>
           </View>
         }>
-      >
+
         <ThemedView style={styles.titleContainer}>
           <View style={styles.titleHeader}>
             <ThemedText type="title" style={styles.businessName}>{venue.name}</ThemedText>

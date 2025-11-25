@@ -39,6 +39,8 @@ const MAPPING = {
   'location.fill': 'place',
   'person.fill': 'person',
   'ellipsis': 'more-horiz',
+  'chevron.up': 'keyboard-arrow-up',
+  'chevron.down': 'keyboard-arrow-down',
 } as IconMapping;
 
 /**

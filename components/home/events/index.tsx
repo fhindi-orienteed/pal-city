@@ -1,28 +1,33 @@
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Event } from '@/services/eventService';
 import { Image } from 'expo-image';
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const EVENTS = [
-  {
-    id: '1',
-    name: 'Summer Music Festival',
-    date: 'Aug 24, 2025',
-    location: 'Central Park',
-    image: require('@/assets/images/home_background.jpg'), // Using placeholder
-    isFavorite: false,
-  },
-  {
-    id: '2',
-    name: 'Art Exhibition',
-    date: 'Sep 10, 2025',
-    location: 'City Gallery',
-    image: require('@/assets/images/home_background.jpg'), // Using placeholder
-    isFavorite: true,
-  },
-] as const;
+interface HomeEventsProps {
+  events: Event[];
+  loading: boolean;
+  error: string | null;
+}
 
-export function HomeEvents() {
+
+export function HomeEvents({ events, loading, error }: HomeEventsProps) {
+  const router = useRouter(); 
+  
+
+  if (loading) {
+    return (
+      <View style={[styles.container, styles.centerContent]}>
+        <ActivityIndicator size="small" color="#009736" />
+      </View>
+    );
+  }
+
+  if (error || events.length === 0) {
+    return null; 
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -37,12 +42,22 @@ export function HomeEvents() {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {EVENTS.map((event) => (
-          <TouchableOpacity key={event.id} style={styles.card}>
-            <Image source={event.image} style={styles.image} />
+        {events.map((event) => (
+          <TouchableOpacity 
+            key={event.id} 
+            style={styles.card}
+            onPress={() => router.push(`/event/${event.id}` as any)}
+          >
+            
+            <Image 
+              source={typeof event.image === 'string' ? { uri: event.image } : event.image} 
+              style={styles.image}
+              contentFit="cover"
+              transition={200}
+            />
             
             <View style={styles.dateBadge}>
-              <IconSymbol name="calendar" size={12} color="#E25822" />
+              <IconSymbol name="calendar" size={12} color="#009736" />
               <ThemedText style={styles.dateText}>{event.date}</ThemedText>
             </View>
 
@@ -50,7 +65,7 @@ export function HomeEvents() {
               <IconSymbol 
                 name={event.isFavorite ? "heart.fill" : "heart"} 
                 size={20} 
-                color={event.isFavorite ? "#E25822" : "#FFF"} 
+                color={event.isFavorite ? "#009736" : "#FFF"} 
               />
             </TouchableOpacity>
 
@@ -68,6 +83,11 @@ export function HomeEvents() {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 16,
+  },
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 200,
   },
   header: {
     flexDirection: 'row',
@@ -133,7 +153,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.4)', // Simple overlay
   },
   location: {
-    color: '#E25822',
+    color: '#009736',
     fontSize: 12,
     fontWeight: '600',
     marginBottom: 4,

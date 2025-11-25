@@ -153,7 +153,7 @@ export function HomeBusiness({ businesses, loading, error }: HomeBusinessProps) 
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
+    paddingTop: 16,
   },
   header: {
     flexDirection: 'row',
