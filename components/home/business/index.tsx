@@ -1,13 +1,19 @@
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { useBusinesses } from '@/hooks/useBusinesses';
+import { Business } from '@/services/businessService';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { BusinessPlaceholder } from './business-placeholder';
 
-export function HomeBusiness() {
-  const { businesses, loading, error } = useBusinesses();
+interface HomeBusinessProps {
+  businesses: Business[];
+  loading: boolean;
+  error: string | null;
+}
+
+export function HomeBusiness({ businesses, loading, error }: HomeBusinessProps) {
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
 
   const toggleFavorite = (businessId: string) => {
@@ -24,45 +30,7 @@ export function HomeBusiness() {
 
   // Loading state with placeholder cards
   if (loading) {
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <ThemedText type="subtitle">Business</ThemedText>
-          <TouchableOpacity>
-            <ThemedText style={styles.viewAll}>More</ThemedText>
-          </TouchableOpacity>
-        </View>
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.scrollContent}
-        >
-          {/* Show 3 placeholder cards */}
-          {[1, 2, 3].map((index) => (
-            <View key={`placeholder-${index}`} style={styles.card}>
-              <View style={[styles.image, styles.placeholderImage]}>
-                <View style={styles.shimmer} />
-              </View>
-              
-              {/* Placeholder badges */}
-              <View style={[styles.ratingBadge, styles.placeholderBadge]}>
-                <View style={styles.shimmerSmall} />
-              </View>
-
-              <View style={[styles.favoriteButton, styles.placeholderButton]}>
-                <View style={styles.shimmerTiny} />
-              </View>
-
-              {/* Placeholder content */}
-              <View style={styles.cardContent}>
-                <View style={[styles.placeholderCategory, styles.shimmerSmall]} />
-                <View style={[styles.placeholderName, styles.shimmerSmall]} />
-              </View>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-    );
+    return <BusinessPlaceholder />;
   }
 
   // Error state
@@ -100,9 +68,11 @@ export function HomeBusiness() {
     <View style={styles.container}>
       <View style={styles.header}>
         <ThemedText type="subtitle">Business</ThemedText>
-        <TouchableOpacity>
-          <ThemedText style={styles.viewAll}>More</ThemedText>
-        </TouchableOpacity>
+        <Link href="/business/list" asChild>
+          <TouchableOpacity>
+            <ThemedText style={styles.viewAll}>More</ThemedText>
+          </TouchableOpacity>
+        </Link>
       </View>
       
       <ScrollView 
@@ -110,7 +80,7 @@ export function HomeBusiness() {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {businesses.map((business) => {
+        {businesses.slice(0, 5).map((business) => {
           const isFavorite = favorites.has(business.id);
           const isFeatured = business.rating && business.rating >= 4.5;
 
@@ -196,39 +166,6 @@ const styles = StyleSheet.create({
     color: '#E25822',
     fontSize: 14,
     fontWeight: '600',
-  },
-  // Shimmer/Placeholder styles
-  shimmer: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#D0D0D0',
-  },
-  shimmerSmall: {
-    backgroundColor: '#D0D0D0',
-    borderRadius: 4,
-  },
-  shimmerTiny: {
-    width: 16,
-    height: 16,
-    backgroundColor: '#D0D0D0',
-    borderRadius: 8,
-  },
-  placeholderBadge: {
-    width: 50,
-    height: 24,
-    backgroundColor: 'transparent',
-  },
-  placeholderButton: {
-    backgroundColor: 'rgba(255,255,255,0.5)',
-  },
-  placeholderCategory: {
-    width: 60,
-    height: 12,
-    marginBottom: 8,
-  },
-  placeholderName: {
-    width: 140,
-    height: 18,
   },
   // Error state styles
   errorContainer: {
@@ -329,7 +266,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: 16,
-    backgroundColor: 'rgba(0,0,0,0.7)',
+    backgroundColor: 'rgba(0,0,0,0.4)',
   },
   category: {
     color: '#E25822',
