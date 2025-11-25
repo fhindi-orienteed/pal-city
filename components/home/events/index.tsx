@@ -12,7 +12,7 @@ interface HomeEventsProps {
 }
 
 
-export function HomeEvents({ events, loading, error }: HomeEventsProps) {
+export default function HomeEvents({ events, loading, error }: HomeEventsProps) {
   const router = useRouter(); 
   
 

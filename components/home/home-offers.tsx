@@ -23,7 +23,7 @@ const OFFERS = [
   },
 ] as const;
 
-export function HomeOffers() {
+export default function HomeOffers() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>

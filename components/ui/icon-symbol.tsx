@@ -41,6 +41,7 @@ const MAPPING = {
   'ellipsis': 'more-horiz',
   'chevron.up': 'keyboard-arrow-up',
   'chevron.down': 'keyboard-arrow-down',
+  'pill.fill': 'local-pharmacy',
 } as IconMapping;
 
 /**
