@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "979664903684",
+    "project_id": "palcity-e00d4",
+    "storage_bucket": "palcity-e00d4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979664903684:android:6b2a843779af6483c71f51",
+        "android_client_info": {
+          "package_name": "com.pal.city"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaOyUrpXynKGtuPQimL_3vbwuFfu0QHts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
