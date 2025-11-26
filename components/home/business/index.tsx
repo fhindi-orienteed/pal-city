@@ -88,21 +88,14 @@ export function HomeBusiness({ businesses, loading, error }: HomeBusinessProps) 
             <Link key={business.id} href={`/business/${business.id}`} asChild>
               <TouchableOpacity style={styles.card}>
                 {/* Business Image */}
-                {business.imageUrl ? (
-                  <Image source={{ uri: business.imageUrl }} style={styles.image} />
+                {business.images && business.images.length > 0 ? (
+                  <Image source={{ uri: business.images[0] }} style={styles.image} />
                 ) : (
                   <View style={[styles.image, styles.placeholderImage]}>
                     <IconSymbol name="building.2" size={60} color="#999" />
                   </View>
                 )}
                 
-                {/* Featured Badge */}
-                {isFeatured && (
-                  <View style={styles.featuredBadge}>
-                    <ThemedText style={styles.featuredText}>Featured</ThemedText>
-                  </View>
-                )}
-
                 {/* Rating Badge */}
                 {business.rating && (
                   <View style={styles.ratingBadge}>
@@ -115,7 +108,7 @@ export function HomeBusiness({ businesses, loading, error }: HomeBusinessProps) 
 
                 {/* Favorite Button */}
                 <TouchableOpacity 
-                  style={styles.favoriteButton}
+                  style={[styles.favoriteButton, isFavorite && styles.favoriteButtonActive]}
                   onPress={(e) => {
                     e.preventDefault();
                     toggleFavorite(business.id);
@@ -124,7 +117,7 @@ export function HomeBusiness({ businesses, loading, error }: HomeBusinessProps) 
                   <IconSymbol 
                     name={isFavorite ? "heart.fill" : "heart"} 
                     size={20} 
-                    color={isFavorite ? "#E25822" : "#FFF"} 
+                    color={isFavorite ? "#FFFFFF" : "#009736"} 
                   />
                 </TouchableOpacity>
 
@@ -163,7 +156,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   viewAll: {
-    color: '#E25822',
+    color: '#009736',
     fontSize: 14,
     fontWeight: '600',
   },
@@ -219,24 +212,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  featuredBadge: {
-    position: 'absolute',
-    top: 12,
-    left: 12,
-    backgroundColor: '#FFD700',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 8,
-  },
-  featuredText: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: '#000',
-  },
   ratingBadge: {
     position: 'absolute',
     top: 12,
-    right: 50,
+    left: 12,
     backgroundColor: '#FFF',
     flexDirection: 'row',
     alignItems: 'center',
@@ -256,9 +235,12 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: '#ffffff',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  favoriteButtonActive: {
+    backgroundColor: '#009736',
   },
   cardContent: {
     position: 'absolute',
@@ -269,7 +251,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.4)',
   },
   category: {
-    color: '#E25822',
+    color: '#009736',
     fontSize: 12,
     fontWeight: '600',
     marginBottom: 4,

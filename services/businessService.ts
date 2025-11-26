@@ -1,16 +1,16 @@
 import {
-    addDoc,
-    collection,
-    deleteDoc,
-    doc,
-    getDoc,
-    getDocs,
-    limit,
-    orderBy,
-    query,
-    QueryConstraint,
-    updateDoc,
-    where
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  QueryConstraint,
+  updateDoc,
+  where
 } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
 
@@ -24,7 +24,7 @@ export interface Business {
   phone?: string;
   email?: string;
   website?: string;
-  imageUrl?: string;
+  images?: string[];
   rating?: number;
   createdAt?: any;
   // Add any other fields your business collection has
@@ -44,7 +44,7 @@ export const getAllBusinesses = async (): Promise<Business[]> => {
       id: doc.id,
       ...doc.data()
     })) as Business[];
-    
+
     return businessList;
   } catch (error) {
     console.error('Error fetching businesses:', error);
@@ -59,7 +59,7 @@ export const getBusinessById = async (businessId: string): Promise<Business | nu
   try {
     const businessDoc = doc(db, BUSINESS_COLLECTION, businessId);
     const businessSnapshot = await getDoc(businessDoc);
-    
+
     if (businessSnapshot.exists()) {
       return {
         id: businessSnapshot.id,
@@ -86,12 +86,12 @@ export const getBusinessesByQuery = async (
     const businessCollection = collection(db, BUSINESS_COLLECTION);
     const q = query(businessCollection, ...constraints);
     const businessSnapshot = await getDocs(q);
-    
+
     const businessList = businessSnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     })) as Business[];
-    
+
     return businessList;
   } catch (error) {
     console.error('Error fetching filtered businesses:', error);
@@ -136,7 +136,7 @@ export const searchBusinessesByName = async (searchTerm: string): Promise<Busine
     // Note: Firestore doesn't support full-text search natively
     // This is a simple implementation. For better search, consider using Algolia or similar
     const businesses = await getAllBusinesses();
-    return businesses.filter(business => 
+    return businesses.filter(business =>
       business.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   } catch (error) {
@@ -166,7 +166,7 @@ export const addBusiness = async (businessData: Omit<Business, 'id'>): Promise<s
  * Update a business
  */
 export const updateBusiness = async (
-  businessId: string, 
+  businessId: string,
   businessData: Partial<Business>
 ): Promise<void> => {
   try {
