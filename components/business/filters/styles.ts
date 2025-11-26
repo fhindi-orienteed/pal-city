@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     section: {
-        paddingVertical: 16,
+        paddingVertical: 8,
         borderBottomWidth: 1,
         borderBottomColor: '#F0F0F0',
     },
@@ -103,7 +103,9 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     accordionContent: {},
-    accordionContentContainer: {},
+    accordionContentContainer: {
+        marginTop: 8
+    },
     accordionHeaderContainer: {
         flexDirection: 'row',
         alignItems: 'center',

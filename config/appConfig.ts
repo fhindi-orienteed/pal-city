@@ -3,8 +3,8 @@ const appConfig = {
         pageSize: 10
     },
     businessCategories: [
-        { id: '1', key: 'pharmacies', icon: 'pill.fill' },
-        { id: '2', key: 'automotive', icon: 'car.fill' },
+        { id: '1', key: 'pharmacy', icon: 'pill.fill' },
+        { id: '2', key: 'bank', icon: 'car.fill' },
         { id: '3', key: 'books', icon: 'book.fill' },
         { id: '4', key: 'cameras', icon: 'camera.fill' },
         { id: '5', key: 'electronics', icon: 'desktopcomputer' },

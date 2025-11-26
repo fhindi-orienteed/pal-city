@@ -30,7 +30,7 @@ export default function BusinessListScreen() {
   // Filter states
   const [sortOption, setSortOption] = useState<SortOption>('rating');
   const [ratingFilter, setRatingFilter] = useState<RatingOption>('all');
-  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<any[]>([]);
   const [filterVisible, setFilterVisible] = useState(false);
 
   const params = useLocalSearchParams();
@@ -58,7 +58,7 @@ export default function BusinessListScreen() {
         business.address?.toLowerCase().includes(searchQuery.toLowerCase());
 
       // Category filter
-      const matchesCategory = selectedCategory.length === 0 || selectedCategory.includes(business.category || '');
+      const matchesCategory = selectedCategory.length === 0 || selectedCategory.map(c => c.key).includes(business.category || '');
 
       // Rating filter
       let matchesRating = true;

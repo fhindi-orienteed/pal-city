@@ -40,6 +40,7 @@ export default function Accordion({ expanded, toggleSection, children, section, 
                     <ThemedText style={styles.accordionHeaderTitle}>{section}:</ThemedText>
                     <ThemedText style={styles.accordionHeaderValue}>{renderTitleValue()}</ThemedText>
                 </View>
+
                 <IconSymbol
                     name={expanded ? "chevron.up" : "chevron.down"}
                     size={20}
