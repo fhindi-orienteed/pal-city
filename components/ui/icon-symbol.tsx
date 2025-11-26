@@ -1,12 +1,15 @@
 // Fallback for using MaterialIcons on Android and web.
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { SymbolViewProps, SymbolWeight } from 'expo-symbols';
+import { SymbolWeight } from 'expo-symbols';
 import { ComponentProps } from 'react';
 import { OpaqueColorValue, type StyleProp, type TextStyle } from 'react-native';
 
-type IconMapping = Record<SymbolViewProps['name'], ComponentProps<typeof MaterialIcons>['name']>;
-type IconSymbolName = keyof typeof MAPPING;
+// Use an index signature to allow partial mappings instead of requiring all SF Symbol names
+type IconMapping = {
+  [key: string]: ComponentProps<typeof MaterialIcons>['name'];
+};
+type IconSymbolName = keyof IconMapping;
 
 /**
  * Add your SF Symbols to Material Icons mappings here.
@@ -24,6 +27,8 @@ const MAPPING = {
   'desktopcomputer': 'computer',
   'tshirt.fill': 'checkroom',
   'star.fill': 'star',
+  'star': 'star-outline',
+  'star.leadinghalf.filled': 'star-half',
   'heart': 'favorite-border',
   'heart.fill': 'favorite',
   'calendar': 'calendar-today',
@@ -42,6 +47,12 @@ const MAPPING = {
   'chevron.up': 'keyboard-arrow-up',
   'chevron.down': 'keyboard-arrow-down',
   'pill.fill': 'local-pharmacy',
+  'filter': 'filter-alt',
+  'textformat.abc': 'sort-by-alpha',
+  'square.grid.2x2': 'grid-view',
+  'checkmark': 'check',
+  'xmark': 'close',
+  'exclamationmark.triangle': 'warning',
 } as IconMapping;
 
 /**

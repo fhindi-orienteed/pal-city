@@ -1,0 +1,61 @@
+import { ThemedText } from '@/components/themed-text';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import {
+    TouchableOpacity,
+    View
+} from 'react-native';
+import Accordion from './accordion';
+import styles from './styles';
+import { Section, SortOption } from './types';
+
+interface Props {
+    selectedSort: SortOption;
+    onSortChange: (sort: SortOption) => void;
+    expandedSections: { sortBy: boolean };
+    toggleSection: (section: Section) => void;
+}
+
+export default function SortBy({ selectedSort, onSortChange, expandedSections, toggleSection }: Props) {
+
+    const sortOptions: { value: SortOption; label: string; icon: string }[] = [
+        { value: 'rating', label: 'Highest Rated', icon: 'star.fill' },
+        { value: 'name', label: 'Name (A-Z)', icon: 'textformat.abc' },
+        { value: 'newest', label: 'Newest First', icon: 'clock.fill' },
+    ];
+
+    return (
+        <Accordion section="sortBy" expanded={expandedSections.sortBy} toggleSection={toggleSection} value={selectedSort}>
+            <View style={styles.accordionContent}>
+                {sortOptions.map((option) => (
+                    <TouchableOpacity
+                        key={option.value}
+                        style={[
+                            styles.option,
+                            selectedSort === option.value && styles.optionActive,
+                        ]}
+                        onPress={() => onSortChange(option.value)}
+                    >
+                        <View style={styles.optionLeft}>
+                            <IconSymbol
+                                name={option.icon as any}
+                                size={20}
+                                color={selectedSort === option.value ? '#009736' : '#666'}
+                            />
+                            <ThemedText
+                                style={[
+                                    styles.optionText,
+                                    selectedSort === option.value && styles.optionTextActive,
+                                ]}
+                            >
+                                {option.label}
+                            </ThemedText>
+                        </View>
+                        {selectedSort === option.value && (
+                            <IconSymbol name="checkmark" size={20} color="#009736" />
+                        )}
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </Accordion>
+    );
+}
