@@ -16,14 +16,14 @@ interface Props {
     toggleExpanded: () => void;
 }
 
-
 export default function RatingFilter({ selectedRating, onRatingChange, expanded, toggleExpanded }: Props) {
+    const selecteValueTitle = ratingOptions.find((option) => option.value === selectedRating)?.label || '';
     return (
         <Accordion
             section="rating"
             expanded={expanded}
             toggleSection={toggleExpanded}
-            value={selectedRating}
+            value={selecteValueTitle}
         >
             <View style={styles.accordionContent}>
                 {ratingOptions.map((option) => (

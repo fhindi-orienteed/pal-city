@@ -1,8 +1,8 @@
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import appConfig from '@/config/appConfig';
 import { useState } from 'react';
 import { LayoutAnimation, Platform, StyleSheet, TouchableOpacity, UIManager, View } from 'react-native';
 import { HomeCategoriesCard } from './card';
-import { CATEGORIES } from './config';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -18,7 +18,7 @@ export default function HomeCategories() {
     setExpanded(!expanded);
   };
 
-  const displayedCategories = expanded ? CATEGORIES : CATEGORIES.slice(0, 8);
+  const displayedCategories = expanded ? appConfig.businessCategories : appConfig.businessCategories.slice(0, 8);
 
   return (
     <View style={styles.container}>
@@ -29,10 +29,10 @@ export default function HomeCategories() {
       </View>
 
       <TouchableOpacity onPress={toggleExpanded} style={styles.expandButton}>
-        <IconSymbol 
-          name={expanded ? 'chevron.up' : 'chevron.down'} 
-          size={24} 
-          color="#009736" 
+        <IconSymbol
+          name={expanded ? 'chevron.up' : 'chevron.down'}
+          size={24}
+          color="#009736"
         />
       </TouchableOpacity>
     </View>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   categoryItem: {
     alignItems: 'center',
-    width: '23%', 
+    width: '23%',
     marginBottom: 16,
     gap: 8,
   },

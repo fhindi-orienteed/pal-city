@@ -49,9 +49,6 @@ export default function BusinessListScreen() {
     });
   };
 
-  // Extract unique categories from businesses
-  const categories = Array.from(new Set(businesses.map(b => b.category).filter(Boolean))) as string[];
-
   // Filter businesses based on search query, category, and rating
   const filteredBusinesses = businesses
     .filter(business => {
@@ -165,7 +162,6 @@ export default function BusinessListScreen() {
         onSortChange={setSortOption}
         selectedRating={ratingFilter}
         onRatingChange={setRatingFilter}
-        categories={categories}
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
       />

@@ -6,16 +6,14 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 type IconSymbolName = React.ComponentProps<typeof IconSymbol>['name'];
 
 interface Props {
-  category: { id: string; key: string; icon: IconSymbolName, type: string }
+  category: { id: string; key: string; icon: IconSymbolName }
 }
 
 export function HomeCategoriesCard({ category }: Props) {
   const router = useRouter();
 
   const handleCategoryPress = (category: Props['category']) => {
-    if (category.type === 'business') {
-      router.push(`/business/list?category=${category.key}`);
-    }
+    router.push(`/business/list?category=${category.key}`);
   }
 
   return (

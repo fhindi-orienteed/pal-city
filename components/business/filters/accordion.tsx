@@ -13,15 +13,18 @@ interface Props {
 }
 
 export default function Accordion({ expanded, toggleSection, children, section, value }: Props) {
-    const renderTitle = () => {
-        let title = section;
+    const renderTitleValue = () => {
+        let title = '';
         if (typeof value === 'string') {
-            title = title + ": " + value;
+            title = value;
         } else if (Array.isArray(value)) {
             if (value.length === 0) {
-                title = title + ": " + "All";
+                title = "All";
             } else {
-                title = title + ": " + value.join(', ');
+                title = value.slice(0, 2).join(', ');
+                if (value.length > 2) {
+                    title += ' + ' + (value.length - 2);
+                }
             }
         }
         return title;
@@ -33,7 +36,10 @@ export default function Accordion({ expanded, toggleSection, children, section, 
                 style={styles.accordionHeaderContainer}
                 onPress={() => toggleSection(section)}
             >
-                <ThemedText style={styles.accordionHeaderTitle}>{renderTitle()}</ThemedText>
+                <View style={styles.accordionHeaderTitleContainer}>
+                    <ThemedText style={styles.accordionHeaderTitle}>{section}:</ThemedText>
+                    <ThemedText style={styles.accordionHeaderValue}>{renderTitleValue()}</ThemedText>
+                </View>
                 <IconSymbol
                     name={expanded ? "chevron.up" : "chevron.down"}
                     size={20}

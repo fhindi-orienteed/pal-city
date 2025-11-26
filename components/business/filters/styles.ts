@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        paddingVertical: 16,
+        paddingVertical: 8,
         borderBottomWidth: 1,
         borderBottomColor: '#E0E0E0',
     },
@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
     },
     closeButton: {
         padding: 4,
+        borderColor: '#E0E0E0',
+        borderWidth: 1,
+        borderRadius: '50%',
     },
     content: {
         flex: 1,
@@ -109,17 +112,57 @@ const styles = StyleSheet.create({
     },
     accordionHeaderTitle: {
         fontSize: 14,
-        fontWeight: '600',
+        fontWeight: '800',
         color: '#666',
         textTransform: 'uppercase',
         letterSpacing: 0.5,
     },
     accordionHeaderValue: {
         fontSize: 14,
-        fontWeight: '600',
+        fontWeight: 'normal',
         color: '#666',
-        textTransform: 'uppercase',
-        letterSpacing: 0.5,
+    },
+    categoryOptionsContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8,
+        paddingHorizontal: 10,
+    },
+    categoryOption: {
+        flexDirection: 'row',
+        paddingHorizontal: 12,
+        paddingVertical: 8,
+        borderRadius: 20,
+        backgroundColor: '#F0F0F0',
+    },
+    accordionHeaderTitleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+    },
+    applyButton: {
+        backgroundColor: '#009736',
+        padding: 12,
+        borderRadius: 20,
+        alignItems: 'center',
+        marginHorizontal: 20,
+    },
+    applyButtonText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#FFF',
+    },
+    resetButton: {
+        backgroundColor: '#FFF',
+        padding: 12,
+        alignItems: 'center',
+        marginBottom: 5,
+    },
+    resetButtonText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#009736',
     },
 });
 

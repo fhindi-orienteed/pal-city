@@ -5,6 +5,7 @@ import {
     View
 } from 'react-native';
 import Accordion from './accordion';
+import { sortOptions } from './config';
 import styles from './styles';
 import { SortOption } from './types';
 
@@ -16,15 +17,9 @@ interface Props {
 }
 
 export default function SortBy({ selectedSort, onSortChange, expanded, toggleExpanded }: Props) {
-
-    const sortOptions: { value: SortOption; label: string; icon: string }[] = [
-        { value: 'rating', label: 'Highest Rated', icon: 'star.fill' },
-        { value: 'name', label: 'Name (A-Z)', icon: 'textformat.abc' },
-        { value: 'newest', label: 'Newest First', icon: 'clock.fill' },
-    ];
-
+    const selecteValueTitle = sortOptions.find((option) => option.value === selectedSort)?.label || '';
     return (
-        <Accordion section="sortBy" expanded={expanded} toggleSection={toggleExpanded} value={selectedSort}>
+        <Accordion section="sortBy" expanded={expanded} toggleSection={toggleExpanded} value={selecteValueTitle}>
             <View style={styles.accordionContent}>
                 {sortOptions.map((option) => (
                     <TouchableOpacity

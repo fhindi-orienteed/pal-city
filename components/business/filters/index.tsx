@@ -24,7 +24,6 @@ interface Props {
     onSortChange: (sort: SortOption) => void;
     selectedRating: RatingOption;
     onRatingChange: (rating: RatingOption) => void;
-    categories: string[];
     selectedCategory: string[];
     onCategoryChange: (category: string[]) => void;
 }
@@ -41,7 +40,6 @@ export default function FilterBottomSheet({
     onSortChange,
     selectedRating,
     onRatingChange,
-    categories,
     selectedCategory,
     onCategoryChange,
 }: Props) {
@@ -160,7 +158,7 @@ export default function FilterBottomSheet({
                         <View style={styles.header}>
                             <ThemedText style={styles.headerTitle}>Filters</ThemedText>
                             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-                                <IconSymbol name="chevron.down" size={24} color="#333" />
+                                <IconSymbol name="xmark" size={24} color="#333" />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -183,16 +181,20 @@ export default function FilterBottomSheet({
                         />
 
                         {/* Category Filter Section */}
-                        {categories.length > 0 && (
-                            <CategoryFilter
-                                categories={categories}
-                                selectedCategory={selectedCategory}
-                                onCategoryChange={onCategoryChange}
-                                expanded={expandedSections.category || false}
-                                toggleExpanded={() => toggleSection('category')}
-                            />
-                        )}
+                        <CategoryFilter
+                            selectedCategory={selectedCategory}
+                            onCategoryChange={onCategoryChange}
+                            expanded={expandedSections.category || false}
+                            toggleExpanded={() => toggleSection('category')}
+                        />
                     </ScrollView>
+
+                    <TouchableOpacity style={styles.applyButton}>
+                        <ThemedText style={styles.applyButtonText}>Apply filters</ThemedText>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.resetButton}>
+                        <ThemedText style={styles.resetButtonText}>Reset filters</ThemedText>
+                    </TouchableOpacity>
                 </Animated.View>
             </View>
         </Modal>
