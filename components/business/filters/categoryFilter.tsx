@@ -6,25 +6,24 @@ import {
 } from 'react-native';
 import Accordion from './accordion';
 import styles from './styles';
-import { Section } from './types';
 
 interface Props {
     categories: string[];
     selectedCategory: string[];
     onCategoryChange: (category: string[]) => void;
-    expandedSections: { category: boolean };
-    toggleSection: (section: Section) => void;
+    expanded: boolean;
+    toggleExpanded: () => void;
 }
 
-export default function CategoryFilter({ categories, selectedCategory, onCategoryChange, expandedSections, toggleSection }: Props) {
+export default function CategoryFilter({ categories, selectedCategory, onCategoryChange, expanded, toggleExpanded }: Props) {
     return (
         <Accordion
             section="category"
-            expanded={expandedSections.category}
-            toggleSection={toggleSection}
+            expanded={expanded}
+            toggleSection={toggleExpanded}
             value={selectedCategory}
         >
-            {expandedSections.category && (
+            {expanded && (
                 <View>
                     <TouchableOpacity
                         style={[

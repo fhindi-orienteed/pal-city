@@ -170,16 +170,16 @@ export default function FilterBottomSheet({
                         <SortBy
                             selectedSort={selectedSort}
                             onSortChange={onSortChange}
-                            expandedSections={expandedSections}
-                            toggleSection={toggleSection}
+                            expanded={expandedSections.sortBy}
+                            toggleExpanded={() => toggleSection('sortBy')}
                         />
 
                         {/* Rating Filter Section */}
                         <RatingFilter
                             selectedRating={selectedRating}
                             onRatingChange={onRatingChange}
-                            expandedSections={expandedSections}
-                            toggleSection={toggleSection}
+                            expanded={expandedSections.rating}
+                            toggleExpanded={() => toggleSection('rating')}
                         />
 
                         {/* Category Filter Section */}
@@ -188,8 +188,8 @@ export default function FilterBottomSheet({
                                 categories={categories}
                                 selectedCategory={selectedCategory}
                                 onCategoryChange={onCategoryChange}
-                                expandedSections={expandedSections}
-                                toggleSection={toggleSection}
+                                expanded={expandedSections.category || false}
+                                toggleExpanded={() => toggleSection('category')}
                             />
                         )}
                     </ScrollView>

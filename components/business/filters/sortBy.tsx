@@ -6,16 +6,16 @@ import {
 } from 'react-native';
 import Accordion from './accordion';
 import styles from './styles';
-import { Section, SortOption } from './types';
+import { SortOption } from './types';
 
 interface Props {
     selectedSort: SortOption;
     onSortChange: (sort: SortOption) => void;
-    expandedSections: { sortBy: boolean };
-    toggleSection: (section: Section) => void;
+    expanded: boolean;
+    toggleExpanded: () => void;
 }
 
-export default function SortBy({ selectedSort, onSortChange, expandedSections, toggleSection }: Props) {
+export default function SortBy({ selectedSort, onSortChange, expanded, toggleExpanded }: Props) {
 
     const sortOptions: { value: SortOption; label: string; icon: string }[] = [
         { value: 'rating', label: 'Highest Rated', icon: 'star.fill' },
@@ -24,7 +24,7 @@ export default function SortBy({ selectedSort, onSortChange, expandedSections, t
     ];
 
     return (
-        <Accordion section="sortBy" expanded={expandedSections.sortBy} toggleSection={toggleSection} value={selectedSort}>
+        <Accordion section="sortBy" expanded={expanded} toggleSection={toggleExpanded} value={selectedSort}>
             <View style={styles.accordionContent}>
                 {sortOptions.map((option) => (
                     <TouchableOpacity

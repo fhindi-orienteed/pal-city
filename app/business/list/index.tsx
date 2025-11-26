@@ -61,7 +61,7 @@ export default function BusinessListScreen() {
         business.address?.toLowerCase().includes(searchQuery.toLowerCase());
 
       // Category filter
-      const matchesCategory = selectedCategory === null || business.category === selectedCategory;
+      const matchesCategory = selectedCategory.length === 0 || selectedCategory.includes(business.category || '');
 
       // Rating filter
       let matchesRating = true;

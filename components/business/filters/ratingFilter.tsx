@@ -7,22 +7,22 @@ import {
 import Accordion from './accordion';
 import { ratingOptions } from './config';
 import styles from './styles';
-import { RatingOption, Section } from './types';
+import { RatingOption } from './types';
 
 interface Props {
     selectedRating: RatingOption;
     onRatingChange: (rating: RatingOption) => void;
-    expandedSections: { rating: boolean };
-    toggleSection: (section: Section) => void;
+    expanded: boolean;
+    toggleExpanded: () => void;
 }
 
 
-export default function RatingFilter({ selectedRating, onRatingChange, expandedSections, toggleSection }: Props) {
+export default function RatingFilter({ selectedRating, onRatingChange, expanded, toggleExpanded }: Props) {
     return (
         <Accordion
             section="rating"
-            expanded={expandedSections.rating}
-            toggleSection={toggleSection}
+            expanded={expanded}
+            toggleSection={toggleExpanded}
             value={selectedRating}
         >
             <View style={styles.accordionContent}>
