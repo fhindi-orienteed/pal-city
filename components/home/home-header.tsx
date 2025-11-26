@@ -2,7 +2,7 @@ import { ThemedView } from '@/components/themed-view';
 import { Image } from 'expo-image';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-export function HomeHeader() {
+export default function HomeHeader() {
   return (
     <View style={{ flex: 1 }}>
       <Image

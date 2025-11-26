@@ -13,7 +13,7 @@ interface HomeBusinessProps {
   error: string | null;
 }
 
-export function HomeBusiness({ businesses, loading, error }: HomeBusinessProps) {
+export default function HomeBusiness({ businesses, loading, error }: HomeBusinessProps) {
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
 
   const toggleFavorite = (businessId: string) => {

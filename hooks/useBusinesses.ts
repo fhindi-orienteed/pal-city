@@ -4,7 +4,7 @@ import { Business, getAllBusinesses, getBusinessById, getBusinessesByCategory } 
 /**
  * Custom hook to fetch all businesses with refetch support
  */
-export const useBusinesses = () => {
+export const useBusinesses = (category?: string) => {
   const [businesses, setBusinesses] = useState<Business[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
@@ -18,7 +18,9 @@ export const useBusinesses = () => {
         setLoading(true);
       }
       
-      const data = await getAllBusinesses();
+      const data = category 
+        ? await getBusinessesByCategory(category)
+        : await getAllBusinesses();
       setBusinesses(data);
       setError(null);
     } catch (err) {
@@ -28,7 +30,7 @@ export const useBusinesses = () => {
       setLoading(false);
       setRefreshing(false);
     }
-  }, []);
+  }, [category]);
 
   useEffect(() => {
     fetchBusinesses();
