@@ -12,23 +12,17 @@ interface BusinessCardProps {
 }
 
 export default function BusinessCard({ business, isFavorite, onToggleFavorite }: BusinessCardProps) {
-  const isFeatured = business.rating && business.rating >= 4.5;
 
   return (
     <Link href={`/business/${business.id}`} asChild>
-      <TouchableOpacity style={styles.businessCard}>
+      <TouchableOpacity style={styles.container}>
         {/* Business Image */}
         <View style={styles.imageContainer}>
-          {business.imageUrl ? (
-            <Image source={{ uri: business.imageUrl }} style={styles.businessImage} />
+          {business.images && business.images.length > 0 ? (
+            <Image source={{ uri: business.images[0] }} style={styles.businessImage} />
           ) : (
             <View style={[styles.businessImage, styles.placeholderImage]}>
               <IconSymbol name="building.2" size={40} color="#999" />
-            </View>
-          )}
-          {isFeatured && (
-            <View style={styles.featuredBadge}>
-              <ThemedText style={styles.featuredText}>Featured</ThemedText>
             </View>
           )}
         </View>
@@ -36,49 +30,51 @@ export default function BusinessCard({ business, isFavorite, onToggleFavorite }:
         {/* Business Info */}
         <View style={styles.businessInfo}>
           <View style={styles.textContainer}>
-            {business.category && (
-              <ThemedText style={styles.category}>{business.category}</ThemedText>
-            )}
-            <ThemedText style={styles.businessName} numberOfLines={1}>
+            <ThemedText style={styles.businessName} numberOfLines={2}>
               {business.name}
             </ThemedText>
+
             {business.address && (
               <ThemedText style={styles.address} numberOfLines={1}>
-                📍 {business.address}
+                {business.address}
               </ThemedText>
             )}
-            {business.rating && (
-              <View style={styles.ratingContainer}>
-                <IconSymbol name="star.fill" size={14} color="#FFD700" />
-                <ThemedText style={styles.ratingText}>
-                  {business.rating.toFixed(1)}
-                </ThemedText>
-              </View>
-            )}
-          </View>
 
-          {/* Favorite Button */}
-          <TouchableOpacity
-            style={styles.favoriteButton}
-            onPress={(e) => {
-              e.preventDefault();
-              onToggleFavorite(business.id);
-            }}
-          >
-            <IconSymbol
-              name={isFavorite ? "heart.fill" : "heart"}
-              size={24}
-              color={isFavorite ? "#E25822" : "#999"}
-            />
-          </TouchableOpacity>
+            <View style={styles.categoryAndRatingContainer}>
+              <ThemedText style={styles.category}>{business.category}</ThemedText>
+              {business.rating && (
+                <View style={styles.ratingContainer}>
+                  <IconSymbol name="star.fill" size={14} color="#FFD700" />
+                  <ThemedText style={styles.ratingText}>
+                    {business.rating.toFixed(1)}
+                  </ThemedText>
+                </View>
+              )}
+            </View>
+          </View>
         </View>
+
+        {/* Favorite Button */}
+        <TouchableOpacity
+          style={styles.favoriteButton}
+          onPress={(e) => {
+            e.preventDefault();
+            onToggleFavorite(business.id);
+          }}
+        >
+          <IconSymbol
+            name={isFavorite ? "heart.fill" : "heart"}
+            size={24}
+            color={isFavorite ? "#009736" : "#999"}
+          />
+        </TouchableOpacity>
       </TouchableOpacity>
-    </Link>
+    </Link >
   );
 }
 
 const styles = StyleSheet.create({
-  businessCard: {
+  container: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
@@ -89,6 +85,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    gap: 8,
   },
   imageContainer: {
     width: 120,
@@ -104,24 +101,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  featuredBadge: {
-    position: 'absolute',
-    top: 8,
-    left: 8,
-    backgroundColor: '#FFD700',
-    paddingHorizontal: 6,
-    paddingVertical: 3,
-    borderRadius: 6,
-  },
-  featuredText: {
-    fontSize: 9,
-    fontWeight: 'bold',
-    color: '#000',
-  },
   businessInfo: {
     flex: 1,
     flexDirection: 'row',
-    padding: 12,
     gap: 8,
   },
   textContainer: {
@@ -129,21 +111,19 @@ const styles = StyleSheet.create({
   },
   category: {
     fontSize: 11,
-    color: '#E25822',
+    color: '#009736',
     fontWeight: '600',
-    marginBottom: 4,
     textTransform: 'uppercase',
   },
   businessName: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     color: '#1A1A1A',
-    marginBottom: 4,
   },
   address: {
     fontSize: 12,
     color: '#666',
-    marginBottom: 4,
+
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -160,5 +140,10 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  categoryAndRatingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
 });

@@ -1,33 +1,38 @@
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import {
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    View
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 
-export default function BusinessSearchBox({searchQuery, setSearchQuery}: {searchQuery: string, setSearchQuery: (query: string) => void}) {
+interface SearchBoxProps {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+}
+
+export default function BusinessSearchBox({ searchQuery, setSearchQuery }: SearchBoxProps) {
   const handleSearch = (text: string) => {
     setSearchQuery(text);
   };
 
   return (
     <View style={styles.container}>
-        <IconSymbol name="magnifyingglass" size={20} color="#999" style={styles.searchIcon} />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search businesses..."
-          value={searchQuery}
-          onChangeText={handleSearch}
-          placeholderTextColor="#999"
-        />
-        {searchQuery.length > 0 && (
-          <TouchableOpacity onPress={() => handleSearch('')}>
-            <IconSymbol name="xmark.circle.fill" size={20} color="#999" />
-          </TouchableOpacity>
-        )}
-      </View>
+      <IconSymbol name="magnifyingglass" size={20} color="#999" style={styles.searchIcon} />
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search businesses..."
+        value={searchQuery}
+        onChangeText={handleSearch}
+        placeholderTextColor="#999"
+      />
+      {searchQuery.length > 0 && (
+        <TouchableOpacity onPress={() => handleSearch('')}>
+          <IconSymbol name="xmark.circle.fill" size={20} color="#999" />
+        </TouchableOpacity>
+      )}
+    </View>
   );
 }
 
@@ -36,16 +41,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F5F5F5',
-    margin: 16,
-    paddingHorizontal: 16,    
-    borderRadius: 12,
+    paddingHorizontal: 16,
+    borderRadius: 10,
     gap: 12,
   },
   searchIcon: {
     marginRight: -4,
   },
   searchInput: {
-    flex: 1,
     fontSize: 16,
     color: '#000',
   },
