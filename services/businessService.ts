@@ -1,7 +1,6 @@
+import { Business } from '@/types/interface';
 import {
-  addDoc,
   collection,
-  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -9,27 +8,9 @@ import {
   orderBy,
   query,
   QueryConstraint,
-  updateDoc,
   where
 } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
-
-// Define the Business interface
-export interface Business {
-  id: string;
-  name: string;
-  description?: string;
-  category?: string;
-  address?: string;
-  phone?: string;
-  email?: string;
-  website?: string;
-  images?: string[];
-  rating?: number;
-  reviewCount?: number;
-  createdAt?: any;
-  // Add any other fields your business collection has
-}
 
 // Collection name - change this to match your Firestore collection name
 const BUSINESS_COLLECTION = 'businesses';
@@ -142,52 +123,6 @@ export const searchBusinessesByName = async (searchTerm: string): Promise<Busine
     );
   } catch (error) {
     console.error('Error searching businesses:', error);
-    throw error;
-  }
-};
-
-/**
- * Add a new business
- */
-export const addBusiness = async (businessData: Omit<Business, 'id'>): Promise<string> => {
-  try {
-    const businessCollection = collection(db, BUSINESS_COLLECTION);
-    const docRef = await addDoc(businessCollection, {
-      ...businessData,
-      createdAt: new Date()
-    });
-    return docRef.id;
-  } catch (error) {
-    console.error('Error adding business:', error);
-    throw error;
-  }
-};
-
-/**
- * Update a business
- */
-export const updateBusiness = async (
-  businessId: string,
-  businessData: Partial<Business>
-): Promise<void> => {
-  try {
-    const businessDoc = doc(db, BUSINESS_COLLECTION, businessId);
-    await updateDoc(businessDoc, businessData);
-  } catch (error) {
-    console.error('Error updating business:', error);
-    throw error;
-  }
-};
-
-/**
- * Delete a business
- */
-export const deleteBusiness = async (businessId: string): Promise<void> => {
-  try {
-    const businessDoc = doc(db, BUSINESS_COLLECTION, businessId);
-    await deleteDoc(businessDoc);
-  } catch (error) {
-    console.error('Error deleting business:', error);
     throw error;
   }
 };

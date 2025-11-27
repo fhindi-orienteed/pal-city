@@ -1,21 +1,6 @@
+import { Event } from '@/types/interface';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
-
-export interface Event {
-  id: string;
-  name: string;
-  date: string;
-  time?: string;
-  location: string;
-  price?: string;
-  description?: string;
-  organizer?: string;
-  image: string;
-  images?: string[];
-  isFavorite?: boolean;
-  category?: string;
-  createdAt?: any;
-}
 
 const EVENTS_COLLECTION = 'events';
 

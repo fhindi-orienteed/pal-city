@@ -1,20 +1,19 @@
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Business } from '@/services/businessService';
+import { Business } from '@/types/interface';
+import { Image } from 'expo-image';
 import { View } from 'react-native';
 import styles from './styles';
 
 export default function Title({ business }: { business: Business }) {
+    const logoUrl = business.logo ? business.logo : business.images ? business.images[0] : null;
     return (
         <ThemedView style={styles.titleContainer}>
             <View style={styles.titleHeader}>
+                {logoUrl && (
+                    <Image source={logoUrl} style={styles.businessLogo} />
+                )}
                 <ThemedText type="title" style={styles.businessName}>{business.name}</ThemedText>
-                <View style={styles.ratingContainer}>
-                    <IconSymbol name="star.fill" size={16} color="#FFD700" />
-                    <ThemedText style={styles.rating}>{business.rating}</ThemedText>
-                    <ThemedText style={styles.reviewCount}>{business.reviewCount}</ThemedText>
-                </View>
             </View>
         </ThemedView>
     );

@@ -41,9 +41,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        gap: 16,
+        gap: 8,
     },
     ratingContainer: {
+        position: 'absolute',
+        bottom: 20,
+        start: 20,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#FFF8E1',
@@ -51,7 +54,6 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
         borderRadius: 12,
         gap: 4,
-        width: 60,
     },
     rating: {
         fontWeight: 'bold',
@@ -60,17 +62,6 @@ const styles = StyleSheet.create({
     reviewCount: {
         fontSize: 12,
         color: '#B78103',
-    },
-    categoryBadge: {
-        position: 'absolute',
-        bottom: 20,
-        start: 20,
-        fontSize: 16,
-        color: '#fff',
-        backgroundColor: '#009736',
-        paddingHorizontal: 12,
-        paddingVertical: 2,
-        borderRadius: 12,
     },
     actionButtonsContainer: {
         flexDirection: 'row',
@@ -120,8 +111,8 @@ const styles = StyleSheet.create({
         gap: 12,
     },
     photo: {
-        width: '48%',
-        height: 150,
+        width: '31%',
+        height: 100,
         borderRadius: 12,
         marginBottom: 8,
     },
@@ -130,6 +121,58 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#333',
         flex: 1,
+    },
+    businessLogo: {
+        width: 60,
+        height: 60,
+        borderRadius: 10,
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: 'black',
+    },
+    modalCloseButton: {
+        position: 'absolute',
+        top: 20,
+        right: 20,
+        zIndex: 1,
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        borderRadius: 20,
+    },
+    modalImage: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'contain',
+    },
+    navButton: {
+        position: 'absolute',
+        top: '50%',
+        zIndex: 1,
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        borderRadius: 20,
+        transform: [{ translateY: -20 }],
+    },
+    navButtonLeft: {
+        left: 20,
+    },
+    navButtonRight: {
+        right: 20,
+    },
+    imageCounter: {
+        position: 'absolute',
+        bottom: 40,
+        alignSelf: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 12,
+    },
+    imageCounterText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 });
 
