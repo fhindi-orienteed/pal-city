@@ -62,5 +62,13 @@
         "theme": "المظهر",
         "darkMode": "الوضع الداكن",
         "notifications": "الإشعارات"
+    },
+    "onboarding": {
+        "welcome": "مرحباً بك في بال سيتي",
+        "selectCity": "اختر مدينتك لنعرض لك المحتوى المناسب",
+        "searchCity": "ابحث عن مدينة...",
+        "popularCities": "المدن الشائعة",
+        "showAllCities": "عرض جميع المدن",
+        "continue": "متابعة"
     }
 }

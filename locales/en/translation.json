@@ -75,6 +75,14 @@
         "school": "School",
         "taxi": "Taxi"
     },
+    "onboarding": {
+        "welcome": "Welcome to Pal City",
+        "selectCity": "Select your city to get personalized content",
+        "searchCity": "Search for a city...",
+        "popularCities": "Popular Cities",
+        "showAllCities": "Show All Cities",
+        "continue": "Continue"
+    },
     "cities": {
         "jerusalem": "Jerusalem",
         "hebron": "Hebron",
@@ -84,5 +92,25 @@
         "tulkarm": "Tulkarm",
         "qalqilya": "Qalqilya",
         "salfit": "Salfit"
+    },
+    "welcomeScreen": {
+        "title": "Welcome!",
+        "subtitle": "Discover the best places, events, and more in your city",
+        "getStarted": "Get Started",
+        "skip": "Skip",
+        "features": {
+            "feature_1": {
+                "title": "Explore Your City",
+                "description": "Find places and services near you",
+            },
+            "feature_2": {
+                "title": "Local Events",
+                "description": "Stay updated with latest events",
+            },
+            "feature_3": {
+                "title": "Local Businesses",
+                "description": "Support local businesses",
+            }
+        }
     }
 }
