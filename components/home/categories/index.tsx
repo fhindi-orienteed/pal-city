@@ -1,8 +1,9 @@
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import appConfig from '@/config/appConfig';
 import { useState } from 'react';
-import { LayoutAnimation, Platform, StyleSheet, TouchableOpacity, UIManager, View } from 'react-native';
+import { LayoutAnimation, Platform, TouchableOpacity, UIManager, View } from 'react-native';
 import { HomeCategoriesCard } from './card';
+import styles from './styles';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -39,37 +40,3 @@ export default function HomeCategories() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 16,
-  },
-  gridContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingHorizontal: 12,
-    justifyContent: 'space-between',
-  },
-  categoryItem: {
-    alignItems: 'center',
-    width: '23%',
-    marginBottom: 16,
-    gap: 8,
-  },
-  iconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 16,
-    backgroundColor: '#E8F5E9',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  categoryName: {
-    fontSize: 12,
-    textAlign: 'center',
-  },
-  expandButton: {
-    alignItems: 'center',
-    paddingVertical: 8,
-    marginTop: 4,
-  },
-});

@@ -1,7 +1,9 @@
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useRouter } from 'expo-router';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity, View } from 'react-native';
+import styles from './styles';
 
 type IconSymbolName = React.ComponentProps<typeof IconSymbol>['name'];
 
@@ -11,40 +13,20 @@ interface Props {
 
 export function HomeCategoriesCard({ category }: Props) {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleCategoryPress = (category: Props['category']) => {
     router.push(`/business/list?category=${category.key}`);
   }
 
   return (
-    <TouchableOpacity key={category.id} style={styles.container} onPress={() => handleCategoryPress(category)}>
+    <TouchableOpacity key={category.id} style={styles.categoryItem} onPress={() => handleCategoryPress(category)}>
       <View style={styles.iconContainer}>
         <IconSymbol name={category.icon} size={24} color="#009736" />
       </View>
       <ThemedText style={styles.categoryName} numberOfLines={1}>
-        {category.key}
+        {t('categories.' + category.key)}
       </ThemedText>
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    width: '23%',
-    marginBottom: 16,
-    gap: 8,
-  },
-  iconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 16,
-    backgroundColor: '#E8F5E9',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  categoryName: {
-    fontSize: 12,
-    textAlign: 'center',
-  },
-});

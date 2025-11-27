@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     paddingTop: 16,
   },
   gridContainer: {
+    display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingHorizontal: 12,
@@ -12,9 +13,8 @@ export const styles = StyleSheet.create({
   },
   categoryItem: {
     alignItems: 'center',
-    width: '23%', 
-    marginBottom: 16,
-    gap: 8,
+    width: "25%",
+    marginBottom: 12,
   },
   iconContainer: {
     width: 56,
@@ -34,3 +34,5 @@ export const styles = StyleSheet.create({
     marginTop: 4,
   },
 });
+
+export default styles;

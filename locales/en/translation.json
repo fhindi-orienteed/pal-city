@@ -62,5 +62,27 @@
         "theme": "Theme",
         "darkMode": "Dark Mode",
         "notifications": "Notifications"
+    },
+    "categories": {
+        "pharmacy": "Pharmacy",
+        "bank": "Bank",
+        "university": "University",
+        "hospital": "Hospital",
+        "hotel": "Hotel",
+        "restaurant": "Restaurant",
+        "supermarket": "Supermarket",
+        "event": "Event",
+        "school": "School",
+        "taxi": "Taxi"
+    },
+    "cities": {
+        "jerusalem": "Jerusalem",
+        "hebron": "Hebron",
+        "ramallah": "Ramallah",
+        "nablus": "Nablus",
+        "tubas": "Tubas",
+        "tulkarm": "Tulkarm",
+        "qalqilya": "Qalqilya",
+        "salfit": "Salfit"
     }
 }

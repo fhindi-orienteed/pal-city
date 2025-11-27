@@ -32,6 +32,7 @@ export default function BusinessListScreen() {
   const [ratingFilter, setRatingFilter] = useState<RatingOption>('all');
   const [selectedCategory, setSelectedCategory] = useState<any[]>([]);
   const [filterVisible, setFilterVisible] = useState(false);
+  const [selectedCity, setSelectedCity] = useState<any[]>([]);
 
   const params = useLocalSearchParams();
   const { title } = params
@@ -164,6 +165,8 @@ export default function BusinessListScreen() {
         onRatingChange={setRatingFilter}
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
+        selectedCity={selectedCity}
+        onCityChange={setSelectedCity}
       />
 
       {/* Business List */}

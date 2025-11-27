@@ -16,6 +16,7 @@ export const defaultExpandedSections = {
     sortBy: false,
     rating: false,
     category: false,
+    city: false,
 };
 
-export const sections = ['sortBy', 'rating', 'category'];
+export const sections = ['sortBy', 'rating', 'category', 'city'];

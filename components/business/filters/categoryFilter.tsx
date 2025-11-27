@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import appConfig from '@/config/appConfig';
+import { useTranslation } from 'react-i18next';
 import {
     TouchableOpacity,
     View
@@ -16,6 +17,8 @@ interface Props {
 }
 
 export default function CategoryFilter({ selectedCategory, onCategoryChange, expanded, toggleExpanded }: Props) {
+
+    const { t } = useTranslation();
 
     const FilterOption = ({ category }: { category: any }) => <TouchableOpacity
         key={category.id}
@@ -38,7 +41,7 @@ export default function CategoryFilter({ selectedCategory, onCategoryChange, exp
                     selectedCategory.includes(category.key) && styles.optionTextActive,
                 ]}
             >
-                {category.key}
+                {t("categories." + category.key)}
             </ThemedText>
         </View>
     </TouchableOpacity>
@@ -48,7 +51,7 @@ export default function CategoryFilter({ selectedCategory, onCategoryChange, exp
             section="category"
             expanded={expanded}
             toggleSection={toggleExpanded}
-            value={selectedCategory.map((category) => category.key)}
+            value={selectedCategory.map((category) => t("categories." + category))}
         >
             {expanded && (
                 <View style={styles.categoryOptionsContainer}>

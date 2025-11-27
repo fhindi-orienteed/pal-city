@@ -11,6 +11,7 @@ import {
     View
 } from 'react-native';
 import CategoryFilter from './categoryFilter';
+import CityFilter from './cityFilter';
 import { defaultExpandedSections } from './config';
 import RatingFilter from './ratingFilter';
 import SortBy from './sortBy';
@@ -26,6 +27,8 @@ interface Props {
     onRatingChange: (rating: RatingOption) => void;
     selectedCategory: string[];
     onCategoryChange: (category: string[]) => void;
+    selectedCity: string[];
+    onCityChange: (city: string[]) => void;
 }
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -36,12 +39,14 @@ const SWIPE_THRESHOLD = 100; // Minimum swipe distance to close
 export default function FilterBottomSheet({
     visible,
     onClose,
-    selectedSort,
+    selectedSort = 'rating',
     onSortChange,
-    selectedRating,
+    selectedRating = 'all',
     onRatingChange,
-    selectedCategory,
+    selectedCategory = [],
     onCategoryChange,
+    selectedCity = [],
+    onCityChange,
 }: Props) {
     const slideAnim = useRef(new Animated.Value(SHEET_HEIGHT)).current;
     const panY = useRef(0);
@@ -63,6 +68,7 @@ export default function FilterBottomSheet({
                 sortBy: false,
                 rating: false,
                 category: false,
+                city: false,
                 [section]: true,
             };
         });
@@ -187,12 +193,21 @@ export default function FilterBottomSheet({
                             expanded={expandedSections.category || false}
                             toggleExpanded={() => toggleSection('category')}
                         />
+
+                        {/* City Filter Section */}
+                        <CityFilter
+                            selectedCity={selectedCity}
+                            onCityChange={onCityChange}
+                            expanded={expandedSections.city || false}
+                            toggleExpanded={() => toggleSection('city')}
+                        />
                     </ScrollView>
 
-                    <TouchableOpacity style={styles.applyButton}>
+                    <TouchableOpacity style={styles.applyButton} onPress={onClose}>
                         <ThemedText style={styles.applyButtonText}>Apply filters</ThemedText>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.resetButton}>
+
+                    <TouchableOpacity style={styles.resetButton} onPress={onClose}>
                         <ThemedText style={styles.resetButtonText}>Reset filters</ThemedText>
                     </TouchableOpacity>
                 </Animated.View>
