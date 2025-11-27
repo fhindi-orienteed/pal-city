@@ -3,10 +3,10 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useBusiness } from '@/hooks/useBusinesses';
-import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { useTranslation } from 'react-i18next';
-import { Linking, TouchableOpacity, View } from 'react-native';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import { View } from 'react-native';
 import About from './about';
+import Actions from './actions';
 import Gallery from './gallery';
 import Header from './header';
 import Placeholder from './placeholder';
@@ -15,16 +15,8 @@ import Title from './title';
 
 export default function BusinessDetailsScreen() {
   const { id } = useLocalSearchParams();
-  const router = useRouter();
-
-  const { t } = useTranslation();
 
   const { business, loading } = useBusiness(id.toString());
-
-  const onCall = () => {
-    Linking.openURL(`tel:${business?.phone}`);
-  };
-
 
   return (
     <>
@@ -36,35 +28,7 @@ export default function BusinessDetailsScreen() {
           <ThemedView style={styles.container}>
             <Title business={business} />
 
-            <View style={styles.actionButtonsContainer}>
-              <TouchableOpacity style={styles.actionButton} onPress={onCall}>
-                <View style={styles.actionIcon}>
-                  <IconSymbol name="phone.fill" size={24} color="#E25822" />
-                </View>
-                <ThemedText style={styles.actionLabel}>Call</ThemedText>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.actionButton}>
-                <View style={styles.actionIcon}>
-                  <IconSymbol name="map.fill" size={24} color="#E25822" />
-                </View>
-                <ThemedText style={styles.actionLabel}>Directions</ThemedText>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.actionButton}>
-                <View style={styles.actionIcon}>
-                  <IconSymbol name="globe" size={24} color="#E25822" />
-                </View>
-                <ThemedText style={styles.actionLabel}>Website</ThemedText>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.actionButton}>
-                <View style={styles.actionIcon}>
-                  <IconSymbol name="square.and.arrow.up" size={24} color="#E25822" />
-                </View>
-                <ThemedText style={styles.actionLabel}>Share</ThemedText>
-              </TouchableOpacity>
-            </View>
+            <Actions business={business} />
 
             <About business={business} />
 

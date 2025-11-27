@@ -31,21 +31,18 @@ const Placeholder: React.FC = () => {
         <View style={styles.container}>
             <Animated.View style={[styles.pulseItem, styles.imagePlaceholder, { opacity }]} />
 
-            <Animated.View style={[styles.pulseItem, styles.title, { opacity }]} />
-
-            <Animated.View style={[styles.pulseItem, styles.subtitle, { opacity }]} />
-
-            <View style={styles.textBlock}>
-                <Animated.View style={[styles.pulseItem, styles.textLineFull, { opacity }]} />
-                <Animated.View style={[styles.pulseItem, styles.textLineFiveSixth, { opacity }]} />
-                <Animated.View style={[styles.pulseItem, styles.textLineFull, { opacity }]} />
-                <Animated.View style={[styles.pulseItem, styles.textLineTwoThirds, { opacity }]} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 10 }}>
+                <Animated.View style={[styles.pulseItem, styles.logo, { opacity }]} />
+                <View style={{ flexDirection: 'column', gap: 8, flex: 1 }}>
+                    <Animated.View style={[styles.pulseItem, styles.title, { opacity }]} />
+                    <Animated.View style={[styles.pulseItem, styles.subtitle, { opacity }]} />
+                </View>
             </View>
-
-            <View style={styles.textBlock}>
-                <Animated.View style={[styles.pulseItem, styles.sectionTitle, { opacity }]} />
-                <Animated.View style={[styles.pulseItem, styles.textLineFull, { opacity }]} />
-                <Animated.View style={[styles.pulseItem, styles.textLineFourFifth, { opacity }]} />
+            <View style={styles.actionsContainer}>
+                <Animated.View style={[styles.pulseItem, styles.actions, { opacity }]} />
+                <Animated.View style={[styles.pulseItem, styles.actions, { opacity }]} />
+                <Animated.View style={[styles.pulseItem, styles.actions, { opacity }]} />
+                <Animated.View style={[styles.pulseItem, styles.actions, { opacity }]} />
             </View>
         </View>
     );
@@ -61,13 +58,13 @@ const styles = StyleSheet.create({
         borderRadius: 4,
     },
     title: {
-        height: 32, // h-8
-        width: '75%', // w-3/4
-        marginBottom: 16, // mb-4
+        height: 32,
+        width: '100%',
+        marginBottom: 4,
     },
     subtitle: {
-        height: 16, // h-4
-        width: '50%', // w-1/2
+        height: 16,
+        width: '75%',
     },
     textBlock: {
         gap: 8, // space-y-2
@@ -97,6 +94,21 @@ const styles = StyleSheet.create({
         height: 16, // h-4
         width: '80%', // w-4/5
     },
+    logo: {
+        height: 60,
+        width: 60,
+    },
+    actionsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        justifyContent: 'space-between',
+        marginTop: 10
+    },
+    actions: {
+        width: '23%',
+        height: 60,
+    }
 });
 
 export default Placeholder;

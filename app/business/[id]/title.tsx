@@ -13,7 +13,10 @@ export default function Title({ business }: { business: Business }) {
                 {logoUrl && (
                     <Image source={logoUrl} style={styles.businessLogo} />
                 )}
-                <ThemedText type="title" style={styles.businessName}>{business.name}</ThemedText>
+                <View style={styles.businessNameContainer}>
+                    <ThemedText type="title" style={styles.businessName} numberOfLines={1}>{business.name}</ThemedText>
+                    <ThemedText type="title" style={styles.businessAddress}>{business.address}</ThemedText>
+                </View>
             </View>
         </ThemedView>
     );

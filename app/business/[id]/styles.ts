@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 24,
-        backgroundColor: '#FFF0EB',
+        backgroundColor: '#E8F5E9',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -116,16 +116,23 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         marginBottom: 8,
     },
+    businessNameContainer: {
+        flex: 1
+    },
     businessName: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#333',
         flex: 1,
     },
+    businessAddress: {
+        fontSize: 12,
+        color: '#666',
+    },
     businessLogo: {
         width: 60,
         height: 60,
-        borderRadius: 10,
+        borderRadius: 5,
     },
     modalContainer: {
         flex: 1,
