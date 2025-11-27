@@ -3,10 +3,11 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useBusiness } from '@/hooks/useBusinesses';
-import { Image } from 'expo-image';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Linking, TouchableOpacity, View } from 'react-native';
+import About from './about';
+import Gallery from './gallery';
 import Header from './header';
 import Placeholder from './placeholder';
 import styles from './styles';
@@ -65,10 +66,7 @@ export default function BusinessDetailsScreen() {
               </TouchableOpacity>
             </View>
 
-            <ThemedView style={styles.section}>
-              <ThemedText type="subtitle" style={styles.sectionTitle}>About</ThemedText>
-              <ThemedText style={styles.description}>{business.description}</ThemedText>
-            </ThemedView>
+            <About business={business} />
 
             <ThemedView style={styles.section}>
               <ThemedText type="subtitle" style={styles.sectionTitle}>Information</ThemedText>
@@ -89,14 +87,7 @@ export default function BusinessDetailsScreen() {
               </View>
             </ThemedView>
 
-            <ThemedView style={styles.section}>
-              <ThemedText type="subtitle" style={styles.sectionTitle}>Photos</ThemedText>
-              <View style={styles.photosGrid}>
-                {business.images.map((img, index) => (
-                  <Image key={index} source={img} style={styles.photo} />
-                ))}
-              </View>
-            </ThemedView>
+            <Gallery business={business} />
           </ThemedView>
         </ParallaxScrollView>
       ) : (
