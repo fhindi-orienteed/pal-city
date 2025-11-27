@@ -1,0 +1,66 @@
+{
+    "common": {
+        "welcome": "Welcome",
+        "home": "Home",
+        "search": "Search",
+        "explore": "Explore",
+        "more": "More",
+        "loading": "Loading...",
+        "error": "Error",
+        "retry": "Retry",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "back": "Back",
+        "next": "Next",
+        "submit": "Submit"
+    },
+    "home": {
+        "title": "Discover PalCity",
+        "subtitle": "Explore the best places in Palestine",
+        "events": "Events",
+        "pharmacies": "Pharmacies",
+        "viewAll": "View All"
+    },
+    "search": {
+        "placeholder": "Search for places, events...",
+        "noResults": "No results found",
+        "recentSearches": "Recent Searches"
+    },
+    "events": {
+        "title": "Events",
+        "upcoming": "Upcoming Events",
+        "past": "Past Events",
+        "details": "Event Details",
+        "date": "Date",
+        "time": "Time",
+        "location": "Location",
+        "description": "Description"
+    },
+    "pharmacies": {
+        "title": "Pharmacies",
+        "openNow": "Open Now",
+        "closed": "Closed",
+        "rating": "Rating",
+        "distance": "Distance",
+        "callNow": "Call Now"
+    },
+    "profile": {
+        "title": "Profile",
+        "settings": "Settings",
+        "language": "Language",
+        "notifications": "Notifications",
+        "logout": "Logout"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "selectLanguage": "Select Language",
+        "english": "English",
+        "arabic": "Arabic",
+        "theme": "Theme",
+        "darkMode": "Dark Mode",
+        "notifications": "Notifications"
+    }
+}

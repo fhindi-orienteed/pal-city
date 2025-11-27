@@ -1,0 +1,66 @@
+{
+    "common": {
+        "welcome": "مرحباً",
+        "home": "الرئيسية",
+        "search": "بحث",
+        "explore": "استكشف",
+        "more": "المزيد",
+        "loading": "جاري التحميل...",
+        "error": "خطأ",
+        "retry": "إعادة المحاولة",
+        "cancel": "إلغاء",
+        "save": "حفظ",
+        "delete": "حذف",
+        "edit": "تعديل",
+        "back": "رجوع",
+        "next": "التالي",
+        "submit": "إرسال"
+    },
+    "home": {
+        "title": "اكتشف فلسطين",
+        "subtitle": "استكشف أفضل الأماكن في فلسطين",
+        "events": "الفعاليات",
+        "pharmacies": "الصيدليات",
+        "viewAll": "عرض الكل"
+    },
+    "search": {
+        "placeholder": "ابحث عن أماكن، فعاليات...",
+        "noResults": "لا توجد نتائج",
+        "recentSearches": "عمليات البحث الأخيرة"
+    },
+    "events": {
+        "title": "الفعاليات",
+        "upcoming": "الفعاليات القادمة",
+        "past": "الفعاليات السابقة",
+        "details": "تفاصيل الفعالية",
+        "date": "التاريخ",
+        "time": "الوقت",
+        "location": "الموقع",
+        "description": "الوصف"
+    },
+    "pharmacies": {
+        "title": "الصيدليات",
+        "openNow": "مفتوح الآن",
+        "closed": "مغلق",
+        "rating": "التقييم",
+        "distance": "المسافة",
+        "callNow": "اتصل الآن"
+    },
+    "profile": {
+        "title": "الملف الشخصي",
+        "settings": "الإعدادات",
+        "language": "اللغة",
+        "notifications": "الإشعارات",
+        "logout": "تسجيل الخروج"
+    },
+    "settings": {
+        "title": "الإعدادات",
+        "language": "اللغة",
+        "selectLanguage": "اختر اللغة",
+        "english": "الإنجليزية",
+        "arabic": "العربية",
+        "theme": "المظهر",
+        "darkMode": "الوضع الداكن",
+        "notifications": "الإشعارات"
+    }
+}
