@@ -6,6 +6,7 @@ import { ActivityIndicator, View } from 'react-native';
 import 'react-native-reanimated';
 
 import '@/config/i18n'; // Initialize i18n
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { OnboardingProvider, useOnboarding } from '@/contexts/OnboardingContext';
 import { useColorScheme } from '@/hooks/use-color-scheme';
@@ -19,6 +20,7 @@ function RootLayoutNav() {
   const { hasCompletedOnboarding, isLoading } = useOnboarding();
   const segments = useSegments();
   const router = useRouter();
+  const { isLogin } = useAuth();
 
   useEffect(() => {
     if (isLoading) return;
@@ -30,7 +32,11 @@ function RootLayoutNav() {
       router.replace('/onboarding/welcome');
     } else if (hasCompletedOnboarding && inOnboarding) {
       // Redirect to main app if onboarding is completed
-      router.replace('/(tabs)');
+      if (!isLogin) {
+        router.replace('/auth/login');
+      } else {
+        router.replace('/(tabs)');
+      }
     }
   }, [hasCompletedOnboarding, isLoading, segments]);
 
@@ -46,6 +52,7 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+        <Stack.Screen name="auth" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
       </Stack>
@@ -57,9 +64,11 @@ function RootLayoutNav() {
 export default function RootLayout() {
   return (
     <LanguageProvider>
-      <OnboardingProvider>
-        <RootLayoutNav />
-      </OnboardingProvider>
+      <AuthProvider>
+        <OnboardingProvider>
+          <RootLayoutNav />
+        </OnboardingProvider>
+      </AuthProvider>
     </LanguageProvider>
   );
 }

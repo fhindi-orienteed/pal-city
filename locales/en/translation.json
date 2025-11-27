@@ -104,15 +104,15 @@
         "features": {
             "feature_1": {
                 "title": "Explore Your City",
-                "description": "Find places and services near you",
+                "description": "Find places and services near you"
             },
             "feature_2": {
                 "title": "Local Events",
-                "description": "Stay updated with latest events",
+                "description": "Stay updated with latest events"
             },
             "feature_3": {
                 "title": "Local Businesses",
-                "description": "Support local businesses",
+                "description": "Support local businesses"
             }
         }
     },
@@ -120,5 +120,26 @@
         "title": "Where do you live?",
         "subtitle": "Select your city where you live so we can personalize your experience",
         "popularCities": "Popular Cities"
+    },
+    "auth": {
+        "loginOrRegister": "Login or Register",
+        "phoneSubtitle": "Enter your phone number to get started",
+        "verifyOtp": "Verify Your Number",
+        "otpSubtitle": "Enter the verification code sent to your phone",
+        "phoneNumber": "Phone Number",
+        "phonePlaceholder": "5X XXX XXXX",
+        "phoneHint": "We'll send you a verification code",
+        "otpCode": "Verification Code",
+        "sendOtp": "Send Code",
+        "verify": "Verify & Continue",
+        "resendOtp": "Resend Code",
+        "skip": "Skip",
+        "error": "Error",
+        "invalidPhone": "Please enter a valid phone number",
+        "invalidOtp": "Invalid verification code. Please try again.",
+        "otpSent": "Code Sent!",
+        "otpSentMessage": "Verification code has been sent to your phone",
+        "secureLogin": "Secure and encrypted login",
+        "quickAccess": "Quick and easy access"
     }
 }

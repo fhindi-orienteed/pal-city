@@ -14,7 +14,8 @@
         "edit": "تعديل",
         "back": "رجوع",
         "next": "التالي",
-        "submit": "إرسال"
+        "submit": "إرسال",
+        "continue": "متابعة"
     },
     "home": {
         "title": "اكتشف فلسطين",
@@ -63,6 +64,18 @@
         "darkMode": "الوضع الداكن",
         "notifications": "الإشعارات"
     },
+    "categories": {
+        "pharmacy": "صيدلية",
+        "bank": "بنك",
+        "university": "جامعة",
+        "hospital": "مستشفى",
+        "hotel": "فندق",
+        "restaurant": "مطعم",
+        "supermarket": "سوبرماركت",
+        "event": "فعالية",
+        "school": "مدرسة",
+        "taxi": "تاكسي"
+    },
     "onboarding": {
         "welcome": "مرحباً بك في بال سيتي",
         "selectCity": "اختر مدينتك لنعرض لك المحتوى المناسب",
@@ -70,5 +83,63 @@
         "popularCities": "المدن الشائعة",
         "showAllCities": "عرض جميع المدن",
         "continue": "متابعة"
+    },
+    "cities": {
+        "jerusalem": "القدس",
+        "hebron": "الخليل",
+        "ramallah": "رام الله",
+        "nablus": "نابلس",
+        "tubas": "طوباس",
+        "tulkarm": "طولكرم",
+        "qalqilya": "قلقيلية",
+        "salfit": "سلفيت",
+        "bethlehem": "بيت لحم",
+        "jenin": "جنين"
+    },
+    "welcomeScreen": {
+        "title": "مرحباً!",
+        "subtitle": "اكتشف أفضل الأماكن والفعاليات والمزيد في مدينتك",
+        "getStarted": "ابدأ الآن",
+        "skip": "تخطي",
+        "features": {
+            "feature_1": {
+                "title": "استكشف مدينتك",
+                "description": "اعثر على الأماكن والخدمات بالقرب منك"
+            },
+            "feature_2": {
+                "title": "الفعاليات المحلية",
+                "description": "ابق على اطلاع بأحدث الفعاليات"
+            },
+            "feature_3": {
+                "title": "الأعمال المحلية",
+                "description": "ادعم الأعمال المحلية"
+            }
+        }
+    },
+    "citySelectionScreen": {
+        "title": "أين تسكن؟",
+        "subtitle": "اختر مدينتك حتى نتمكن من تخصيص تجربتك",
+        "popularCities": "المدن الشائعة"
+    },
+    "auth": {
+        "loginOrRegister": "تسجيل الدخول أو إنشاء حساب",
+        "phoneSubtitle": "أدخل رقم هاتفك للبدء",
+        "verifyOtp": "تحقق من رقمك",
+        "otpSubtitle": "أدخل رمز التحقق المرسل إلى هاتفك",
+        "phoneNumber": "رقم الهاتف",
+        "phonePlaceholder": "5X XXX XXXX",
+        "phoneHint": "سنرسل لك رمز التحقق",
+        "otpCode": "رمز التحقق",
+        "sendOtp": "إرسال الرمز",
+        "verify": "تحقق ومتابعة",
+        "resendOtp": "إعادة إرسال الرمز",
+        "skip": "تخطي",
+        "error": "خطأ",
+        "invalidPhone": "الرجاء إدخال رقم هاتف صحيح",
+        "invalidOtp": "رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.",
+        "otpSent": "تم إرسال الرمز!",
+        "otpSentMessage": "تم إرسال رمز التحقق إلى هاتفك",
+        "secureLogin": "تسجيل دخول آمن ومشفر",
+        "quickAccess": "وصول سريع وسهل"
     }
 }
