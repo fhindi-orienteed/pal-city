@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     headerImage: {
-        width: width * 0.5,
+        width: width,
         height: width * 0.5,
     },
     title: {
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         padding: 20,
+        paddingBottom: 120,
     },
     searchContainer: {
         flexDirection: 'row',

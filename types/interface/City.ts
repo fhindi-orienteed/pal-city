@@ -1,9 +1,5 @@
 export interface City {
     id: string;
-    name: string;
-    nameAr: string;
-    region: string;
-    regionAr: string;
-    icon?: string;
-    popular?: boolean;
+    key: string;
+    enabled: boolean;
 }
