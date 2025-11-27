@@ -97,9 +97,9 @@ export default function DetailsScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <ParallaxScrollView
         headerBackgroundColor={{ light: '#fff', dark: '#000' }}
-        headerImage={
+        header={
           <View style={{ flex: 1 }}>
-            <Image source={venue.images[0]} style={styles.headerImage} />
+            <Image source={venue.images[0]} style={styles.header} />
             <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
               <IconSymbol name="chevron.left" size={28} color="#fff" />
             </TouchableOpacity>
@@ -181,7 +181,7 @@ export default function DetailsScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: '#fff' },
-  headerImage: { height: 250, width: '100%' },
+  header: { height: 250, width: '100%' },
   backButton: { position: 'absolute', top: 50, left: 20, width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(0,0,0,0.3)', justifyContent: 'center', alignItems: 'center' },
   titleContainer: { gap: 8, marginBottom: 24 },
   titleHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 },

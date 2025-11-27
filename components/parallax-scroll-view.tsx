@@ -14,14 +14,14 @@ import { useThemeColor } from '@/hooks/use-theme-color';
 const HEADER_HEIGHT = 250;
 
 type Props = PropsWithChildren<{
-  headerImage: ReactElement;
+  header: ReactElement;
   headerBackgroundColor: { dark: string; light: string };
   refreshControl?: React.ReactElement;
 }>;
 
 export default function ParallaxScrollView({
   children,
-  headerImage,
+  header,
   headerBackgroundColor,
   refreshControl,
 }: Props) {
@@ -59,7 +59,7 @@ export default function ParallaxScrollView({
           { backgroundColor: headerBackgroundColor[colorScheme] },
           headerAnimatedStyle,
         ]}>
-        {headerImage}
+        {header}
       </Animated.View>
       <ThemedView style={styles.content}>{children}</ThemedView>
     </Animated.ScrollView>

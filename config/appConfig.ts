@@ -3,16 +3,16 @@ const appConfig = {
         pageSize: 10
     },
     businessCategories: [
-        { id: '1', key: 'pharmacy', icon: 'pill.fill' },
-        { id: '2', key: 'bank', icon: 'car.fill' },
-        { id: '3', key: 'university', icon: 'book.fill' },
-        { id: '4', key: 'hospital', icon: 'car.fill' },
-        { id: '5', key: 'hotel', icon: 'car.fill' },
-        { id: '6', key: 'restaurant', icon: 'car.fill' },
-        { id: '7', key: 'supermarket', icon: 'car.fill' },
-        { id: '8', key: 'event', icon: 'calendar' },
-        { id: '9', key: 'school', icon: 'car.fill' },
-        { id: '10', key: 'taxi', icon: 'car.fill' },
+        { id: '1', enabled: false, key: 'pharmacy', icon: 'pill.fill' },
+        { id: '2', enabled: true, key: 'bank', icon: 'car.fill' },
+        { id: '3', enabled: false, key: 'university', icon: 'book.fill' },
+        { id: '4', enabled: false, key: 'hospital', icon: 'car.fill' },
+        { id: '5', enabled: false, key: 'hotel', icon: 'car.fill' },
+        { id: '6', enabled: false, key: 'restaurant', icon: 'car.fill' },
+        { id: '7', enabled: false, key: 'supermarket', icon: 'car.fill' },
+        { id: '8', enabled: false, key: 'event', icon: 'calendar' },
+        { id: '9', enabled: false, key: 'school', icon: 'car.fill' },
+        { id: '10', enabled: false, key: 'taxi', icon: 'car.fill' },
     ],
     events: {
         pageSize: 10

@@ -26,6 +26,7 @@ export interface Business {
   website?: string;
   images?: string[];
   rating?: number;
+  reviewCount?: number;
   createdAt?: any;
   // Add any other fields your business collection has
 }

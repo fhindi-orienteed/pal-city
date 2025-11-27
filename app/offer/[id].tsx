@@ -32,26 +32,26 @@ export default function OfferDetailsScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <ParallaxScrollView
         headerBackgroundColor={{ light: '#fff', dark: '#000' }}
-        headerImage={
+        header={
           <View style={{ flex: 1 }}>
-             <Image
+            <Image
               source={offer.image}
-              style={styles.headerImage}
+              style={styles.header}
             />
-            <TouchableOpacity 
-              style={styles.backButton} 
+            <TouchableOpacity
+              style={styles.backButton}
               onPress={() => router.back()}
             >
               <IconSymbol name="chevron.left" size={28} color="#fff" />
             </TouchableOpacity>
-            <TouchableOpacity 
-              style={styles.shareButton} 
+            <TouchableOpacity
+              style={styles.shareButton}
             >
               <IconSymbol name="square.and.arrow.up" size={24} color="#fff" />
             </TouchableOpacity>
           </View>
         }>
-        
+
         <ThemedView style={styles.container}>
           <View style={styles.headerContent}>
             <View style={styles.discountBadge}>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
   },
-  headerImage: {
+  header: {
     height: 250,
     width: '100%',
   },

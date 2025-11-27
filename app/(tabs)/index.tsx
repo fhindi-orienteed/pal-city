@@ -16,7 +16,7 @@ export default function HomeScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#FFFFFF', dark: '#FFFFFF' }}
-      headerImage={<HomeHeader />}
+      header={<HomeHeader />}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
@@ -28,21 +28,21 @@ export default function HomeScreen() {
     >
 
       <HomeCategories />
-      
-      <HomeBusiness   
+
+      <HomeBusiness
         businesses={businesses}
         loading={loadingBusinesses}
         error={errorBusinesses}
       />
-      
+
       <HomeOffers />
 
-      <HomeEvents 
+      <HomeEvents
         events={events}
         loading={loadingEvents}
         error={errorEvents}
       />
-        
+
     </ParallaxScrollView>
   );
 }

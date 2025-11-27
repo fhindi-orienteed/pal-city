@@ -69,7 +69,7 @@ export default function EventDetailsScreen() {
           <Image
             key={index}
             source={{ uri: image }}
-            style={styles.headerImage}
+            style={styles.header}
           />
         ))}
       </ScrollView>
@@ -94,7 +94,7 @@ export default function EventDetailsScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <ParallaxScrollView
         headerBackgroundColor={{ light: '#E8F5E9', dark: '#151718' }}
-        headerImage={renderHeader()}>
+        header={renderHeader()}>
         <View style={styles.contentContainer}>
           <View style={styles.titleContainer}>
             <ThemedText type="title" style={styles.title}>{event.name}</ThemedText>
@@ -125,7 +125,7 @@ export default function EventDetailsScreen() {
             </View>
 
             <View style={styles.infoRow}>
-               <View style={styles.iconBox}>
+              <View style={styles.iconBox}>
                 <IconSymbol name="tag.fill" size={24} color="#009736" />
               </View>
               <View style={styles.infoText}>
@@ -141,15 +141,15 @@ export default function EventDetailsScreen() {
           </View>
 
           <View style={styles.organizerContainer}>
-             <View style={styles.organizerHeader}>
-                <View style={styles.organizerAvatar}>
-                    <ThemedText style={styles.organizerInitial}>P</ThemedText>
-                </View>
-                <View>
-                    <ThemedText type="defaultSemiBold">Organized by</ThemedText>
-                    <ThemedText>{event.organizer}</ThemedText>
-                </View>
-             </View>
+            <View style={styles.organizerHeader}>
+              <View style={styles.organizerAvatar}>
+                <ThemedText style={styles.organizerInitial}>P</ThemedText>
+              </View>
+              <View>
+                <ThemedText type="defaultSemiBold">Organized by</ThemedText>
+                <ThemedText>{event.organizer}</ThemedText>
+              </View>
+            </View>
           </View>
         </View>
       </ParallaxScrollView>
@@ -157,12 +157,12 @@ export default function EventDetailsScreen() {
       {/* Sticky Footer */}
       <View style={styles.footer}>
         <View>
-            <ThemedText style={styles.priceLabel}>Total Price</ThemedText>
-            <ThemedText type="title" style={styles.priceValue}>{event.price}</ThemedText>
+          <ThemedText style={styles.priceLabel}>Total Price</ThemedText>
+          <ThemedText type="title" style={styles.priceValue}>{event.price}</ThemedText>
         </View>
         <TouchableOpacity style={styles.bookButton}>
-            <ThemedText style={styles.bookButtonText}>Get Tickets</ThemedText>
-            <IconSymbol name="chevron.right" size={20} color="#fff" />
+          <ThemedText style={styles.bookButtonText}>Get Tickets</ThemedText>
+          <IconSymbol name="chevron.right" size={20} color="#fff" />
         </TouchableOpacity>
       </View>
     </>
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  headerImage: {
+  header: {
     height: 250,
     width: SCREEN_WIDTH,
     resizeMode: 'cover',

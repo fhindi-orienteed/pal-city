@@ -37,100 +37,100 @@ export default function BusinessDetailsScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <ParallaxScrollView
         headerBackgroundColor={{ light: '#fff', dark: '#000' }}
-        headerImage={
+        header={
           <View style={{ flex: 1 }}>
-             <Image
+            <Image
               source={require('@/assets/images/home_background.jpg')}
-              style={styles.headerImage}
+              style={styles.header}
             />
-            <TouchableOpacity 
-              style={styles.backButton} 
+            <TouchableOpacity
+              style={styles.backButton}
               onPress={() => router.back()}
             >
               <IconSymbol name="chevron.left" size={28} color="#fff" />
             </TouchableOpacity>
-            <TouchableOpacity 
-              style={styles.favoriteButton} 
+            <TouchableOpacity
+              style={styles.favoriteButton}
             >
               <IconSymbol name="heart" size={24} color="#fff" />
             </TouchableOpacity>
           </View>
         }>
         <ThemedView style={styles.container}>
-            <ThemedView style={styles.titleContainer}>
-                <View style={styles.titleHeader}>
-                    <ThemedText type="title" style={styles.businessName}>{business.name}</ThemedText>
-                    <View style={styles.ratingContainer}>
-                        <IconSymbol name="star.fill" size={16} color="#FFD700" />
-                        <ThemedText style={styles.rating}>{business.rating}</ThemedText>
-                        <ThemedText style={styles.reviewCount}>({business.reviewCount} reviews)</ThemedText>
-                    </View>
-                </View>
-                <ThemedText style={styles.category}>{business.category}</ThemedText>
-            </ThemedView>
-
-            <View style={styles.actionButtonsContainer}>
-            <TouchableOpacity style={styles.actionButton} onPress={onCall}>
-                <View style={styles.actionIcon}>
-                <IconSymbol name="phone.fill" size={24} color="#E25822" />
-                </View>
-                <ThemedText style={styles.actionLabel}>Call</ThemedText>
-            </TouchableOpacity>
-            
-            <TouchableOpacity style={styles.actionButton}>
-                <View style={styles.actionIcon}>
-                <IconSymbol name="map.fill" size={24} color="#E25822" />
-                </View>
-                <ThemedText style={styles.actionLabel}>Directions</ThemedText>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.actionButton}>
-                <View style={styles.actionIcon}>
-                <IconSymbol name="globe" size={24} color="#E25822" />
-                </View>
-                <ThemedText style={styles.actionLabel}>Website</ThemedText>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.actionButton}>
-                <View style={styles.actionIcon}>
-                <IconSymbol name="square.and.arrow.up" size={24} color="#E25822" />
-                </View>
-                <ThemedText style={styles.actionLabel}>Share</ThemedText>
-            </TouchableOpacity>
+          <ThemedView style={styles.titleContainer}>
+            <View style={styles.titleHeader}>
+              <ThemedText type="title" style={styles.businessName}>{business.name}</ThemedText>
+              <View style={styles.ratingContainer}>
+                <IconSymbol name="star.fill" size={16} color="#FFD700" />
+                <ThemedText style={styles.rating}>{business.rating}</ThemedText>
+                <ThemedText style={styles.reviewCount}>({business.reviewCount} reviews)</ThemedText>
+              </View>
             </View>
+            <ThemedText style={styles.category}>{business.category}</ThemedText>
+          </ThemedView>
 
-            <ThemedView style={styles.section}>
+          <View style={styles.actionButtonsContainer}>
+            <TouchableOpacity style={styles.actionButton} onPress={onCall}>
+              <View style={styles.actionIcon}>
+                <IconSymbol name="phone.fill" size={24} color="#E25822" />
+              </View>
+              <ThemedText style={styles.actionLabel}>Call</ThemedText>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.actionButton}>
+              <View style={styles.actionIcon}>
+                <IconSymbol name="map.fill" size={24} color="#E25822" />
+              </View>
+              <ThemedText style={styles.actionLabel}>Directions</ThemedText>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.actionButton}>
+              <View style={styles.actionIcon}>
+                <IconSymbol name="globe" size={24} color="#E25822" />
+              </View>
+              <ThemedText style={styles.actionLabel}>Website</ThemedText>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.actionButton}>
+              <View style={styles.actionIcon}>
+                <IconSymbol name="square.and.arrow.up" size={24} color="#E25822" />
+              </View>
+              <ThemedText style={styles.actionLabel}>Share</ThemedText>
+            </TouchableOpacity>
+          </View>
+
+          <ThemedView style={styles.section}>
             <ThemedText type="subtitle" style={styles.sectionTitle}>About</ThemedText>
             <ThemedText style={styles.description}>{business.description}</ThemedText>
-            </ThemedView>
+          </ThemedView>
 
-            <ThemedView style={styles.section}>
+          <ThemedView style={styles.section}>
             <ThemedText type="subtitle" style={styles.sectionTitle}>Information</ThemedText>
-            
+
             <View style={styles.infoRow}>
-                <IconSymbol name="clock.fill" size={20} color="#666" />
-                <ThemedText style={styles.infoText}>{business.hours}</ThemedText>
+              <IconSymbol name="clock.fill" size={20} color="#666" />
+              <ThemedText style={styles.infoText}>{business.hours}</ThemedText>
             </View>
 
             <View style={styles.infoRow}>
-                <IconSymbol name="location.fill" size={20} color="#666" />
-                <ThemedText style={styles.infoText}>{business.address}</ThemedText>
+              <IconSymbol name="location.fill" size={20} color="#666" />
+              <ThemedText style={styles.infoText}>{business.address}</ThemedText>
             </View>
 
             <View style={styles.infoRow}>
-                <IconSymbol name="phone.fill" size={20} color="#666" />
-                <ThemedText style={styles.infoText}>{business.phone}</ThemedText>
+              <IconSymbol name="phone.fill" size={20} color="#666" />
+              <ThemedText style={styles.infoText}>{business.phone}</ThemedText>
             </View>
-            </ThemedView>
+          </ThemedView>
 
-            <ThemedView style={styles.section}>
+          <ThemedView style={styles.section}>
             <ThemedText type="subtitle" style={styles.sectionTitle}>Photos</ThemedText>
             <View style={styles.photosGrid}>
-                {business.images.map((img, index) => (
+              {business.images.map((img, index) => (
                 <Image key={index} source={img} style={styles.photo} />
-                ))}
+              ))}
             </View>
-            </ThemedView>
+          </ThemedView>
         </ThemedView>
       </ParallaxScrollView>
     </>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 20,
   },
-  headerImage: {
+  header: {
     height: 250,
     width: '100%',
   },
