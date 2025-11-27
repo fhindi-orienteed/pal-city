@@ -9,7 +9,6 @@ export const PALESTINIAN_CITIES: City[] = [
         region: 'Jerusalem',
         regionAr: 'القدس',
         icon: '🕌',
-        popular: true,
     },
     {
         id: 'ramallah',
@@ -18,7 +17,6 @@ export const PALESTINIAN_CITIES: City[] = [
         region: 'Ramallah and Al-Bireh',
         regionAr: 'رام الله والبيرة',
         icon: '🏛️',
-        popular: true,
     },
     {
         id: 'bethlehem',
@@ -27,7 +25,6 @@ export const PALESTINIAN_CITIES: City[] = [
         region: 'Bethlehem',
         regionAr: 'بيت لحم',
         icon: '⛪',
-        popular: true,
     },
     {
         id: 'hebron',
@@ -36,7 +33,6 @@ export const PALESTINIAN_CITIES: City[] = [
         region: 'Hebron',
         regionAr: 'الخليل',
         icon: '🕌',
-        popular: true,
     },
     {
         id: 'nablus',
@@ -45,7 +41,6 @@ export const PALESTINIAN_CITIES: City[] = [
         region: 'Nablus',
         regionAr: 'نابلس',
         icon: '🏔️',
-        popular: true,
     },
     {
         id: 'gaza',
@@ -54,7 +49,6 @@ export const PALESTINIAN_CITIES: City[] = [
         region: 'Gaza',
         regionAr: 'غزة',
         icon: '🌊',
-        popular: true,
     },
     // Other Cities
     {
@@ -124,7 +118,7 @@ export const PALESTINIAN_CITIES: City[] = [
 ];
 
 export const getPopularCities = (): City[] => {
-    return PALESTINIAN_CITIES.filter(city => city.popular);
+    return PALESTINIAN_CITIES;
 };
 
 export const getCityById = (id: string): City | undefined => {
