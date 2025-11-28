@@ -183,7 +183,7 @@
         "sendOtp": "Send Code",
         "verify": "Verify & Continue",
         "resendOtp": "Resend Code",
-        "skip": "Skip",
+        "continueAsGuest": "Continue as Guest",
         "error": "Error",
         "invalidPhone": "Please enter a valid phone number",
         "invalidOtp": "Invalid verification code. Please try again.",

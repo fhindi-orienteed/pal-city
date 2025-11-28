@@ -22,8 +22,9 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     skipButton: {
-        paddingHorizontal: 16,
-        paddingVertical: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
     },
     skipButtonText: {
         fontSize: 16,
@@ -155,23 +156,9 @@ export default StyleSheet.create({
         color: '#1a1a1a',
         flex: 1,
     },
-    footer: {
-        paddingHorizontal: 24,
-        paddingBottom: 40,
-        paddingTop: 16,
-        backgroundColor: '#fff',
-    },
     continueButton: {
-        borderRadius: 16,
+        borderRadius: 10,
         overflow: 'hidden',
-        shadowColor: '#009736',
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 8,
     },
     continueButtonDisabled: {
         shadowOpacity: 0,
@@ -181,8 +168,8 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 18,
-        paddingHorizontal: 32,
+        paddingVertical: 10,
+        paddingHorizontal: 16,
         gap: 12,
     },
     continueButtonText: {

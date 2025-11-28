@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 
 import { useTranslation } from '@/hooks/useTranslation';
+import LoginHint from './hint';
 import styles from './styles';
 
 const FIXED_OTP = '0000';
@@ -97,13 +98,6 @@ export default function LoginScreen() {
                                 color="#333"
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.skipButton}
-                            onPress={handleSkip}
-                            activeOpacity={0.7}
-                        >
-                            <Text style={styles.skipButtonText}>{t('auth.skip')}</Text>
-                        </TouchableOpacity>
                     </View>
 
                     <ScrollView
@@ -134,7 +128,6 @@ export default function LoginScreen() {
                         {/* Form Section */}
                         <View style={styles.formContainer}>
                             {!isOtpSent ? (
-                                // Phone Number Input
                                 <View style={styles.inputContainer}>
                                     <Text style={styles.label}>{t('auth.phoneNumber')}</Text>
                                     <View style={styles.phoneInputWrapper}>
@@ -155,7 +148,6 @@ export default function LoginScreen() {
                                     <Text style={styles.hint}>{t('auth.phoneHint')}</Text>
                                 </View>
                             ) : (
-                                // OTP Input
                                 <View style={styles.inputContainer}>
                                     <Text style={styles.label}>{t('auth.otpCode')}</Text>
                                     <TextInput
@@ -179,67 +171,62 @@ export default function LoginScreen() {
                                     </TouchableOpacity>
                                 </View>
                             )}
-                        </View>
 
-                        {/* Info Section */}
-                        <View style={styles.infoContainer}>
-                            <View style={styles.infoItem}>
-                                <Ionicons name="shield-checkmark" size={20} color="#009736" />
-                                <Text style={styles.infoText}>{t('auth.secureLogin')}</Text>
-                            </View>
-                            <View style={styles.infoItem}>
-                                <Ionicons name="time-outline" size={20} color="#009736" />
-                                <Text style={styles.infoText}>{t('auth.quickAccess')}</Text>
-                            </View>
-                        </View>
-                    </ScrollView>
-
-                    {/* Continue Button */}
-                    <View style={styles.footer}>
-                        <TouchableOpacity
-                            style={[
-                                styles.continueButton,
-                                ((!isOtpSent && phoneNumber.length < 9) ||
+                            <TouchableOpacity
+                                style={[
+                                    styles.continueButton,
+                                    ((!isOtpSent && phoneNumber.length < 9) ||
+                                        (isOtpSent && otp.length !== 4) ||
+                                        isLoading) &&
+                                    styles.continueButtonDisabled,
+                                ]}
+                                onPress={isOtpSent ? handleVerifyOTP : handleSendOTP}
+                                disabled={
+                                    (!isOtpSent && phoneNumber.length < 9) ||
                                     (isOtpSent && otp.length !== 4) ||
-                                    isLoading) &&
-                                styles.continueButtonDisabled,
-                            ]}
-                            onPress={isOtpSent ? handleVerifyOTP : handleSendOTP}
-                            disabled={
-                                (!isOtpSent && phoneNumber.length < 9) ||
-                                (isOtpSent && otp.length !== 4) ||
-                                isLoading
-                            }
-                            activeOpacity={0.8}
-                        >
-                            <LinearGradient
-                                colors={
-                                    (!isOtpSent && phoneNumber.length >= 9) ||
-                                        (isOtpSent && otp.length === 4)
-                                        ? ['#009736', '#00b341']
-                                        : ['#cccccc', '#aaaaaa']
+                                    isLoading
                                 }
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 0 }}
-                                style={styles.continueButtonGradient}
+                                activeOpacity={0.8}
                             >
-                                <Text style={styles.continueButtonText}>
-                                    {isLoading
-                                        ? t('common.loading')
-                                        : isOtpSent
-                                            ? t('auth.verify')
-                                            : t('auth.sendOtp')}
-                                </Text>
-                                {!isLoading && (
-                                    <Ionicons
-                                        name={isRTL ? 'arrow-back' : 'arrow-forward'}
-                                        size={24}
-                                        color="#fff"
-                                    />
-                                )}
-                            </LinearGradient>
-                        </TouchableOpacity>
-                    </View>
+                                <LinearGradient
+                                    colors={
+                                        (!isOtpSent && phoneNumber.length >= 9) ||
+                                            (isOtpSent && otp.length === 4)
+                                            ? ['#009736', '#00b341']
+                                            : ['#cccccc', '#aaaaaa']
+                                    }
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    style={styles.continueButtonGradient}
+                                >
+                                    <Text style={styles.continueButtonText}>
+                                        {isLoading
+                                            ? t('common.loading')
+                                            : isOtpSent
+                                                ? t('auth.verify')
+                                                : t('auth.sendOtp')}
+                                    </Text>
+                                    {!isLoading && (
+                                        <Ionicons
+                                            name={isRTL ? 'arrow-back' : 'arrow-forward'}
+                                            size={24}
+                                            color="#fff"
+                                        />
+                                    )}
+                                </LinearGradient>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={styles.skipButton}
+                                onPress={handleSkip}
+                                activeOpacity={0.7}
+                            >
+                                <Text style={styles.skipButtonText}>{t('auth.continueAsGuest')}</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <LoginHint />
+                    </ScrollView>
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>

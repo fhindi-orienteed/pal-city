@@ -25,19 +25,13 @@ export default function HomeHeader() {
         <View style={styles.badge} />
       </TouchableOpacity>
 
-      {/* Profile Button */}
-      <TouchableOpacity
-        style={styles.profileButton}
-        onPress={() => router.push('/profile/index')}
-      >
-        <Ionicons name="person-circle-outline" size={32} color="#fff" />
-      </TouchableOpacity>
 
       <ThemedView style={styles.searchContainer}>
         <Text style={styles.title}>
           Good morning, {user?.name || 'Guest'}
         </Text>
         <ThemedView style={styles.searchInputContainer}>
+          <View style={styles.searchInputBackground} ></View>
           <TextInput
             style={styles.searchInput}
             placeholder="Search..."
@@ -72,7 +66,7 @@ const styles = StyleSheet.create({
   notificationButton: {
     position: 'absolute',
     top: 50,
-    right: 70,
+    right: 20,
     zIndex: 20,
     padding: 8,
     borderRadius: 20,
@@ -91,7 +85,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 10,
     left: 20,
     right: 20,
     zIndex: 10,
@@ -100,11 +94,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   searchInputContainer: {
-    opacity: 0.7,
-    padding: 10,
+    position: 'relative',
     borderRadius: 10,
-    gap: 8,
+    padding: 10,
+    backgroundColor: 'transparent',
+  },
+  searchInputBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 10,
     backgroundColor: '#ffffff',
+    opacity: 0.7,
   },
   searchInput: {
     height: 35,
