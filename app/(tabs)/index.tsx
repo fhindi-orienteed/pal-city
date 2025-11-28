@@ -1,13 +1,11 @@
-import { RefreshControl, StyleSheet } from 'react-native';
-
-import HomeBusiness from '@/components/home/business';
-import HomeCategories from '@/components/home/categories';
-import HomeEvents from '@/components/home/events';
-import HomeHeader from '@/components/home/home-header';
-import HomeOffers from '@/components/home/home-offers';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { useBusinesses } from '@/hooks/useBusinesses';
-import { useEvents } from '@/hooks/useEvents';
+import HomeBusiness from "@/components/home/business";
+import HomeEvents from "@/components/home/events";
+import HomeHeader from "@/components/home/home-header";
+import HomeOffers from "@/components/home/home-offers";
+import ParallaxScrollView from "@/components/parallax-scroll-view";
+import { useBusinesses } from "@/hooks/useBusinesses";
+import { useEvents } from "@/hooks/useEvents";
+import { RefreshControl, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const { businesses, loading: loadingBusinesses, error: errorBusinesses, refetch, refreshing } = useBusinesses();
@@ -26,8 +24,6 @@ export default function HomeScreen() {
         />
       }
     >
-
-      <HomeCategories />
 
       <HomeBusiness
         businesses={businesses}

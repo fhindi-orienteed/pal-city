@@ -8,10 +8,10 @@ import styles from './styles';
 type IconSymbolName = React.ComponentProps<typeof IconSymbol>['name'];
 
 interface Props {
-  category: { id: string; key: string; icon: IconSymbolName }
+  category: { key: string; icon: IconSymbolName }
 }
 
-export function HomeCategoriesCard({ category }: Props) {
+export default function CategoriesCard({ category }: Props) {
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -20,9 +20,9 @@ export function HomeCategoriesCard({ category }: Props) {
   }
 
   return (
-    <TouchableOpacity key={category.id} style={styles.categoryItem} onPress={() => handleCategoryPress(category)}>
+    <TouchableOpacity key={category.key} style={styles.categoryItem} onPress={() => handleCategoryPress(category)}>
       <View style={styles.iconContainer}>
-        <IconSymbol name={category.icon} size={24} color="#009736" />
+        <IconSymbol name={category.icon} size={24} color="#4CAA4A" />
       </View>
       <ThemedText style={styles.categoryName} numberOfLines={1}>
         {t('categories.' + category.key)}

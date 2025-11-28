@@ -115,6 +115,14 @@
         "appDescription": "Discover the best places, events, and businesses in Palestine. Your guide to exploring Palestinian cities."
     },
     "categories": {
+        "health": "Health",
+        "education": "Education",
+        "automotive": "Automotive",
+        "beauty": "Beauty",
+        "financial": "Financial",
+        "market": "Market",
+        "food": "Food",
+        "retail": "Retail",
         "pharmacy": "Pharmacy",
         "bank": "Bank",
         "university": "University",

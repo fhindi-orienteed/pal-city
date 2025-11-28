@@ -4,11 +4,20 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 16,
   },
+  sectionContainer: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    paddingHorizontal: 16,
+    marginBottom: 12,
+  },
   gridContainer: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: 12,
+    paddingHorizontal: 0,
     justifyContent: 'space-between',
   },
   categoryItem: {

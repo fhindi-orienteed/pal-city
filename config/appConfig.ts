@@ -2,18 +2,56 @@ const appConfig = {
     businessList: {
         pageSize: 10
     },
-    businessCategories: [
-        { id: '1', enabled: false, key: 'pharmacy', icon: 'pill.fill' },
-        { id: '2', enabled: true, key: 'bank', icon: 'car.fill' },
-        { id: '3', enabled: false, key: 'university', icon: 'book.fill' },
-        { id: '4', enabled: false, key: 'hospital', icon: 'car.fill' },
-        { id: '5', enabled: false, key: 'hotel', icon: 'car.fill' },
-        { id: '6', enabled: false, key: 'restaurant', icon: 'car.fill' },
-        { id: '7', enabled: false, key: 'supermarket', icon: 'car.fill' },
-        { id: '8', enabled: false, key: 'event', icon: 'calendar' },
-        { id: '9', enabled: false, key: 'school', icon: 'car.fill' },
-        { id: '10', enabled: false, key: 'taxi', icon: 'car.fill' },
-    ],
+    businessCategories: {
+        healthAndMedical: [
+            { enabled: true, key: 'pharmacy', icon: 'pill.fill' },
+            { enabled: true, key: 'medicalClinics', icon: 'pill.fill' },
+            { enabled: true, key: 'dentalClinics', icon: 'pill.fill' },
+            { enabled: true, key: 'medicalLaboratories', icon: 'pill.fill' },
+        ],
+        education: [
+            { enabled: true, key: 'university', icon: 'book.fill' },
+            { enabled: true, key: 'school', icon: 'car.fill' },
+            { enabled: true, key: 'college', icon: 'car.fill' },
+            { enabled: true, key: 'trainingCenter', icon: 'car.fill' },
+        ],
+        automotive: [
+            { enabled: true, key: 'carDealership', icon: 'car.fill' },
+            { enabled: true, key: 'tireFixingCenter', icon: 'car.fill' },
+            { enabled: true, key: 'carWash', icon: 'car.fill' },
+            { enabled: true, key: 'carRental', icon: 'car.fill' },
+        ],
+        commercialIndustrial: [
+            { enabled: true, key: 'warehouse', icon: 'car.fill' },
+            { enabled: true, key: 'factory', icon: 'car.fill' },
+            { enabled: true, key: 'office', icon: 'car.fill' },
+            { enabled: true, key: 'companies', icon: 'car.fill' },
+        ],
+        retail: [
+            { enabled: true, key: 'supermarket', icon: 'car.fill' },
+        ],
+        financial: [
+            { enabled: true, key: 'bank', icon: 'car.fill' },
+        ],
+        market: [
+            { enabled: true, key: 'market', icon: 'car.fill' },
+        ],
+        food: [
+            { enabled: true, key: 'restaurant', icon: 'car.fill' },
+        ],
+        businessServices: [
+            { enabled: true, key: 'lawyer', icon: 'car.fill' },
+            { enabled: true, key: 'accountant', icon: 'car.fill' },
+            { enabled: true, key: 'insurance', icon: 'car.fill' },
+            { enabled: true, key: 'realEstate', icon: 'car.fill' },
+        ],
+        beautyAndPersonalCare: [
+            { enabled: true, key: 'beautySalon', icon: 'car.fill' },
+            { enabled: true, key: 'hairSalon', icon: 'car.fill' },
+            { enabled: true, key: 'spa', icon: 'car.fill' },
+            { enabled: true, key: 'massage', icon: 'car.fill' },
+        ],
+    },
     events: {
         pageSize: 10
     },
