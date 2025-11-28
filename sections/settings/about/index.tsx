@@ -1,5 +1,5 @@
 import AppName from '@/components/AppName';
-import Copyright from '@/components/CopyRight';
+import Copyright from '@/components/Copyright';
 import Logo from '@/components/logo';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
