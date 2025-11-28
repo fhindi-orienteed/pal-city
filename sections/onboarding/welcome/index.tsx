@@ -9,7 +9,7 @@ import Features from './features';
 import styles from './styles';
 
 
-export default function WelcomeScreen() {
+export default function Welcome() {
     const { t, i18n } = useTranslation();
     const router = useRouter();
     const isRTL = i18n.language === 'ar';

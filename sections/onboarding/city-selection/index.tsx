@@ -29,6 +29,7 @@ export default function CitySelectionScreen() {
         if (!selectedCity) return;
 
         await setOnboardingSelectedCity(selectedCity);
+        await completeOnboarding()
         router.push('/auth/login');
     };
 
