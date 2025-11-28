@@ -4,7 +4,7 @@ type Props = {
     width?: number;
     height?: number;
     type?: "default" | "splash" | "white";
-    styles?: StyleProp<ViewStyle>;
+    style?: StyleProp<ViewStyle>;
 };
 
 const imageMap = {
@@ -13,10 +13,10 @@ const imageMap = {
     white: require('@/assets/images/logo-white.png'),
 };
 
-export function Logo({ width = 100, height = 100, type = "default", styles }: Props) {
+export function Logo({ width = 100, height = 100, type = "default", style }: Props) {
     const image = imageMap[type];
     return (
-        <View style={styles}>
+        <View style={style}>
             <Image source={image} style={{ width, height }} />
         </View>
     );

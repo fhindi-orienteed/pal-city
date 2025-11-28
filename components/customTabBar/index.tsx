@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import {
     Modal,
     ScrollView,
+    Share,
     Text,
     TouchableOpacity,
     View
@@ -23,7 +24,7 @@ const mainRoutes: TabRoute[] = [
 ];
 
 export default function CustomTabBar() {
-    const { logout } = useAuth();
+    const { logout, isLogin } = useAuth();
     const router = useRouter();
     const pathname = usePathname();
     const insets = useSafeAreaInsets();
@@ -64,17 +65,39 @@ export default function CustomTabBar() {
         router.replace('/auth/login');
     };
 
-    const moreMenuItems: MoreMenuItem[] = [
-        { key: 'profile', icon: 'person-outline', label: 'Profile', route: '/profile' },
+    const moreMenuItems: MoreMenuItem[] = []
+    if (isLogin) {
+        moreMenuItems.push(
+            { key: 'profile', icon: 'person-outline', label: 'Profile', route: '/profile' },
+            { key: 'favorites', icon: 'heart-outline', label: 'Favorites', route: '/favorites' },
+            { key: 'bookmarks', icon: 'bookmark-outline', label: 'Bookmarks', route: '/bookmarks' },
+            { key: 'notifications', icon: 'notifications-outline', label: 'Notifications', route: '/notifications' },
+        )
+    } else {
+        moreMenuItems.push(
+            { key: 'login', icon: 'log-in-outline', label: 'Login', route: '/auth/login' },
+        )
+    }
+
+    const handleShare = () => {
+        Share.share({
+            title: 'Share App',
+            url: 'https://play.google.com/store/apps/details?id=com.palcity',
+        });
+    };
+
+    moreMenuItems.push(
         { key: 'settings', icon: 'settings-outline', label: 'Settings', route: '/settings' },
-        { key: 'favorites', icon: 'heart-outline', label: 'Favorites', route: '/favorites' },
-        { key: 'bookmarks', icon: 'bookmark-outline', label: 'Bookmarks', route: '/bookmarks' },
-        { key: 'notifications', icon: 'notifications-outline', label: 'Notifications', route: '/notifications' },
-        { key: 'help', icon: 'help-circle-outline', label: 'Help & Support', route: '/help' },
-        { key: 'about', icon: 'information-circle-outline', label: 'About', route: '/about' },
-        { key: 'share', icon: 'share-social-outline', label: 'Share App', action: () => console.log('Share') },
-        { key: 'logout', icon: 'log-out-outline', label: 'Log Out', action: () => handleLogout() },
-    ];
+        { key: 'help', icon: 'help-circle-outline', label: 'Help & Support', route: '/settings/help' },
+        { key: 'about', icon: 'information-circle-outline', label: 'About', route: '/settings/about' },
+        { key: 'share', icon: 'share-social-outline', label: 'Share App', action: () => handleShare() }
+    )
+
+    if (isLogin) {
+        moreMenuItems.push(
+            { key: 'logout', icon: 'log-out-outline', label: 'Log Out', action: () => handleLogout() },
+        )
+    }
 
     return (
         <>

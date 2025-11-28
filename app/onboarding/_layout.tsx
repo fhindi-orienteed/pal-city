@@ -8,8 +8,8 @@ export default function OnboardingLayout() {
                 animation: 'slide_from_right',
             }}
         >
-            <Stack.Screen name="welcome" />
-            <Stack.Screen name="city-selection" />
+            <Stack.Screen name="welcome/index" />
+            <Stack.Screen name="city-selection/index" />
         </Stack>
     );
 }

@@ -1,0 +1,90 @@
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    background: {
+        height: 250,
+        width: '100%',
+        top: 0,
+        left: 0,
+        position: 'absolute',
+        borderBottomStartRadius: 20,
+        borderBottomEndRadius: 20,
+        overflow: 'hidden',
+    },
+    notificationButton: {
+        position: 'absolute',
+        top: 50,
+        right: 20,
+        zIndex: 20,
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    badge: {
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: '#4CAA4A',
+        borderWidth: 1,
+        borderColor: '#fff',
+    },
+    searchContainer: {
+        position: 'absolute',
+        bottom: 10,
+        left: 20,
+        right: 20,
+        zIndex: 10,
+        padding: 5,
+        gap: 8,
+        backgroundColor: 'transparent',
+    },
+    searchInputContainer: {
+        position: 'relative',
+        borderRadius: 10,
+        padding: 10,
+        backgroundColor: 'transparent',
+    },
+    searchInputBackground: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        borderRadius: 10,
+        backgroundColor: '#ffffff',
+        opacity: 0.7,
+    },
+    searchInput: {
+        height: 35,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        fontSize: 14,
+        shadowColor: '#000',
+        paddingHorizontal: 10,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
+    },
+});
+
+
+export default styles;

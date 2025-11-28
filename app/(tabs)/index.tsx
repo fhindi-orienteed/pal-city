@@ -1,7 +1,7 @@
 import HomeBusiness from "@/components/home/business";
 import HomeEvents from "@/components/home/events";
-import HomeHeader from "@/components/home/home-header";
-import HomeOffers from "@/components/home/home-offers";
+import HomeHeader from "@/components/home/header";
+import HomeOffers from "@/components/home/offers";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { useBusinesses } from "@/hooks/useBusinesses";
 import { useEvents } from "@/hooks/useEvents";

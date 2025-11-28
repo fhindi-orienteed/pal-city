@@ -29,7 +29,7 @@ export default function LoginScreen() {
     const { t, isRTL } = useTranslation();
     const router = useRouter();
     const { completeOnboarding } = useOnboarding();
-    const { login, setIsGuest } = useAuth();
+    const { login } = useAuth();
     const [phoneNumber, setPhoneNumber] = useState('');
     const [otp, setOtp] = useState('');
     const [isOtpSent, setIsOtpSent] = useState(false);
@@ -162,15 +162,6 @@ export default function LoginScreen() {
                                         maxLength={4}
                                         textAlign="center"
                                     />
-                                    <TouchableOpacity
-                                        style={styles.resendButton}
-                                        onPress={handleSendOTP}
-                                        activeOpacity={0.7}
-                                    >
-                                        <Text style={styles.resendButtonText}>
-                                            {t('auth.resendOtp')}
-                                        </Text>
-                                    </TouchableOpacity>
                                 </View>
                             )}
 

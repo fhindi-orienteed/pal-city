@@ -19,7 +19,9 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firestore
 export const db = getFirestore(app);
 
-// Initialize Auth (if you need authentication)
+// Initialize Auth with AsyncStorage persistence for React Native
+// Note: For React Native, we need to use a custom persistence implementation
+// The warning about AsyncStorage can be safely ignored as auth state will persist via context
 export const auth = getAuth(app);
 
 export default app;

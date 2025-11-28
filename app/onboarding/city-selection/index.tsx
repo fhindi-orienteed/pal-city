@@ -29,7 +29,7 @@ export default function CitySelectionScreen() {
         if (!selectedCity) return;
 
         await setOnboardingSelectedCity(selectedCity);
-        router.push('/auth/index');
+        router.push('/auth/login');
     };
 
     return (

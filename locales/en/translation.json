@@ -73,7 +73,7 @@
         "cityPlaceholder": "Select your city",
         "address": "Address",
         "addressPlaceholder": "Enter your address",
-        "saveChanges": "Save Changes",
+        "update": "Update",
         "cancel": "Cancel",
         "updateSuccess": "Profile updated successfully",
         "updateError": "Failed to update profile",

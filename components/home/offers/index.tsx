@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   viewAll: {
-    color: '#E25822',
+    color: '#4CAA4A',
     fontSize: 14,
     fontWeight: '600',
   },
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 12,
     left: 12,
-    backgroundColor: '#E25822',
+    backgroundColor: '#4CAA4A',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 8,
