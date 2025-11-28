@@ -10,10 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.fhindi.palcity"
+      "bundleIdentifier": "com.palcity"
     },
     "android": {
-      "package": "com.fhindi.palcity",
+      "package": "com.palcity",
       "adaptiveIcon": {
         "backgroundColor": "#4CAA4A",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -32,7 +32,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/splash-icon-2.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#4CAA4A",
