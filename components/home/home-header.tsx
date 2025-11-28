@@ -16,6 +16,15 @@ export default function HomeHeader() {
         style={styles.background}
       />
 
+      {/* Notification Button */}
+      <TouchableOpacity
+        style={styles.notificationButton}
+        onPress={() => router.push('/notifications/index' as any)}
+      >
+        <Ionicons name="notifications-outline" size={28} color="#fff" />
+        <View style={styles.badge} />
+      </TouchableOpacity>
+
       {/* Profile Button */}
       <TouchableOpacity
         style={styles.profileButton}
@@ -59,6 +68,26 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  notificationButton: {
+    position: 'absolute',
+    top: 50,
+    right: 70,
+    zIndex: 20,
+    padding: 8,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  badge: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#FF3B30',
+    borderWidth: 1,
+    borderColor: '#fff',
   },
   searchContainer: {
     position: 'absolute',
