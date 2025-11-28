@@ -191,5 +191,12 @@
         "otpSentMessage": "تم إرسال رمز التحقق إلى هاتفك",
         "secureLogin": "تسجيل دخول آمن ومشفر",
         "quickAccess": "وصول سريع وسهل"
+    },
+    "notificationsScreen": {
+        "title": "الإشعارات",
+        "empty": "لا توجد إشعارات حتى الآن",
+        "markAllRead": "تحديد الكل كمقروء",
+        "new": "جديد",
+        "earlier": "سابقاً"
     }
 }

@@ -191,5 +191,12 @@
         "otpSentMessage": "Verification code has been sent to your phone",
         "secureLogin": "Secure and encrypted login",
         "quickAccess": "Quick and easy access"
+    },
+    "notificationsScreen": {
+        "title": "Notifications",
+        "empty": "No notifications yet",
+        "markAllRead": "Mark all as read",
+        "new": "New",
+        "earlier": "Earlier"
     }
 }
