@@ -115,7 +115,7 @@
         "appDescription": "Discover the best places, events, and businesses in Palestine. Your guide to exploring Palestinian cities."
     },
     "categories": {
-        "health": "Health",
+        "healthAndMedical": "Health & Medical",
         "education": "Education",
         "automotive": "Automotive",
         "beauty": "Beauty",
@@ -132,7 +132,16 @@
         "supermarket": "Supermarket",
         "event": "Event",
         "school": "School",
-        "taxi": "Taxi"
+        "taxi": "Taxi",
+        "commercialAndIndustrial": "Commercial & Industrial",
+        "businessServices": "Business Services",
+        "logisticsService": "Logistics Service",
+        "beautyAndPersonalCare": "Beauty & Personal Care",
+        "medicalClinics": "Clinics",
+        "dentalClinics": "Dental Clinics",
+        "medicalLaboratories": "Laboratories",
+        "college": "College",
+        "trainingCenter": "Training Center"
     },
     "onboarding": {
         "welcome": "Welcome to Pal City",

@@ -17,7 +17,9 @@ import {
     View
 } from 'react-native';
 
+import { IS_GUEST_KEY } from '@/constants/localStorageKey';
 import { useTranslation } from '@/hooks/useTranslation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoginHint from './hint';
 import styles from './styles';
 
@@ -27,7 +29,7 @@ export default function LoginScreen() {
     const { t, isRTL } = useTranslation();
     const router = useRouter();
     const { completeOnboarding } = useOnboarding();
-    const { login } = useAuth();
+    const { login, setIsGuest } = useAuth();
     const [phoneNumber, setPhoneNumber] = useState('');
     const [otp, setOtp] = useState('');
     const [isOtpSent, setIsOtpSent] = useState(false);
@@ -64,7 +66,7 @@ export default function LoginScreen() {
     };
 
     const handleSkip = async () => {
-        login();
+        await AsyncStorage.setItem(IS_GUEST_KEY, 'true');
         await completeOnboarding();
         router.replace('/(tabs)');
     };

@@ -8,6 +8,7 @@ const appConfig = {
             { enabled: true, key: 'medicalClinics', icon: 'pill.fill' },
             { enabled: true, key: 'dentalClinics', icon: 'pill.fill' },
             { enabled: true, key: 'medicalLaboratories', icon: 'pill.fill' },
+            { enabled: true, key: 'hospital', icon: 'pill.fill' },
         ],
         education: [
             { enabled: true, key: 'university', icon: 'book.fill' },
@@ -21,7 +22,7 @@ const appConfig = {
             { enabled: true, key: 'carWash', icon: 'car.fill' },
             { enabled: true, key: 'carRental', icon: 'car.fill' },
         ],
-        commercialIndustrial: [
+        commercialAndIndustrial: [
             { enabled: true, key: 'warehouse', icon: 'car.fill' },
             { enabled: true, key: 'factory', icon: 'car.fill' },
             { enabled: true, key: 'office', icon: 'car.fill' },
@@ -50,6 +51,10 @@ const appConfig = {
             { enabled: true, key: 'hairSalon', icon: 'car.fill' },
             { enabled: true, key: 'spa', icon: 'car.fill' },
             { enabled: true, key: 'massage', icon: 'car.fill' },
+        ],
+        logisticsService: [
+            { enabled: true, key: 'deliveryCompany', icon: 'car.fill' },
+            { enabled: true, key: 'shippingCompany', icon: 'car.fill' },
         ],
     },
     events: {

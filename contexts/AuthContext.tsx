@@ -1,10 +1,14 @@
+import { IS_GUEST_KEY } from '@/constants/localStorageKey';
 import { User } from '@/types/interface';
-import React, { createContext, useContext, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
     isLogin: boolean;
     login: () => void;
     logout: () => void;
+    isGuest: boolean;
+    setIsGuest: (guest: boolean) => void;
     isLoading: boolean;
     user: User | null;
     updateUser: (userData: Partial<User>) => void;
@@ -14,8 +18,17 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [isLogin, setIsLogin] = useState(false);
+    const [isGuest, setIsGuest] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        AsyncStorage.getItem(IS_GUEST_KEY).then((guestStatus) => {
+            if (guestStatus === 'true') {
+                setIsGuest(true);
+            }
+        });
+    }, []);
 
     const login = () => {
         setIsLogin(true);
@@ -33,7 +46,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const logout = () => {
         setIsLogin(false);
+        setIsGuest(false);
         setUser(null);
+        AsyncStorage.removeItem(IS_GUEST_KEY);
     };
 
     const updateUser = (userData: Partial<User>) => {
@@ -47,7 +62,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ isLogin, login, logout, isLoading, user, updateUser }}>
+        <AuthContext.Provider value={{ isLogin, login, logout, isGuest, setIsGuest, isLoading, user, updateUser }}>
             {children}
         </AuthContext.Provider>
     );

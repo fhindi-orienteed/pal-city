@@ -1,3 +1,4 @@
+import { ONBOARDING_KEY, SELECTED_CITY_KEY } from '@/constants/localStorageKey';
 import { City } from '@/types/interface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
@@ -12,9 +13,6 @@ interface OnboardingContextType {
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(undefined);
-
-const ONBOARDING_KEY = '@pal_city_onboarding_completed';
-const SELECTED_CITY_KEY = '@pal_city_selected_city';
 
 export function OnboardingProvider({ children }: { children: React.ReactNode }) {
     const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);

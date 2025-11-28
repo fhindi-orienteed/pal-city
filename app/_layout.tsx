@@ -20,7 +20,7 @@ function RootLayoutNav() {
   const { hasCompletedOnboarding, isLoading } = useOnboarding();
   const segments = useSegments();
   const router = useRouter();
-  const { isLogin } = useAuth();
+  const { isLogin, isGuest } = useAuth();
 
   useEffect(() => {
     if (isLoading) return;
@@ -32,13 +32,13 @@ function RootLayoutNav() {
       router.replace('/onboarding/welcome');
     } else if (hasCompletedOnboarding && inOnboarding) {
       // Redirect to main app if onboarding is completed
-      if (!isLogin) {
+      if (!isLogin && !isGuest) {
         router.replace('/auth/login');
       } else {
         router.replace('/(tabs)');
       }
     }
-  }, [hasCompletedOnboarding, isLoading, segments]);
+  }, [hasCompletedOnboarding, isLoading, segments, isLogin, isGuest]);
 
   if (isLoading) {
     return (
