@@ -64,9 +64,7 @@ export default function CustomTabBar() {
         if (item.action) {
             item.action();
         } else if (item.route) {
-            // For now, just log - you can implement actual navigation later
-            console.log('Navigate to:', item.route);
-            // router.push(item.route as any);
+            router.push(item.route as any);
         }
     };
 

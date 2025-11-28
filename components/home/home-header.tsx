@@ -1,17 +1,33 @@
 import { ThemedView } from '@/components/themed-view';
+import { useAuth } from '@/contexts/AuthContext';
+import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function HomeHeader() {
+  const router = useRouter();
+  const { user } = useAuth();
+
   return (
     <View style={{ flex: 1 }}>
       <Image
         source={require('@/assets/images/home_background.jpg')}
         style={styles.background}
       />
-      
+
+      {/* Profile Button */}
+      <TouchableOpacity
+        style={styles.profileButton}
+        onPress={() => router.push('/profile/index')}
+      >
+        <Ionicons name="person-circle-outline" size={32} color="#fff" />
+      </TouchableOpacity>
+
       <ThemedView style={styles.searchContainer}>
-        <Text style={styles.title}>Good morning, Fathi</Text>
+        <Text style={styles.title}>
+          Good morning, {user?.name || 'Guest'}
+        </Text>
         <ThemedView style={styles.searchInputContainer}>
           <TextInput
             style={styles.searchInput}
@@ -34,6 +50,15 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: 20,
     borderBottomEndRadius: 20,
     overflow: 'hidden',
+  },
+  profileButton: {
+    position: 'absolute',
+    top: 50,
+    right: 20,
+    zIndex: 20,
+    padding: 8,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   searchContainer: {
     position: 'absolute',
@@ -66,7 +91,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
-  },  
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
