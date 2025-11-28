@@ -1,3 +1,4 @@
+import { useAuth } from '@/contexts/AuthContext';
 import { MoreMenuItem, TabRoute } from '@/types/interface';
 import { Ionicons } from '@expo/vector-icons';
 import { usePathname, useRouter } from 'expo-router';
@@ -21,18 +22,8 @@ const mainRoutes: TabRoute[] = [
     { key: 'more', name: 'more', icon: 'grid', label: 'More' },
 ];
 
-const moreMenuItems: MoreMenuItem[] = [
-    { key: 'profile', icon: 'person-outline', label: 'Profile', route: '/profile' },
-    { key: 'settings', icon: 'settings-outline', label: 'Settings', route: '/settings' },
-    { key: 'favorites', icon: 'heart-outline', label: 'Favorites', route: '/favorites' },
-    { key: 'bookmarks', icon: 'bookmark-outline', label: 'Bookmarks', route: '/bookmarks' },
-    { key: 'notifications', icon: 'notifications-outline', label: 'Notifications', route: '/notifications' },
-    { key: 'help', icon: 'help-circle-outline', label: 'Help & Support', route: '/help' },
-    { key: 'about', icon: 'information-circle-outline', label: 'About', route: '/about' },
-    { key: 'share', icon: 'share-social-outline', label: 'Share App', action: () => console.log('Share') },
-];
-
 export default function CustomTabBar() {
+    const { logout } = useAuth();
     const router = useRouter();
     const pathname = usePathname();
     const insets = useSafeAreaInsets();
@@ -67,6 +58,23 @@ export default function CustomTabBar() {
             router.push(item.route as any);
         }
     };
+
+    const handleLogout = () => {
+        logout();
+        router.replace('/auth/login');
+    };
+
+    const moreMenuItems: MoreMenuItem[] = [
+        { key: 'profile', icon: 'person-outline', label: 'Profile', route: '/profile' },
+        { key: 'settings', icon: 'settings-outline', label: 'Settings', route: '/settings' },
+        { key: 'favorites', icon: 'heart-outline', label: 'Favorites', route: '/favorites' },
+        { key: 'bookmarks', icon: 'bookmark-outline', label: 'Bookmarks', route: '/bookmarks' },
+        { key: 'notifications', icon: 'notifications-outline', label: 'Notifications', route: '/notifications' },
+        { key: 'help', icon: 'help-circle-outline', label: 'Help & Support', route: '/help' },
+        { key: 'about', icon: 'information-circle-outline', label: 'About', route: '/about' },
+        { key: 'share', icon: 'share-social-outline', label: 'Share App', action: () => console.log('Share') },
+        { key: 'logout', icon: 'log-out-outline', label: 'Log Out', action: () => handleLogout() },
+    ];
 
     return (
         <>

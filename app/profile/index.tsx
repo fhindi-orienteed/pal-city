@@ -19,8 +19,7 @@ import {
 export default function ProfileScreen() {
     const { t } = useTranslation();
     const router = useRouter();
-    const { user, updateUser, logout } = useAuth();
-    const [isEditing, setIsEditing] = useState(false);
+    const { user, updateUser } = useAuth();
     const [formData, setFormData] = useState<UserProfile>({
         name: user?.name || '',
         email: user?.email || '',
@@ -62,7 +61,6 @@ export default function ProfileScreen() {
             address: formData.address,
         });
 
-        setIsEditing(false);
         Alert.alert(t('common.save'), t('profile.updateSuccess'));
     };
 
@@ -77,28 +75,6 @@ export default function ProfileScreen() {
             address: user?.address || '',
         });
         setErrors({});
-        setIsEditing(false);
-    };
-
-    const handleLogout = () => {
-        Alert.alert(
-            t('profile.logout'),
-            t('profile.confirmLogout'),
-            [
-                {
-                    text: t('common.cancel'),
-                    style: 'cancel',
-                },
-                {
-                    text: t('profile.logout'),
-                    style: 'destructive',
-                    onPress: () => {
-                        logout();
-                        router.replace('/auth/login');
-                    },
-                },
-            ]
-        );
     };
 
     const renderField = (
@@ -121,7 +97,7 @@ export default function ProfileScreen() {
                 value={value}
                 onChangeText={(text) => setFormData({ ...formData, [key]: text })}
                 placeholder={placeholder}
-                editable={isEditing && editable}
+                editable={editable}
                 multiline={multiline}
                 numberOfLines={multiline ? 3 : 1}
             />
@@ -139,10 +115,8 @@ export default function ProfileScreen() {
                         style={[
                             styles.genderButton,
                             formData.gender === gender && styles.genderButtonActive,
-                            !isEditing && styles.genderButtonDisabled,
                         ]}
-                        onPress={() => isEditing && setFormData({ ...formData, gender: gender as 'male' | 'female' | 'other' })}
-                        disabled={!isEditing}
+                        onPress={() => setFormData({ ...formData, gender: gender as 'male' | 'female' | 'other' })}
                     >
                         <Text
                             style={[
@@ -166,16 +140,6 @@ export default function ProfileScreen() {
                     <Ionicons name="arrow-back" size={24} color={Colors.light.text} />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>{t('profile.title')}</Text>
-                <TouchableOpacity
-                    onPress={() => (isEditing ? handleSave() : setIsEditing(true))}
-                    style={styles.editButton}
-                >
-                    <Ionicons
-                        name={isEditing ? 'checkmark' : 'create-outline'}
-                        size={24}
-                        color={Colors.light.tint}
-                    />
-                </TouchableOpacity>
             </View>
 
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -184,11 +148,6 @@ export default function ProfileScreen() {
                     <View style={styles.avatar}>
                         <Ionicons name="person" size={60} color={Colors.light.tint} />
                     </View>
-                    {isEditing && (
-                        <TouchableOpacity style={styles.changePhotoButton}>
-                            <Ionicons name="camera" size={20} color="#fff" />
-                        </TouchableOpacity>
-                    )}
                 </View>
 
                 {/* Personal Information Section */}
@@ -244,32 +203,14 @@ export default function ProfileScreen() {
                 </View>
 
                 {/* Action Buttons */}
-                {isEditing && (
-                    <View style={styles.actionButtons}>
-                        <TouchableOpacity
-                            style={[styles.button, styles.cancelButton]}
-                            onPress={handleCancel}
-                        >
-                            <Text style={styles.cancelButtonText}>{t('common.cancel')}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={[styles.button, styles.saveButton]}
-                            onPress={handleSave}
-                        >
-                            <Text style={styles.saveButtonText}>{t('profile.saveChanges')}</Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-
-                {/* Logout Button */}
-                {!isEditing && (
-                    <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-                        <Ionicons name="log-out-outline" size={24} color="#FF3B30" />
-                        <Text style={styles.logoutButtonText}>{t('profile.logout')}</Text>
+                <View style={styles.actionButtons}>
+                    <TouchableOpacity
+                        style={[styles.button, styles.saveButton]}
+                        onPress={handleSave}
+                    >
+                        <Text style={styles.saveButtonText}>{t('profile.update')}</Text>
                     </TouchableOpacity>
-                )}
-
-                <View style={styles.bottomSpacer} />
+                </View>
             </ScrollView>
         </View>
     );
@@ -308,7 +249,6 @@ const styles = StyleSheet.create({
     avatarContainer: {
         alignItems: 'center',
         paddingVertical: 32,
-        backgroundColor: '#fff',
         marginBottom: 16,
     },
     avatar: {
@@ -411,50 +351,20 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     actionButtons: {
-        flexDirection: 'row',
-        gap: 12,
         paddingHorizontal: 16,
-        marginTop: 8,
     },
     button: {
-        flex: 1,
         paddingVertical: 16,
         borderRadius: 12,
         alignItems: 'center',
     },
-    cancelButton: {
-        backgroundColor: '#F0F0F0',
-    },
-    cancelButtonText: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#666',
-    },
     saveButton: {
         backgroundColor: Colors.light.tint,
+        marginBottom: 40
     },
     saveButtonText: {
         fontSize: 16,
         fontWeight: '600',
         color: '#fff',
-    },
-    logoutButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#fff',
-        marginHorizontal: 16,
-        marginTop: 8,
-        paddingVertical: 16,
-        borderRadius: 12,
-        gap: 8,
-    },
-    logoutButtonText: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#FF3B30',
-    },
-    bottomSpacer: {
-        height: 40,
     },
 });
