@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     card: {
         width: 280,
         height: 180,
-        borderRadius: 20,
+        borderRadius: 10,
         overflow: 'hidden',
         backgroundColor: '#f0f0f0',
     },
@@ -36,10 +36,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    placeholderImage: {
+        backgroundColor: '#E8E8E8',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     dateBadge: {
-        position: 'absolute',
-        top: 12,
-        left: 12,
         backgroundColor: '#FFF',
         flexDirection: 'row',
         alignItems: 'center',

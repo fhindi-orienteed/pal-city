@@ -1,4 +1,5 @@
-import { Event, getAllEvents } from '@/services/eventService';
+import { EventService } from '@/services';
+import { Event } from '@/types/interface';
 import { useCallback, useEffect, useState } from 'react';
 
 export function useEvents() {
@@ -10,7 +11,7 @@ export function useEvents() {
   const fetchEvents = useCallback(async () => {
     try {
       setError(null);
-      const data = await getAllEvents();
+      const data = await EventService.getLatestUpcomingEvents();
       setEvents(data);
     } catch (err) {
       setError('Failed to fetch events');

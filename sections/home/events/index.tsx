@@ -26,29 +26,23 @@ export default function HomeEvents({ events }: Props) {
           onPress={() => router.push(`/event/${event.id}` as any)}
         >
 
-          <Image
-            source={typeof event.image === 'string' ? { uri: event.image } : event.image}
-            style={styles.image}
-            contentFit="cover"
-            transition={200}
-          />
+          {event.images && event.images.length > 0 ? (
+            <Image source={{ uri: event.images[0] }} style={styles.image} />
+          ) : (
+            <View style={[styles.image, styles.placeholderImage]}>
+              <IconSymbol name="newspaper" size={60} color="#999" />
+            </View>
+          )}
 
-          <View style={styles.dateBadge}>
-            <IconSymbol name="calendar" size={12} color="#4CAA4A" />
-            <ThemedText style={styles.dateText}>{event.date}</ThemedText>
-          </View>
-
-          <TouchableOpacity style={styles.favoriteButton}>
-            <IconSymbol
-              name={event.isFavorite ? "heart.fill" : "heart"}
-              size={20}
-              color={event.isFavorite ? "#4CAA4A" : "#FFF"}
-            />
-          </TouchableOpacity>
 
           <View style={styles.cardContent}>
             <ThemedText style={styles.location}>{event.location}</ThemedText>
             <ThemedText style={styles.name}>{event.name}</ThemedText>
+
+            <View style={styles.dateBadge}>
+              <IconSymbol name="calendar" size={12} color="#4CAA4A" />
+              <ThemedText style={styles.dateText}>{event.date}</ThemedText>
+            </View>
           </View>
         </TouchableOpacity>
       ))}
