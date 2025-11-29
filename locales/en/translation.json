@@ -25,11 +25,14 @@
         "place": "Places"
     },
     "home": {
-        "title": "Discover PalCity",
-        "subtitle": "Explore the best places in Palestine",
-        "events": "Events",
-        "pharmacies": "Pharmacies",
-        "viewAll": "View All"
+        "sections": {
+            "more": "More",
+            "news": "Latest News",
+            "events": "Upcoming Events",
+            "offers": "Special Offers",
+            "places": "Top Places",
+            "businesses": "Top Businesses"
+        }
     },
     "search": {
         "placeholder": "Search for places, events...",

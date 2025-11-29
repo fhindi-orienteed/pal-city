@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     businessName: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
         color: '#333',
         flex: 1,
