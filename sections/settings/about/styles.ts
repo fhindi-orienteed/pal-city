@@ -1,19 +1,16 @@
 import { Colors } from '@/constants/theme';
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const height = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F5F5F5',
+        height: height,
     },
     header: {
         backgroundColor: '#4CAA4A',
-    },
-    placeholder: {
-        width: 40,
-    },
-    scrollView: {
-        flex: 1,
     },
     appInfoSection: {
         alignItems: 'center',
@@ -22,7 +19,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
         position: 'absolute',
-        top: 50,
+        top: 40,
         left: 10,
         width: 40,
         height: 40,
@@ -48,7 +45,9 @@ const styles = StyleSheet.create({
     },
     appVersion: {
         fontSize: 14,
-        color: '#FFFFFF',
+        color: '#8E8E93',
+        textAlign: 'center',
+        marginVertical: 16,
     },
     appDescription: {
         backgroundColor: '#4CAA4A',
@@ -58,6 +57,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 45,
         paddingBottom: 16,
         lineHeight: 20,
+        paddingTop: 16,
     },
     section: {
         backgroundColor: '#fff',

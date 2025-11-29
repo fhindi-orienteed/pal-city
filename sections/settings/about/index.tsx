@@ -1,7 +1,6 @@
 import AppName from '@/components/AppName';
 import Copyright from '@/components/Copyright';
 import Logo from '@/components/logo';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { Ionicons } from '@expo/vector-icons';
@@ -46,87 +45,74 @@ export default function About() {
     ];
 
     return (
-        <ParallaxScrollView
-            headerBackgroundColor={{ light: '#4CAA4A', dark: '#4CAA4A' }}
-            header={
-                <View style={styles.header}>
-                    <View style={styles.appInfoSection}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+            <View style={styles.header}>
+                <View style={styles.appInfoSection}>
 
-                        <TouchableOpacity
-                            style={styles.backButton}
-                            onPress={() => router.back()}
-                        >
-                            <IconSymbol name="chevron.left" size={28} color="#fff" />
-                        </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.backButton}
+                        onPress={() => router.back()}
+                    >
+                        <IconSymbol name="chevron.left" size={28} color="#fff" />
+                    </TouchableOpacity>
 
-                        <Logo style={styles.appIcon} type="splash" width={140} height={140} />
+                    <Logo style={styles.appIcon} type="white" width={100} height={100} />
 
-                        <AppName />
-
-                        <Text style={styles.appVersion}>Version 1.0.0</Text>
-                    </View>
+                    <AppName />
                 </View>
-            }
-        >
+            </View>
+
             <Text style={styles.appDescription}>
                 {t('settings.appDescription')}
             </Text>
 
-            <View style={styles.container}>
 
-
-
-                <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                    {/* App Info */}
-
-
-                    {/* Contact Information */}
-                    <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>{t('settings.contactUs')}</Text>
-                        {aboutItems.map((item, index) => (
-                            <TouchableOpacity
-                                key={item.id}
-                                style={[
-                                    styles.aboutItem,
-                                    index === aboutItems.length - 1 && styles.lastItem,
-                                ]}
-                                onPress={item.action}
-                                activeOpacity={0.7}
-                            >
-                                <View style={styles.aboutItemLeft}>
-                                    <Ionicons name={item.icon} size={24} color={Colors.light.tint} />
-                                    <View style={styles.aboutItemInfo}>
-                                        <Text style={styles.aboutItemTitle}>{item.title}</Text>
-                                        <Text style={styles.aboutItemValue}>{item.value}</Text>
-                                    </View>
-                                </View>
-                                <Ionicons name="chevron-forward" size={20} color="#C7C7CC" />
-                            </TouchableOpacity>
-                        ))}
-                    </View>
-
-                    {/* Social Media */}
-                    <View style={styles.socialSection}>
-                        <Text style={styles.sectionTitle}>{t('settings.followUs')}</Text>
-                        <View style={styles.socialButtons}>
-                            <TouchableOpacity style={styles.socialButton}>
-                                <Ionicons name="logo-facebook" size={28} color="#1877F2" />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.socialButton}>
-                                <Ionicons name="logo-instagram" size={28} color="#E4405F" />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.socialButton}>
-                                <Ionicons name="logo-twitter" size={28} color="#1DA1F2" />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.socialButton}>
-                                <Ionicons name="logo-linkedin" size={28} color="#0A66C2" />
-                            </TouchableOpacity>
+            {/* Contact Information */}
+            <View style={styles.section}>
+                <Text style={styles.sectionTitle}>{t('settings.contactUs')}</Text>
+                {aboutItems.map((item, index) => (
+                    <TouchableOpacity
+                        key={item.id}
+                        style={[
+                            styles.aboutItem,
+                            index === aboutItems.length - 1 && styles.lastItem,
+                        ]}
+                        onPress={item.action}
+                        activeOpacity={0.7}
+                    >
+                        <View style={styles.aboutItemLeft}>
+                            <Ionicons name={item.icon} size={24} color={Colors.light.tint} />
+                            <View style={styles.aboutItemInfo}>
+                                <Text style={styles.aboutItemTitle}>{item.title}</Text>
+                                <Text style={styles.aboutItemValue}>{item.value}</Text>
+                            </View>
                         </View>
-                    </View>
-
-                    <Copyright />
-                </ScrollView>
+                        <Ionicons name="chevron-forward" size={20} color="#C7C7CC" />
+                    </TouchableOpacity>
+                ))}
             </View>
-        </ParallaxScrollView>
+
+            {/* Social Media */}
+            <View style={styles.socialSection}>
+                <Text style={styles.sectionTitle}>{t('settings.followUs')}</Text>
+                <View style={styles.socialButtons}>
+                    <TouchableOpacity style={styles.socialButton}>
+                        <Ionicons name="logo-facebook" size={28} color="#1877F2" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.socialButton}>
+                        <Ionicons name="logo-instagram" size={28} color="#E4405F" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.socialButton}>
+                        <Ionicons name="logo-twitter" size={28} color="#1DA1F2" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.socialButton}>
+                        <Ionicons name="logo-linkedin" size={28} color="#0A66C2" />
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+            <Text style={styles.appVersion}>Version 1.0.0</Text>
+            <Copyright />
+        </ScrollView >
     );
 }

@@ -13,9 +13,11 @@ const appConfig = {
         ],
         education: [
             { enabled: true, key: 'universities', icon: 'book.fill' },
-            { enabled: true, key: 'schools', icon: 'car.fill' },
-            { enabled: true, key: 'colleges', icon: 'car.fill' },
-            { enabled: true, key: 'trainingCenters', icon: 'car.fill' },
+            { enabled: true, key: 'schools', icon: 'book.fill' },
+            { enabled: true, key: 'colleges', icon: 'book.fill' },
+            { enabled: true, key: 'trainingCenters', icon: 'book.fill' },
+            { enabled: true, key: 'libraries', icon: 'book.fill' },
+            { enabled: true, key: 'bookstores', icon: 'book.fill' },
         ],
         automotive: [
             { enabled: true, key: 'carDealerships', icon: 'car.fill' },

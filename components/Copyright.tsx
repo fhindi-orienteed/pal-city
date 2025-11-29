@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         color: '#8E8E93',
     },
     copyrightSubtext: {
+        marginTop: 4,
         fontSize: 12,
         color: '#C7C7CC',
     },
