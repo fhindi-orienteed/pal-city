@@ -17,6 +17,13 @@
         "submit": "Submit",
         "continue": "Continue"
     },
+    "searchTypes": {
+        "all": "All",
+        "business": "Business",
+        "events": "Events",
+        "offers": "Offers",
+        "place": "Places"
+    },
     "home": {
         "title": "Discover PalCity",
         "subtitle": "Explore the best places in Palestine",
