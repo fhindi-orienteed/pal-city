@@ -1,112 +1,63 @@
+import appConfig from '@/config/appConfig';
+import { Business } from '@/types/interface';
 import { useCallback, useEffect, useState } from 'react';
-import { Business, getAllBusinesses, getBusinessById, getBusinessesByCategory } from '../services/businessService';
+import { BusinessService } from '../services';
+
+interface Filter {
+  filter: string;
+  values: string[];
+}
 
 /**
- * Custom hook to fetch all businesses with refetch support
+ * Custom hook to fetch all businesses with refetch, filters and search support
  */
-export const useBusinesses = (category?: string) => {
-  const [businesses, setBusinesses] = useState<Business[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [refreshing, setRefreshing] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+export const useBusinesses = () => {
+  const pageSize = appConfig.businessList.pageSize;
 
-  const fetchBusinesses = useCallback(async (isRefreshing = false) => {
-    try {
-      if (isRefreshing) {
-        setRefreshing(true);
-      } else {
-        setLoading(true);
-      }
-      
-      const data = category 
-        ? await getBusinessesByCategory(category)
-        : await getAllBusinesses();
-      setBusinesses(data);
-      setError(null);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      console.error('Error in useBusinesses:', err);
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
-  }, [category]);
+  const [businesses, setBusinesses] = useState<Business[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalRecords, setTotalRecords] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [filters, setFilters] = useState<Filter[]>([]);
+
+  const hasMore = pageSize < businesses.length;
+
+  const fetchBusinesses = useCallback(async () => {
+    setLoading(true);
+    const data = await BusinessService.getBusinessesList(page, pageSize, filters);
+    setBusinesses(data);
+    setTotalRecords(data.length);
+    setError(null);
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
     fetchBusinesses();
   }, [fetchBusinesses]);
 
   const refetch = useCallback(() => {
-    fetchBusinesses(true);
+    fetchBusinesses();
   }, [fetchBusinesses]);
 
-  return { businesses, loading, refreshing, error, refetch };
-};
-
-/**
- * Custom hook to fetch a single business by ID
- */
-export const useBusiness = (businessId: string | null) => {
-  const [business, setBusiness] = useState<Business | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!businessId) {
-      setLoading(false);
-      return;
+  const addFilters = useCallback((filters: Filter[], reset = false) => {
+    if (reset) {
+      setFilters(filters);
+    } else {
+      setFilters((prevFilters) => [...prevFilters, ...filters]);
     }
-
-    const fetchBusiness = async () => {
-      try {
-        setLoading(true);
-        const data = await getBusinessById(businessId);
-        setBusiness(data);
-        setError(null);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        console.error('Error in useBusiness:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBusiness();
-  }, [businessId]);
-
-  return { business, loading, error };
-};
-
-/**
- * Custom hook to fetch businesses by category
- */
-export const useBusinessesByCategory = (category: string | null) => {
-  const [businesses, setBusinesses] = useState<Business[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!category) {
-      setLoading(false);
-      return;
-    }
-
-    const fetchBusinesses = async () => {
-      try {
-        setLoading(true);
-        const data = await getBusinessesByCategory(category);
-        setBusinesses(data);
-        setError(null);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        console.error('Error in useBusinessesByCategory:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchBusinesses();
-  }, [category]);
+  }, []);
 
-  return { businesses, loading, error };
+  const resetFilters = useCallback(() => {
+    setFilters([]);
+    fetchBusinesses();
+  }, []);
+
+  const fetchNextPage = useCallback(() => {
+    setPage((prevPage) => prevPage + 1);
+    fetchBusinesses();
+  }, []);
+
+  return { businesses, loading, error, refetch, addFilters, resetFilters, totalRecords, fetchNextPage, hasMore };
 };

@@ -1,17 +1,22 @@
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Business } from '@/services/businessService';
+import { Business } from '@/types/interface';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
+import { useCallback } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 interface BusinessCardProps {
   business: Business;
-  isFavorite: boolean;
-  onToggleFavorite: (businessId: string) => void;
 }
 
-export default function BusinessCard({ business, isFavorite, onToggleFavorite }: BusinessCardProps) {
+export default function BusinessCard({ business }: BusinessCardProps) {
+
+  const isFavorite = false;
+
+  const onToggleFavorite = useCallback((businessId: string) => {
+
+  }, []);
 
   return (
     <Link href={`/business/${business.id}`} asChild>

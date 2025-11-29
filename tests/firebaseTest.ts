@@ -5,7 +5,7 @@
  * Import and call this function in any component to test the connection.
  */
 
-import { getAllBusinesses } from '../services/businessService';
+import { BusinessService } from '../services';
 
 /**
  * Test Firebase connection and operations
@@ -16,9 +16,9 @@ export const testFirebaseConnection = async () => {
   try {
     // Test 1: Fetch all businesses
     console.log('Test 1: Fetching all businesses...');
-    const businesses = await getAllBusinesses();
+    const businesses = await BusinessService.getBusinessesList();
     console.log(`✅ Success! Found ${businesses.length} businesses`);
-    
+
     if (businesses.length > 0) {
       console.log('Sample business:', businesses[0]);
     } else {
@@ -39,7 +39,7 @@ export const testFirebaseConnection = async () => {
     // console.log('✅ Test business added with ID:', newId);
 
     console.log('\n🎉 All tests passed! Firebase is connected and working.\n');
-    
+
     return {
       success: true,
       businessCount: businesses.length,
@@ -49,7 +49,7 @@ export const testFirebaseConnection = async () => {
   } catch (error: any) {
     console.error('❌ Firebase connection test failed!');
     console.error('Error details:', error.message);
-    
+
     // Common error diagnostics
     if (error.code === 'permission-denied') {
       console.log('\n💡 Tip: Check your Firestore security rules in Firebase Console');

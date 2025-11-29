@@ -1,7 +1,7 @@
+import { Business } from '@/types/interface';
 import React from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useBusinesses } from '../hooks/useBusinesses';
-import { Business } from '../services/businessService';
 
 export default function BusinessList() {
   const { businesses, loading, error } = useBusinesses();

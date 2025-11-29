@@ -12,117 +12,64 @@ import {
 } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
 
-// Collection name - change this to match your Firestore collection name
-const BUSINESS_COLLECTION = 'businesses';
+export class BusinessService {
+  private static readonly BUSINESS_COLLECTION = 'businesses';
 
-/**
- * Fetch all businesses from Firestore
- */
-export const getAllBusinesses = async (): Promise<Business[]> => {
-  try {
-    const businessCollection = collection(db, BUSINESS_COLLECTION);
-    const businessSnapshot = await getDocs(businessCollection);
-    const businessList = businessSnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    })) as Business[];
+  /**
+   * Fetch businesses list
+   */
+  public static async getBusinessesList(page: number, pageSize: number, filters?: any, sortFiled?: string): Promise<Business[]> {
+    try {
+      const businessCollection = collection(db, BusinessService.BUSINESS_COLLECTION);
+      const constraints: QueryConstraint[] = [];
 
-    return businessList;
-  } catch (error) {
-    console.error('Error fetching businesses:', error);
-    throw error;
-  }
-};
+      constraints.push(limit(pageSize));
 
-/**
- * Fetch a single business by ID
- */
-export const getBusinessById = async (businessId: string): Promise<Business | null> => {
-  try {
-    const businessDoc = doc(db, BUSINESS_COLLECTION, businessId);
-    const businessSnapshot = await getDoc(businessDoc);
+      if (sortFiled) {
+        constraints.push(orderBy(sortFiled, 'asc'));
+      }
 
-    if (businessSnapshot.exists()) {
-      return {
-        id: businessSnapshot.id,
-        ...businessSnapshot.data()
-      } as Business;
-    } else {
-      console.log('No such business found!');
-      return null;
+      if (filters && filters.length > 0) {
+        Object.entries(filters).forEach(([key, value]) => {
+          constraints.push(where(key, '==', value));
+        });
+      }
+
+      const q = query(businessCollection, ...constraints);
+      const snapshot = await getDocs(q);
+
+      const businessList = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as Business[];
+
+      return businessList;
+    } catch (error) {
+      console.error('Error fetching businesses:', error);
+      throw error;
     }
-  } catch (error) {
-    console.error('Error fetching business:', error);
-    throw error;
   }
-};
 
-/**
- * Fetch businesses with filters
- * Example: getBusinessesByQuery([where('category', '==', 'restaurant')])
- */
-export const getBusinessesByQuery = async (
-  constraints: QueryConstraint[]
-): Promise<Business[]> => {
-  try {
-    const businessCollection = collection(db, BUSINESS_COLLECTION);
-    const q = query(businessCollection, ...constraints);
-    const businessSnapshot = await getDocs(q);
+  /**
+   * Fetch business by ID
+   */
+  public static async getBusinessById(businessId: string): Promise<Business | null> {
+    try {
+      const businessDoc = doc(db, BusinessService.BUSINESS_COLLECTION, businessId);
+      const businessSnapshot = await getDoc(businessDoc);
 
-    const businessList = businessSnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    })) as Business[];
-
-    return businessList;
-  } catch (error) {
-    console.error('Error fetching filtered businesses:', error);
-    throw error;
+      if (businessSnapshot.exists()) {
+        return {
+          id: businessSnapshot.id,
+          ...businessSnapshot.data()
+        } as Business;
+      } else {
+        console.log('No such business found!');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching business:', error);
+      throw error;
+    }
   }
-};
-
-/**
- * Fetch businesses by category
- */
-export const getBusinessesByCategory = async (category: string): Promise<Business[]> => {
-  try {
-    return await getBusinessesByQuery([
-      where('category', '==', category)
-    ]);
-  } catch (error) {
-    console.error('Error fetching businesses by category:', error);
-    throw error;
-  }
-};
-
-/**
- * Fetch top-rated businesses
- */
-export const getTopRatedBusinesses = async (limitCount: number = 10): Promise<Business[]> => {
-  try {
-    return await getBusinessesByQuery([
-      orderBy('rating', 'desc'),
-      limit(limitCount)
-    ]);
-  } catch (error) {
-    console.error('Error fetching top-rated businesses:', error);
-    throw error;
-  }
-};
-
-/**
- * Search businesses by name
- */
-export const searchBusinessesByName = async (searchTerm: string): Promise<Business[]> => {
-  try {
-    // Note: Firestore doesn't support full-text search natively
-    // This is a simple implementation. For better search, consider using Algolia or similar
-    const businesses = await getAllBusinesses();
-    return businesses.filter(business =>
-      business.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  } catch (error) {
-    console.error('Error searching businesses:', error);
-    throw error;
-  }
-};
+}

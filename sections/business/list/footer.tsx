@@ -3,13 +3,13 @@ import { ActivityIndicator, View } from "react-native";
 import styles from "./styles";
 
 type Props = {
-    loadingMore: boolean;
+    loading: boolean;
     hasMore: boolean;
     total: number;
 }
 
-export default function Footer({ loadingMore, hasMore, total }: Props) {
-    if (loadingMore) {
+export default function Footer({ loading, hasMore, total }: Props) {
+    if (loading) {
         return (
             <View style={styles.footerLoader}>
                 <ActivityIndicator size="small" color="#E25822" />

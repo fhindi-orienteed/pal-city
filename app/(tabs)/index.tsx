@@ -8,7 +8,7 @@ import { useEvents } from "@/hooks/useEvents";
 import { RefreshControl, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
-  const { businesses, loading: loadingBusinesses, error: errorBusinesses, refetch, refreshing } = useBusinesses();
+  const { businesses, loading: loadingBusinesses, error: errorBusinesses, refetch } = useBusinesses();
   const { events, loading: loadingEvents, error: errorEvents } = useEvents();
 
   return (
@@ -17,7 +17,7 @@ export default function HomeScreen() {
       header={<HomeHeader />}
       refreshControl={
         <RefreshControl
-          refreshing={refreshing}
+          refreshing={loadingBusinesses}
           onRefresh={refetch}
           tintColor="#E25822"
           colors={['#E25822']}
