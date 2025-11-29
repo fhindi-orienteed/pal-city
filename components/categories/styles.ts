@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingHorizontal: 0,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   categoryItem: {
     alignItems: 'center',
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   iconContainer: {
-    width: 56,
-    height: 56,
+    width: '80%',
+    aspectRatio: 1,
     borderRadius: 16,
     backgroundColor: '#E8F5E9',
     justifyContent: 'center',
@@ -36,11 +36,6 @@ const styles = StyleSheet.create({
   categoryName: {
     fontSize: 12,
     textAlign: 'center',
-  },
-  expandButton: {
-    alignItems: 'center',
-    paddingVertical: 8,
-    marginTop: 4,
   },
 });
 

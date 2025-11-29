@@ -1,26 +1,24 @@
 import BusinessCard from '@/components/business/business-card';
-import FilterBottomSheet from '@/components/business/filters';
-import BusinessSearchBox from '@/components/business/search-box';
+import { RatingOption, SortOption } from '@/components/business/filters/types';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import appConfig from '@/config/appConfig';
 import { useBusinesses } from '@/hooks/useBusinesses';
 import { Business } from '@/services/businessService';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
-
-import { RatingOption, SortOption } from '@/components/business/filters/types';
-import appConfig from '@/config/appConfig';
 import {
   ActivityIndicator,
   FlatList,
   RefreshControl,
-  TouchableOpacity,
   View
 } from 'react-native';
+import Footer from './footer';
+import Header from './header';
 import styles from './styles';
 
-export default function BusinessListScreen() {
+export default function BusinessList() {
   const { businesses, loading, error, refetch, refreshing } = useBusinesses();
   const [searchQuery, setSearchQuery] = useState('');
   const [pageSize, setPageSize] = useState(appConfig.businessList.pageSize);
@@ -31,8 +29,6 @@ export default function BusinessListScreen() {
   const [sortOption, setSortOption] = useState<SortOption>('rating');
   const [ratingFilter, setRatingFilter] = useState<RatingOption>('all');
   const [selectedCategory, setSelectedCategory] = useState<any[]>([]);
-  const [filterVisible, setFilterVisible] = useState(false);
-  const [selectedCity, setSelectedCity] = useState<any[]>([]);
 
   const params = useLocalSearchParams();
   const { title } = params
@@ -110,64 +106,12 @@ export default function BusinessListScreen() {
   );
 
   const renderFooter = () => {
-    if (loadingMore) {
-      return (
-        <View style={styles.footerLoader}>
-          <ActivityIndicator size="small" color="#E25822" />
-          <ThemedText style={styles.footerText}>Loading more...</ThemedText>
-        </View>
-      );
-    }
-    if (!hasMore && filteredBusinesses.length > 0) {
-      return (
-        <View style={styles.footerEnd}>
-          <ThemedText style={styles.footerText}>
-            That's all! ({filteredBusinesses.length} businesses)
-          </ThemedText>
-        </View>
-      );
-    }
-    return null;
+    return <Footer loadingMore={loadingMore} hasMore={hasMore} total={filteredBusinesses.length} />
   };
 
   return (
     <ThemedView style={styles.container}>
-      <Stack.Screen
-        options={{
-          title: (typeof title === 'string' ? title : undefined) || 'All Businesses',
-          headerBackTitle: 'Back',
-        }}
-      />
-
-      <View style={styles.header}>
-        {/* Search Bar */}
-        <View style={styles.searchContainer}>
-          <BusinessSearchBox
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
-        </View>
-
-        <View style={styles.filterContainer}>
-          <TouchableOpacity onPress={() => setFilterVisible(true)} style={styles.filterButton}>
-            <IconSymbol name="filter" size={22} color="#009736" /><ThemedText>Filter</ThemedText>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* Filter Bottom Sheet */}
-      <FilterBottomSheet
-        visible={filterVisible}
-        onClose={() => setFilterVisible(false)}
-        selectedSort={sortOption}
-        onSortChange={setSortOption}
-        selectedRating={ratingFilter}
-        onRatingChange={setRatingFilter}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-        selectedCity={selectedCity}
-        onCityChange={setSelectedCity}
-      />
+      <Header />
 
       {/* Business List */}
       {loading && displayedBusinesses.length === 0 ? (

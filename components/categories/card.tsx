@@ -22,9 +22,9 @@ export default function CategoriesCard({ category }: Props) {
   return (
     <TouchableOpacity key={category.key} style={styles.categoryItem} onPress={() => handleCategoryPress(category)}>
       <View style={styles.iconContainer}>
-        <IconSymbol name={category.icon} size={24} color="#4CAA4A" />
+        <IconSymbol name={category.icon} color="#4CAA4A" />
       </View>
-      <ThemedText style={styles.categoryName} numberOfLines={1}>
+      <ThemedText style={styles.categoryName}>
         {t('categories.' + category.key)}
       </ThemedText>
     </TouchableOpacity>

@@ -3,7 +3,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useBusiness } from '@/hooks/useBusinesses';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Stack } from 'expo-router';
 import { View } from 'react-native';
 import About from './about';
 import Actions from './actions';
@@ -13,8 +13,7 @@ import Placeholder from './placeholder';
 import styles from './styles';
 import Title from './title';
 
-export default function BusinessDetailsScreen() {
-  const { id } = useLocalSearchParams();
+export default function BusinessDetails({ id }: { id: string }) {
 
   const { business, loading } = useBusiness(id.toString());
 
