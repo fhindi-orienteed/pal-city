@@ -1,39 +1,80 @@
-import { db } from '@/config/firebaseConfig';
+import { API_ENDPOINTS } from '@/config/apiConfig';
 import { News } from '@/types/interface';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
-
-
-const COLLECTION_NAME = 'news';
+import { apiClient } from './apiClient';
 
 export class NewsService {
+    /**
+     * Get all news
+     */
     public static async getLatestNews(): Promise<News[]> {
         try {
-            const querySnapshot = await getDocs(collection(db, COLLECTION_NAME));
-            return querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            } as News));
+            const response = await apiClient.get<News[]>(API_ENDPOINTS.NEWS.LIST);
+            return response;
         } catch (error) {
             console.error('Error fetching news:', error);
             throw new Error('Failed to fetch news');
         }
     }
 
+    /**
+     * Get news by ID
+     */
     public static async getById(id: string): Promise<News | null> {
         try {
-            const docRef = doc(db, COLLECTION_NAME, id);
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                return {
-                    id: docSnap.id,
-                    ...docSnap.data()
-                } as News;
+            const response = await apiClient.get<News>(
+                API_ENDPOINTS.NEWS.BY_ID(id)
+            );
+            return response;
+        } catch (error: any) {
+            if (error.statusCode === 404) {
+                return null;
             }
-            return null;
-        } catch (error) {
             console.error('Error fetching news:', error);
             throw new Error('Failed to fetch news');
+        }
+    }
+
+    /**
+     * Create new news (requires authentication)
+     */
+    public static async create(newsData: Partial<News>): Promise<News> {
+        try {
+            const response = await apiClient.post<News>(
+                API_ENDPOINTS.NEWS.CREATE,
+                newsData
+            );
+            return response;
+        } catch (error) {
+            console.error('Error creating news:', error);
+            throw new Error('Failed to create news');
+        }
+    }
+
+    /**
+     * Update news (requires authentication)
+     */
+    public static async update(id: string, newsData: Partial<News>): Promise<News> {
+        try {
+            const response = await apiClient.put<News>(
+                API_ENDPOINTS.NEWS.UPDATE(id),
+                newsData
+            );
+            return response;
+        } catch (error) {
+            console.error('Error updating news:', error);
+            throw new Error('Failed to update news');
+        }
+    }
+
+    /**
+     * Delete news (requires authentication)
+     */
+    public static async delete(id: string): Promise<void> {
+        try {
+            await apiClient.delete(API_ENDPOINTS.NEWS.DELETE(id));
+        } catch (error) {
+            console.error('Error deleting news:', error);
+            throw new Error('Failed to delete news');
         }
     }
 };

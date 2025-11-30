@@ -1,3 +1,5 @@
+import { API_ENDPOINTS } from '@/config/apiConfig';
+import { apiClient } from './apiClient';
 
 export interface Offer {
     id: string;
@@ -8,56 +10,79 @@ export interface Offer {
     expiresIn: string;
 }
 
-const COLLECTION_NAME = 'offers';
-
-// Mock data to use if Firebase is empty or for fallback
-const MOCK_OFFERS: Offer[] = [
-    {
-        id: '1',
-        title: '50% Off Lunch',
-        businessName: 'Lucha Restaurant',
-        discount: '50% OFF',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&auto=format&fit=crop&q=60', // placeholder
-        expiresIn: '2 days left',
-    },
-    {
-        id: '2',
-        title: 'Buy 1 Get 1 Free',
-        businessName: 'City Cinema',
-        discount: 'BOGO',
-        image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&auto=format&fit=crop&q=60', // placeholder
-        expiresIn: '5 hours left',
-    },
-];
-
 export const offersService = {
+    /**
+     * Get all offers
+     */
     async getAll(): Promise<Offer[]> {
         try {
-            // For now, let's return mock data to ensure the UI works immediately
-            // In a real scenario, we would uncomment the Firebase code below
-
-            /*
-            const querySnapshot = await getDocs(collection(db, COLLECTION_NAME));
-            if (!querySnapshot.empty) {
-                return querySnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                } as Offer));
-            }
-            */
-
-            // Return mock data for development
-            return new Promise((resolve) => {
-                setTimeout(() => resolve(MOCK_OFFERS), 500);
-            });
-
+            const response = await apiClient.get<Offer[]>(API_ENDPOINTS.OFFERS.LIST);
+            return response;
         } catch (error) {
             console.error('Error fetching offers:', error);
             throw new Error('Failed to fetch offers');
         }
     },
 
-    async getById(id: string): Promise<Offer | undefined> {
-        return MOCK_OFFERS.find(o => o.id === id);
-    }
+    /**
+     * Get offer by ID
+     */
+    async getById(id: string): Promise<Offer | null> {
+        try {
+            const response = await apiClient.get<Offer>(
+                API_ENDPOINTS.OFFERS.BY_ID(id)
+            );
+            return response;
+        } catch (error: any) {
+            if (error.statusCode === 404) {
+                return null;
+            }
+            console.error('Error fetching offer:', error);
+            throw new Error('Failed to fetch offer');
+        }
+    },
+
+    /**
+     * Create new offer (requires authentication)
+     */
+    async create(offerData: Partial<Offer>): Promise<Offer> {
+        try {
+            const response = await apiClient.post<Offer>(
+                API_ENDPOINTS.OFFERS.CREATE,
+                offerData
+            );
+            return response;
+        } catch (error) {
+            console.error('Error creating offer:', error);
+            throw new Error('Failed to create offer');
+        }
+    },
+
+    /**
+     * Update offer (requires authentication)
+     */
+    async update(id: string, offerData: Partial<Offer>): Promise<Offer> {
+        try {
+            const response = await apiClient.put<Offer>(
+                API_ENDPOINTS.OFFERS.UPDATE(id),
+                offerData
+            );
+            return response;
+        } catch (error) {
+            console.error('Error updating offer:', error);
+            throw new Error('Failed to update offer');
+        }
+    },
+
+    /**
+     * Delete offer (requires authentication)
+     */
+    async delete(id: string): Promise<void> {
+        try {
+            await apiClient.delete(API_ENDPOINTS.OFFERS.DELETE(id));
+        } catch (error) {
+            console.error('Error deleting offer:', error);
+            throw new Error('Failed to delete offer');
+        }
+    },
 };

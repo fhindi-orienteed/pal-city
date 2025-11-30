@@ -1,12 +1,14 @@
 import { IS_GUEST_KEY, USER_KEY } from '@/constants/localStorageKey';
+import { AuthService } from '@/services/authService';
 import { User } from '@/types/interface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
     isLogin: boolean;
-    login: () => void;
-    logout: () => void;
+    login: (mobile: string, password: string) => Promise<void>;
+    loginWithOTP: (mobile: string, otp: string) => Promise<void>;
+    logout: () => Promise<void>;
     isGuest: boolean;
     setIsGuest: (guest: boolean) => void;
     isLoading: boolean;
@@ -52,31 +54,71 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
     };
 
-    const login = async () => {
-        setIsLogin(true);
-        setIsGuest(false);
-        // Set a default user when logging in
-        const newUser = {
-            id: '1',
-            phoneNumber: '0597262705',
-            name: 'Fathi Hindi',
-            email: 'fathi.hindi@gmail.com',
-            city: 'Nablus',
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-        };
-        setUser(newUser);
-        // Persist user to AsyncStorage
-        await AsyncStorage.setItem(USER_KEY, JSON.stringify(newUser));
-        await AsyncStorage.removeItem(IS_GUEST_KEY);
+    const login = async (mobile: string, password: string) => {
+        try {
+            setIsLoading(true);
+            const response = await AuthService.login({ mobile, password });
+
+            if (response.success && response.user) {
+                setIsLogin(true);
+                setIsGuest(false);
+                setUser(response.user);
+
+                // Persist user to AsyncStorage
+                await AsyncStorage.setItem(USER_KEY, JSON.stringify(response.user));
+                await AsyncStorage.removeItem(IS_GUEST_KEY);
+            } else {
+                throw new Error(response.message || 'Login failed');
+            }
+        } catch (error: any) {
+            console.error('Login error:', error);
+            throw error;
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const logout = () => {
-        setIsLogin(false);
-        setIsGuest(false);
-        setUser(null);
-        AsyncStorage.removeItem(IS_GUEST_KEY);
-        AsyncStorage.removeItem(USER_KEY);
+    const loginWithOTP = async (mobile: string, otp: string) => {
+        try {
+            setIsLoading(true);
+            const response = await AuthService.verifyOTP({ mobile, otp });
+
+            if (response.success && response.user) {
+                setIsLogin(true);
+                setIsGuest(false);
+                setUser(response.user);
+
+                // Persist user to AsyncStorage
+                await AsyncStorage.setItem(USER_KEY, JSON.stringify(response.user));
+                await AsyncStorage.removeItem(IS_GUEST_KEY);
+            } else {
+                throw new Error(response.message || 'OTP verification failed');
+            }
+        } catch (error: any) {
+            console.error('OTP verification error:', error);
+            throw error;
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const logout = async () => {
+        try {
+            setIsLoading(true);
+            await AuthService.logout();
+
+            setIsLogin(false);
+            setIsGuest(false);
+            setUser(null);
+
+            await AsyncStorage.removeItem(IS_GUEST_KEY);
+            await AsyncStorage.removeItem(USER_KEY);
+        } catch (error: any) {
+            console.error('Logout error:', error);
+            throw error;
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const updateUser = async (userData: Partial<User>) => {
@@ -93,7 +135,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ isLogin, login, logout, isGuest, setIsGuest: handleSetIsGuest, isLoading, user, updateUser }}>
+        <AuthContext.Provider value={{ isLogin, login, loginWithOTP, logout, isGuest, setIsGuest: handleSetIsGuest, isLoading, user, updateUser }}>
             {children}
         </AuthContext.Provider>
     );

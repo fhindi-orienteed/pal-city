@@ -19,51 +19,59 @@ import {
 
 import { IS_GUEST_KEY } from '@/constants/localStorageKey';
 import { useTranslation } from '@/hooks/useTranslation';
+import { AuthService } from '@/services/authService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoginHint from './hint';
 import styles from './styles';
-
-const FIXED_OTP = '0000';
 
 export default function LoginScreen() {
     const { t, isRTL } = useTranslation();
     const router = useRouter();
     const { completeOnboarding } = useOnboarding();
-    const { login } = useAuth();
+    const { loginWithOTP } = useAuth();
     const [phoneNumber, setPhoneNumber] = useState('');
     const [otp, setOtp] = useState('');
     const [isOtpSent, setIsOtpSent] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSendOTP = () => {
+    const handleSendOTP = async () => {
         if (phoneNumber.length < 9) {
             Alert.alert(t('auth.error'), t('auth.invalidPhone'));
             return;
         }
 
         setIsLoading(true);
-        // Simulate API call
-        setTimeout(() => {
+        try {
+            const fullPhoneNumber = `+970${phoneNumber}`;
+            await AuthService.requestOTP({ mobile: fullPhoneNumber });
             setIsOtpSent(true);
+            Alert.alert(t('auth.success'), t('auth.otpSent'));
+        } catch (error: any) {
+            Alert.alert(t('auth.error'), error.message || t('auth.otpFailed'));
+        } finally {
             setIsLoading(false);
-        }, 1000);
+        }
     };
 
     const handleVerifyOTP = async () => {
-        if (otp !== FIXED_OTP) {
+        if (otp.length !== 4) {
             Alert.alert(t('auth.error'), t('auth.invalidOtp'));
             return;
         }
 
         setIsLoading(true);
-        // Simulate API call
-        setTimeout(async () => {
-            login();
+        try {
+            const fullPhoneNumber = `+970${phoneNumber}`;
+            await loginWithOTP(fullPhoneNumber, otp);
             await completeOnboarding();
-            setIsLoading(false);
             router.replace('/(tabs)');
-        }, 1000);
+        } catch (error: any) {
+            Alert.alert(t('auth.error'), error.message || t('auth.verificationFailed'));
+        } finally {
+            setIsLoading(false);
+        }
     };
+
 
     const handleSkip = async () => {
         await AsyncStorage.setItem(IS_GUEST_KEY, 'true');

@@ -1,3 +1,12 @@
+/**
+ * @deprecated This file is deprecated and no longer used.
+ * The application now uses a custom REST API backend instead of Firebase.
+ * See config/apiConfig.ts for the new API configuration.
+ * 
+ * This file is kept temporarily to avoid breaking any remaining imports.
+ * It can be safely removed once all references are cleaned up.
+ */
+
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
