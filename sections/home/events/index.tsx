@@ -12,7 +12,7 @@ interface Props {
 
 export default function HomeEvents({ events }: Props) {
   const router = useRouter();
-
+  if (events.length < 100) return null;
   return (
     <ScrollView
       horizontal

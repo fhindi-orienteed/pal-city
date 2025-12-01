@@ -20,7 +20,7 @@ export default function HomeNews({ news }: Props) {
             {news.slice(0, 5).map((item) => (
                 <Link key={item.id} href={`/news/${item.id}`} asChild>
                     <TouchableOpacity style={styles.card}>
-                        {item.images.length > 0 ? (
+                        {item.images?.length > 0 ? (
                             <Image source={{ uri: item.images[0] }} style={styles.image} />
                         ) : (
                             <View style={[styles.image, styles.placeholderImage]}>

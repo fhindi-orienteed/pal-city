@@ -1,10 +1,6 @@
 import HomeHeader from "@/components/home/header";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
-import { useBusinesses } from "@/hooks/useBusinesses";
-import { useEvents } from "@/hooks/useEvents";
-import { useNews } from "@/hooks/useNews";
-import { useOffers } from "@/hooks/useOffers";
-import { usePlaces } from "@/hooks/usePlaces";
+import useHomeFeed from "@/hooks/useHomeFeed";
 import HomeBusiness from "@/sections/home/business";
 import HomeEvents from "@/sections/home/events";
 import News from "@/sections/home/news";
@@ -14,11 +10,9 @@ import { RefreshControl } from "react-native";
 import HomeSection from "./section";
 
 export default function Home() {
-  const { businesses, loading: loadingBusinesses, error: errorBusinesses, refetch } = useBusinesses();
-  const { events, loading: loadingEvents, error: errorEvents } = useEvents();
-  const { places, loading: loadingPlaces, error: errorPlaces } = usePlaces();
-  const { news, loading: loadingNews, error: errorNews } = useNews();
-  const { offers, loading: loadingOffers, error: errorOffers } = useOffers();
+  const { businesses, loadingBusinesses, errorBusinesses, events, loadingEvents, errorEvents,
+    places, loadingPlaces, errorPlaces, news, loadingNews, errorNews, offers, loadingOffers,
+    errorOffers, refetch } = useHomeFeed();
 
   return (
     <ParallaxScrollView
@@ -26,7 +20,7 @@ export default function Home() {
       header={<HomeHeader />}
       refreshControl={
         <RefreshControl
-          refreshing={loadingBusinesses}
+          refreshing={loadingBusinesses || loadingEvents || loadingPlaces || loadingNews || loadingOffers}
           onRefresh={refetch}
           tintColor="#4CAA4A"
           colors={['#4CAA4A']}

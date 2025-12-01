@@ -1,5 +1,6 @@
 import { API_ENDPOINTS } from '@/config/apiConfig';
-import { Business } from '@/types/interface';
+import { Business } from '@/model';
+import { IBusiness } from '@/types/interface';
 import { apiClient } from './apiClient';
 
 export class BusinessService {
@@ -29,11 +30,25 @@ export class BusinessService {
         });
       }
 
-      const response = await apiClient.get<Business[]>(API_ENDPOINTS.BUSINESSES.LIST, params);
+      const response = await apiClient.get<IBusiness[]>(API_ENDPOINTS.BUSINESSES.LIST, params);
 
-      return response;
+      return response.map((business) => new Business(business));
     } catch (error) {
       console.error('Error fetching businesses:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Fetch businesses feed
+   */
+  public static async getBusinessesFeed(): Promise<Business[]> {
+    try {
+      const response = await apiClient.get<IBusiness[]>(API_ENDPOINTS.BUSINESSES.FEED);
+
+      return response.map((business) => new Business(business));
+    } catch (error) {
+      console.error('Error fetching businesses feed:', error);
       throw error;
     }
   }

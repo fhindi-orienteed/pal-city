@@ -2,6 +2,9 @@ const appConfig = {
     businessList: {
         pageSize: 10
     },
+    homeFeed: {
+        pageSize: 10
+    },
     businessCategories: {
         healthAndMedical: [
             { enabled: true, key: 'pharmacies', icon: 'pill.fill' },

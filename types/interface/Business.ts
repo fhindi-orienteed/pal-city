@@ -1,25 +1,33 @@
-export interface Business {
+import { ILocation, IOpeningHours } from "./Common";
+
+export interface IBusiness {
     id: string;
     name: string;
     description?: string;
     category?: string;
-    address?: string;
-    phone?: string;
-    email?: string;
-    images?: string[];
+    createdAt?: string;
+    updatedAt?: string;
     rating?: number;
-    reviewCount?: number;
-    createdAt?: any;
+    reviews?: number;
     logo?: string;
-    location?: {
-        latitude?: number;
-        longitude?: number;
-    }
-    socialLinks?: {
-        facebook?: string;
-        twitter?: string;
-        instagram?: string;
-        youtube?: string;
-        website?: string;
-    }
+    cover?: string;
+    profile?: IBusinessProfile;
+}
+
+export interface IBusinessProfile {
+    facebook?: string;
+    twitter?: string;
+    instagram?: string;
+    youtube?: string;
+    website?: string;
+    phone?: string;
+    mobile?: string;
+    email?: string;
+    address?: string;
+    city?: string;
+    country?: string;
+    zipCode?: string;
+    images?: string[];
+    location?: ILocation;
+    openingHours?: IOpeningHours;
 }

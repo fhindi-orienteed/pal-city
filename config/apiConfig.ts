@@ -16,16 +16,17 @@ export const API_ENDPOINTS = {
     OTP_REQUEST: '/api/auth/otp/request',
     OTP_VERIFY: '/api/auth/otp/verify',
   },
-  
+
   // Business
   BUSINESSES: {
     LIST: '/api/businesses',
+    FEED: '/api/businesses/feed',
     BY_ID: (id: string) => `/api/businesses/${id}`,
     CREATE: '/api/businesses',
     UPDATE: (id: string) => `/api/businesses/${id}`,
     DELETE: (id: string) => `/api/businesses/${id}`,
   },
-  
+
   // Events
   EVENTS: {
     LIST: '/api/events',
@@ -34,7 +35,7 @@ export const API_ENDPOINTS = {
     UPDATE: (id: string) => `/api/events/${id}`,
     DELETE: (id: string) => `/api/events/${id}`,
   },
-  
+
   // Places
   PLACES: {
     LIST: '/api/places',
@@ -43,7 +44,7 @@ export const API_ENDPOINTS = {
     UPDATE: (id: string) => `/api/places/${id}`,
     DELETE: (id: string) => `/api/places/${id}`,
   },
-  
+
   // News
   NEWS: {
     LIST: '/api/news',
@@ -52,7 +53,7 @@ export const API_ENDPOINTS = {
     UPDATE: (id: string) => `/api/news/${id}`,
     DELETE: (id: string) => `/api/news/${id}`,
   },
-  
+
   // Offers
   OFFERS: {
     LIST: '/api/offers',
