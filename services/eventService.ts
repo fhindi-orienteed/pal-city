@@ -6,7 +6,7 @@ export class EventService {
   /**
    * Get all events
    */
-  public static async getLatestUpcomingEvents(): Promise<Event[]> {
+  public static async getEventsFeed(): Promise<Event[]> {
     try {
       const response = await apiClient.get<Event[]>(API_ENDPOINTS.EVENTS.LIST);
       return response;

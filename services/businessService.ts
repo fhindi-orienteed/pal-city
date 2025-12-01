@@ -1,6 +1,6 @@
 import { API_ENDPOINTS } from '@/config/apiConfig';
 import { Business } from '@/model';
-import { IBusiness } from '@/types/interface';
+import { IBusinessResponse } from '@/types/interface/response';
 import { apiClient } from './apiClient';
 
 export class BusinessService {
@@ -30,7 +30,7 @@ export class BusinessService {
         });
       }
 
-      const response = await apiClient.get<IBusiness[]>(API_ENDPOINTS.BUSINESSES.LIST, params);
+      const response = await apiClient.get<IBusinessResponse[]>(API_ENDPOINTS.BUSINESSES.LIST, params);
 
       return response.map((business) => new Business(business));
     } catch (error) {
@@ -44,7 +44,7 @@ export class BusinessService {
    */
   public static async getBusinessesFeed(): Promise<Business[]> {
     try {
-      const response = await apiClient.get<IBusiness[]>(API_ENDPOINTS.BUSINESSES.FEED);
+      const response = await apiClient.get<IBusinessResponse[]>(API_ENDPOINTS.BUSINESSES.FEED);
 
       return response.map((business) => new Business(business));
     } catch (error) {

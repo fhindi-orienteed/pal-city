@@ -1,5 +1,5 @@
 import Business from '@/model/Business';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BusinessService } from '../services';
 
 /**
@@ -10,21 +10,22 @@ export const useBusinessesFeed = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchBusinessesFeed = useCallback(async () => {
+  const fetchBusinessesFeed = async () => {
     setLoading(true);
-    const data = await BusinessService.getBusinessesFeed();
-    setBusinesses(data);
     setError(null);
-    setLoading(false);
-  }, []);
+    try {
+      const data = await BusinessService.getBusinessesFeed();
+      setBusinesses(data);
+    } catch (err) {
+      setError('Failed to fetch businesses');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchBusinessesFeed();
-  }, [fetchBusinessesFeed]);
+  }, []);
 
-  const refetch = useCallback(() => {
-    fetchBusinessesFeed();
-  }, [fetchBusinessesFeed]);
-
-  return { businesses, loading, error, refetch };
+  return { businesses, loading, error, refetch: fetchBusinessesFeed };
 };

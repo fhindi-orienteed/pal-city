@@ -11,7 +11,7 @@ export function useEvents() {
   const fetchEvents = useCallback(async () => {
     try {
       setError(null);
-      const data = await EventService.getLatestUpcomingEvents();
+      const data = await EventService.getEventsFeed();
       setEvents(data);
     } catch (err) {
       setError('Failed to fetch events');

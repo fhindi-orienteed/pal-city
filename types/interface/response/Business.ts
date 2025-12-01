@@ -1,6 +1,6 @@
-import { ILocation, IOpeningHours } from "./Common";
+import { ILocation, IOpeningHours } from "../Common";
 
-export interface IBusiness {
+export interface IBusinessResponse {
     id: string;
     name: string;
     description?: string;
@@ -11,10 +11,10 @@ export interface IBusiness {
     reviews?: number;
     logo?: string;
     cover?: string;
-    profile?: IBusinessProfile;
+    profile?: IBusinessProfileResponse;
 }
 
-export interface IBusinessProfile {
+export interface IBusinessProfileResponse {
     facebook?: string;
     twitter?: string;
     instagram?: string;

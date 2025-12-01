@@ -12,11 +12,7 @@ interface Props {
 
 export default function HomeBusiness({ businesses }: Props) {
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.scrollContent}
-    >
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
 
       {businesses.slice(0, 5).map((business) => {
         const isFavorite = false;

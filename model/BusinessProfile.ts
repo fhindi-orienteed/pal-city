@@ -1,4 +1,4 @@
-import { IBusinessProfile } from "@/types/interface";
+import { IBusinessProfileResponse } from "@/types/interface/response/Business";
 import Location from "./Location";
 import OpeningHours from "./OpeningHours";
 import SocialLinks from "./SocialLinks";
@@ -16,7 +16,7 @@ export default class BusinessProfile {
     openingHours?: OpeningHours;
     socialLinks?: SocialLinks;
 
-    constructor(data: IBusinessProfile) {
+    constructor(data: IBusinessProfileResponse) {
         this.phone = data.phone;
         this.mobile = data.mobile;
         this.email = data.email;
