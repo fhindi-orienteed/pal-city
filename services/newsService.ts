@@ -1,18 +1,19 @@
 import { API_ENDPOINTS } from '@/config/apiConfig';
-import { News } from '@/types/interface';
+import News from '@/model/News';
+import { INewsResponse } from '@/types/interface/response/News';
 import { apiClient } from './apiClient';
 
 export class NewsService {
     /**
      * Get all news
      */
-    public static async getLatestNews(): Promise<News[]> {
+    public static async getNewsFeed(): Promise<News[]> {
         try {
-            const response = await apiClient.get<News[]>(API_ENDPOINTS.NEWS.LIST);
-            return response;
+            const response = await apiClient.get<INewsResponse[]>(API_ENDPOINTS.NEWS.FEED);
+            return response.map((news) => new News(news));
         } catch (error) {
             console.error('Error fetching news:', error);
-            throw new Error('Failed to fetch news');
+            throw error;
         }
     }
 
@@ -30,7 +31,7 @@ export class NewsService {
                 return null;
             }
             console.error('Error fetching news:', error);
-            throw new Error('Failed to fetch news');
+            throw error;
         }
     }
 

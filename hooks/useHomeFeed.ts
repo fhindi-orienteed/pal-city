@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useBusinessesFeed } from './useBusinessesFeed';
 import { useEvents } from './useEvents';
-import { useNews } from './useNews';
+import { useNewsFeed } from './useNewsFeed';
 import { useOffers } from './useOffers';
 import { usePlaces } from './usePlaces';
 
@@ -9,7 +9,7 @@ export default function useHomeFeed() {
     const { businesses, loading: loadingBusinesses, error: errorBusinesses } = useBusinessesFeed();
     const { events, loading: loadingEvents, error: errorEvents } = useEvents();
     const { places, loading: loadingPlaces, error: errorPlaces } = usePlaces();
-    const { news, loading: loadingNews, error: errorNews } = useNews();
+    const { news, loading: loadingNews, error: errorNews } = useNewsFeed();
     const { offers, loading: loadingOffers, error: errorOffers } = useOffers();
 
     useEffect(() => {

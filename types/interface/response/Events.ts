@@ -1,5 +1,5 @@
 
-export interface Event {
+export interface IEventResponse {
     id: string;
     name: string;
     date: string;

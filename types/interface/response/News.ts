@@ -1,11 +1,12 @@
-export interface News {
+export interface INewsResponse {
     id: string;
     title: string;
-    content: string;
     summary: string;
+    content: string;
     category: string;
     author: string;
-    date: string;
+    publishedAt: string;
+    coverImage: string;
     images: string[];
     source?: string;
     tags?: string[];

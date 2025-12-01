@@ -48,6 +48,7 @@ export const API_ENDPOINTS = {
   // News
   NEWS: {
     LIST: '/api/news',
+    FEED: '/api/news/feed',
     BY_ID: (id: string) => `/api/news/${id}`,
     CREATE: '/api/news',
     UPDATE: (id: string) => `/api/news/${id}`,

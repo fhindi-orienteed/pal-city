@@ -85,19 +85,16 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         color: '#000',
-        marginBottom: 6,
     },
     summary: {
         fontSize: 12,
         color: '#666',
-        marginBottom: 8,
         lineHeight: 16,
     },
     metaContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 'auto',
     },
     authorContainer: {
         flexDirection: 'row',
@@ -110,12 +107,12 @@ const styles = StyleSheet.create({
         color: '#999',
         flex: 1,
     },
-    dateContainer: {
+    publishedDateContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 4,
     },
-    date: {
+    publishedDate: {
         fontSize: 10,
         color: '#999',
     },
