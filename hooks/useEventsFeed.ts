@@ -1,3 +1,4 @@
+import Event from '@/model/Event';
 import { useEffect, useState } from 'react';
 import { EventService } from '../services';
 

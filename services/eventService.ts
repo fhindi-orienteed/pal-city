@@ -1,6 +1,8 @@
 import { API_ENDPOINTS } from '@/config/apiConfig';
-import { Event } from '@/types/interface';
+import Event from '@/model/Event';
+import { IEventResponse } from '@/types/interface/response';
 import { apiClient } from './apiClient';
+
 
 export class EventService {
   /**
@@ -8,8 +10,8 @@ export class EventService {
    */
   public static async getEventsFeed(): Promise<Event[]> {
     try {
-      const response = await apiClient.get<Event[]>(API_ENDPOINTS.EVENTS.LIST);
-      return response;
+      const response = await apiClient.get<IEventResponse[]>(API_ENDPOINTS.EVENTS.FEED);
+      return response.map((event) => new Event(event));
     } catch (error) {
       console.error('Error fetching events:', error);
       throw error;
@@ -21,10 +23,10 @@ export class EventService {
    */
   public static async getEventById(eventId: string): Promise<Event | null> {
     try {
-      const response = await apiClient.get<Event>(
+      const response = await apiClient.get<IEventResponse>(
         API_ENDPOINTS.EVENTS.BY_ID(eventId)
       );
-      return response;
+      return new Event(response);
     } catch (error: any) {
       if (error.statusCode === 404) {
         console.log('No such event found!');
@@ -40,11 +42,11 @@ export class EventService {
    */
   public static async createEvent(eventData: Partial<Event>): Promise<Event> {
     try {
-      const response = await apiClient.post<Event>(
+      const response = await apiClient.post<IEventResponse>(
         API_ENDPOINTS.EVENTS.CREATE,
         eventData
       );
-      return response;
+      return new Event(response);
     } catch (error) {
       console.error('Error creating event:', error);
       throw error;
@@ -59,11 +61,11 @@ export class EventService {
     eventData: Partial<Event>
   ): Promise<Event> {
     try {
-      const response = await apiClient.put<Event>(
+      const response = await apiClient.put<IEventResponse>(
         API_ENDPOINTS.EVENTS.UPDATE(eventId),
         eventData
       );
-      return response;
+      return new Event(response);
     } catch (error) {
       console.error('Error updating event:', error);
       throw error;

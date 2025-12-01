@@ -1,16 +1,15 @@
 
 export interface IEventResponse {
     id: string;
-    name: string;
-    date: string;
-    time?: string;
-    location: string;
-    price?: string;
+    title: string;
     description?: string;
-    organizer?: string;
-    image: string;
+    coverImage?: string;
     images?: string[];
-    isFavorite?: boolean;
+    startDate?: string;
+    endDate?: string;
+    location?: string;
+    price?: string;
+    organizer?: string;
     category?: string;
     createdAt?: any;
 }

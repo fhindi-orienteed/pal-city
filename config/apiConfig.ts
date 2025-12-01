@@ -30,6 +30,7 @@ export const API_ENDPOINTS = {
   // Events
   EVENTS: {
     LIST: '/api/events',
+    FEED: '/api/events/feed',
     BY_ID: (id: string) => `/api/events/${id}`,
     CREATE: '/api/events',
     UPDATE: (id: string) => `/api/events/${id}`,
