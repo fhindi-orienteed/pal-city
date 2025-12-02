@@ -22,22 +22,27 @@ export default function HomeEvents({ events }: Props) {
           onPress={() => router.push(`/event/${event.id}` as any)}
         >
 
-          {event.coverImage ? (
-            <Image source={{ uri: event.coverImage }} style={styles.image} />
-          ) : (
-            <View style={[styles.image, styles.placeholderImage]}>
-              <IconSymbol name="newspaper" size={60} color="#999" />
-            </View>
-          )}
+          <View style={styles.eventHeader}>
+            {event.coverImage ? (
+              <Image source={{ uri: event.coverImage }} style={styles.image} />
+            ) : (
+              <View style={[styles.image, styles.placeholderImage]}>
+                <IconSymbol name="newspaper" size={60} color="#999" />
+              </View>
+            )}
 
-          <View style={styles.cardContent}>
-            <ThemedText style={styles.location}>{event.location}</ThemedText>
-            <ThemedText style={styles.name}>{event.title}</ThemedText>
-
-            <View style={styles.dateBadge}>
-              <IconSymbol name="calendar" size={12} color="#4CAA4A" />
-              <ThemedText style={styles.dateText}>{event.startDate}</ThemedText>
+            <View style={styles.overlay}>
+              <ThemedText style={styles.title}>{event.title}</ThemedText>
             </View>
+          </View>
+
+          <View style={styles.eventDetails}>
+            <View style={styles.dateContainer}>
+              <ThemedText style={styles.dateText}><IconSymbol name="calendar" size={12} color="#4CAA4A" /> Monday, Nov 18</ThemedText>
+              <ThemedText style={styles.timeText}><IconSymbol name="clock" size={12} color="#4CAA4A" /> 10:00 AM - 12:00 PM</ThemedText>
+            </View>
+
+            <ThemedText style={styles.location}><IconSymbol name="location" size={12} color="#4CAA4A" /> {event.location}</ThemedText>
           </View>
         </TouchableOpacity>
       ))}

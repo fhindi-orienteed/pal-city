@@ -27,7 +27,7 @@ export default function BusinessCard({ business }: BusinessCardProps) {
             <Image source={{ uri: business.images[0] }} style={styles.businessImage} />
           ) : (
             <View style={[styles.businessImage, styles.placeholderImage]}>
-              <IconSymbol name="building.2" size={40} color="#999" />
+              <IconSymbol name="house.fill" size={40} color="#999" />
             </View>
           )}
         </View>

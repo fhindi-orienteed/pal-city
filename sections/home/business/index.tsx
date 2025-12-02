@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import Business from '@/model/Business';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
@@ -20,11 +21,11 @@ export default function HomeBusiness({ businesses }: Props) {
           <Link key={business.id} href={`/business/${business.id}`} asChild>
             <TouchableOpacity style={styles.card}>
               {/* Business Image */}
-              {business.cover ? (
-                <Image source={{ uri: business.cover }} style={styles.image} />
+              {business.coverImage ? (
+                <Image source={{ uri: business.coverImage }} style={styles.image} />
               ) : (
                 <View style={[styles.image, styles.placeholderImage]}>
-                  <IconSymbol name="building.2" size={60} color="#999" />
+                  <FontAwesome color="#999" size={60} name="building" />
                 </View>
               )}
 
@@ -53,11 +54,6 @@ export default function HomeBusiness({ businesses }: Props) {
                 <ThemedText style={styles.name} numberOfLines={1}>
                   {business.name}
                 </ThemedText>
-                {business.description && (
-                  <ThemedText style={styles.address} numberOfLines={1}>
-                    {business.description}
-                  </ThemedText>
-                )}
               </View>
             </TouchableOpacity>
           </Link>

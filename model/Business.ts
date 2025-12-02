@@ -11,7 +11,7 @@ export default class Business {
     rating?: number;
     reviews?: number;
     logo?: string;
-    cover?: string;
+    coverImage?: string;
     profile?: BusinessProfile;
 
     constructor(data: IBusinessResponse) {
@@ -21,10 +21,10 @@ export default class Business {
         this.category = data.category;
         this.createdAt = data.createdAt;
         this.updatedAt = data.updatedAt;
-        this.rating = data.rating;
-        this.reviews = data.reviews;
+        this.rating = data.rating || 4.5;
+        this.reviews = data.reviews || 36;
         this.logo = data.logo;
-        this.cover = data.cover;
+        this.coverImage = data.coverImage;
 
         if (data.profile) {
             this.profile = new BusinessProfile(data.profile);

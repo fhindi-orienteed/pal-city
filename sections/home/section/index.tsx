@@ -42,7 +42,7 @@ export default function HomeSection({ id, loading, error, children }: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <ThemedText type="subtitle">{t(`home.sections.${id}`)}</ThemedText>
+                <ThemedText type="defaultSemiBold">{t(`home.sections.${id}`)}</ThemedText>
                 <TouchableOpacity>
                     <ThemedText style={styles.viewAll}>{t('home.sections.more')}</ThemedText>
                 </TouchableOpacity>

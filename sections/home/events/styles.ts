@@ -26,15 +26,19 @@ const styles = StyleSheet.create({
         gap: 16,
     },
     card: {
-        width: 280,
-        height: 180,
         borderRadius: 10,
         overflow: 'hidden',
         backgroundColor: '#f0f0f0',
+        borderColor: '#4CAA4A',
+        borderWidth: 1,
+    },
+    eventHeader: {
+        overflow: 'hidden',
+        position: 'relative',
     },
     image: {
-        width: '100%',
-        height: '100%',
+        width: 280,
+        height: 180,
     },
     placeholderImage: {
         backgroundColor: '#E8E8E8',
@@ -66,13 +70,27 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    cardContent: {
+    overlay: {
         position: 'absolute',
         bottom: 0,
         left: 0,
         right: 0,
-        padding: 16,
-        backgroundColor: 'rgba(0,0,0,0.4)', // Simple overlay
+        padding: 10,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+    },
+    title: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    eventDetails: {
+        padding: 8,
+        backgroundColor: '#FFF',
     },
     location: {
         color: '#009736',
@@ -85,6 +103,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
+    dateContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    timeText: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        color: '#000',
+    }
 });
 
 export default styles;

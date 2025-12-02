@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <View style={styles.container}>
       <Image
-        source={require('@/assets/images/explore-header.png')}
+        source={require('@/assets/images/home_background.jpg')}
         style={styles.background}
       />
 

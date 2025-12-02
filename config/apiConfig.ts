@@ -40,6 +40,7 @@ export const API_ENDPOINTS = {
   // Places
   PLACES: {
     LIST: '/api/places',
+    FEED: '/api/places/feed',
     BY_ID: (id: string) => `/api/places/${id}`,
     CREATE: '/api/places',
     UPDATE: (id: string) => `/api/places/${id}`,
@@ -59,6 +60,7 @@ export const API_ENDPOINTS = {
   // Offers
   OFFERS: {
     LIST: '/api/offers',
+    FEED: '/api/offers/feed',
     BY_ID: (id: string) => `/api/offers/${id}`,
     CREATE: '/api/offers',
     UPDATE: (id: string) => `/api/offers/${id}`,

@@ -1,41 +1,31 @@
-import { useEffect } from 'react';
 import { useBusinessesFeed } from './useBusinessesFeed';
 import { useEventsFeed } from './useEventsFeed';
 import { useNewsFeed } from './useNewsFeed';
-import { useOffers } from './useOffers';
-import { usePlaces } from './usePlaces';
+import { useOffersFeed } from './useOffersFeed';
+import { usePlacesFeed } from './usePlacesFeed';
 
 export default function useHomeFeed() {
-    const { businesses, loading: loadingBusinesses, error: errorBusinesses } = useBusinessesFeed();
-    const { events, loading: loadingEvents, error: errorEvents } = useEventsFeed();
-    const { places, loading: loadingPlaces, error: errorPlaces } = usePlaces();
-    const { news, loading: loadingNews, error: errorNews } = useNewsFeed();
-    const { offers, loading: loadingOffers, error: errorOffers } = useOffers();
-
-    useEffect(() => {
-
-    }, []);
+    const businessesFeed = useBusinessesFeed();
+    const eventsFeed = useEventsFeed();
+    const placesFeed = usePlacesFeed();
+    const newsFeed = useNewsFeed();
+    const offersFeed = useOffersFeed();
 
     const refetch = () => {
-
+        businessesFeed.refetch();
+        eventsFeed.refetch();
+        placesFeed.refetch();
+        newsFeed.refetch();
+        offersFeed.refetch();
     };
 
     return {
-        businesses,
-        loadingBusinesses,
-        errorBusinesses,
-        events,
-        loadingEvents,
-        errorEvents,
-        places,
-        loadingPlaces,
-        errorPlaces,
-        news,
-        loadingNews,
-        errorNews,
-        offers,
-        loadingOffers,
-        errorOffers,
-        refetch
+        businessesFeed,
+        eventsFeed,
+        placesFeed,
+        newsFeed,
+        offersFeed,
+        refetch,
+        loading: businessesFeed.loading || eventsFeed.loading || placesFeed.loading || newsFeed.loading || offersFeed.loading
     };
 }

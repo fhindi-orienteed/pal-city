@@ -10,7 +10,7 @@ export interface IBusinessResponse {
     rating?: number;
     reviews?: number;
     logo?: string;
-    cover?: string;
+    coverImage?: string;
     profile?: IBusinessProfileResponse;
 }
 
