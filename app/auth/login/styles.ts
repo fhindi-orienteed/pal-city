@@ -1,0 +1,180 @@
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingTop: 60,
+        paddingBottom: 20,
+    },
+    backButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#f5f5f5',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    skipButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    skipButtonText: {
+        fontSize: 16,
+        color: '#009736',
+        fontWeight: '600',
+    },
+    content: {
+        flex: 1,
+    },
+    contentContainer: {
+        paddingHorizontal: 24,
+        paddingBottom: 24,
+    },
+    titleContainer: {
+        alignItems: 'center',
+        marginBottom: 40,
+    },
+    iconContainer: {
+        marginBottom: 24,
+    },
+    iconGradient: {
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowColor: '#009736',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 8,
+    },
+    title: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#1a1a1a',
+        marginBottom: 12,
+        textAlign: 'center',
+    },
+    subtitle: {
+        fontSize: 16,
+        color: '#666',
+        textAlign: 'center',
+        lineHeight: 24,
+        paddingHorizontal: 20,
+    },
+    formContainer: {
+        marginBottom: 32,
+    },
+    inputContainer: {
+        marginBottom: 24,
+    },
+    label: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#1a1a1a',
+        marginBottom: 12,
+    },
+    phoneInputWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: '#e0e0e0',
+        borderRadius: 10,
+        backgroundColor: '#f9f9f9',
+        overflow: 'hidden',
+    },
+    countryCode: {
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        backgroundColor: '#f0f0f0',
+        borderRightWidth: 1,
+        borderRightColor: '#e0e0e0',
+    },
+    countryCodeText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#1a1a1a',
+    },
+    phoneInput: {
+        flex: 1,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        fontSize: 16,
+        color: '#1a1a1a',
+    },
+    otpInput: {
+        borderWidth: 2,
+        borderColor: '#e0e0e0',
+        borderRadius: 10,
+        backgroundColor: '#f9f9f9',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        fontSize: 24,
+        fontWeight: '600',
+        color: '#1a1a1a',
+        letterSpacing: 8,
+    },
+    hint: {
+        fontSize: 14,
+        color: '#999',
+        marginTop: 8,
+    },
+    resendButton: {
+        marginTop: 16,
+        alignItems: 'center',
+    },
+    resendButtonText: {
+        fontSize: 16,
+        color: '#009736',
+        fontWeight: '600',
+    },
+    infoContainer: {
+        backgroundColor: '#f0f9f4',
+        borderRadius: 10,
+        padding: 20,
+        gap: 16,
+    },
+    infoItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+    },
+    infoText: {
+        fontSize: 15,
+        color: '#1a1a1a',
+        flex: 1,
+    },
+    continueButton: {
+        borderRadius: 10,
+        overflow: 'hidden',
+    },
+    continueButtonDisabled: {
+        shadowOpacity: 0,
+        elevation: 0,
+    },
+    continueButtonGradient: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        gap: 12,
+    },
+    continueButtonText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+});

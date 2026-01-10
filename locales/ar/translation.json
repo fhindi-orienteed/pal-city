@@ -1,0 +1,203 @@
+{
+    "common": {
+        "welcome": "مرحباً",
+        "home": "الرئيسية",
+        "search": "بحث",
+        "explore": "استكشف",
+        "more": "المزيد",
+        "loading": "جاري التحميل...",
+        "error": "خطأ",
+        "retry": "إعادة المحاولة",
+        "cancel": "إلغاء",
+        "save": "حفظ",
+        "delete": "حذف",
+        "edit": "تعديل",
+        "back": "رجوع",
+        "next": "التالي",
+        "submit": "إرسال",
+        "continue": "متابعة"
+    },
+    "home": {
+        "title": "اكتشف فلسطين",
+        "subtitle": "استكشف أفضل الأماكن في فلسطين",
+        "events": "الفعاليات",
+        "pharmacies": "الصيدليات",
+        "viewAll": "عرض الكل"
+    },
+    "search": {
+        "placeholder": "ابحث عن أماكن، فعاليات...",
+        "noResults": "لا توجد نتائج",
+        "recentSearches": "عمليات البحث الأخيرة"
+    },
+    "events": {
+        "title": "الفعاليات",
+        "upcoming": "الفعاليات القادمة",
+        "past": "الفعاليات السابقة",
+        "details": "تفاصيل الفعالية",
+        "date": "التاريخ",
+        "time": "الوقت",
+        "location": "الموقع",
+        "description": "الوصف"
+    },
+    "pharmacies": {
+        "title": "الصيدليات",
+        "openNow": "مفتوح الآن",
+        "closed": "مغلق",
+        "rating": "التقييم",
+        "distance": "المسافة",
+        "callNow": "اتصل الآن"
+    },
+    "profile": {
+        "title": "الملف الشخصي",
+        "editProfile": "تعديل الملف الشخصي",
+        "personalInfo": "المعلومات الشخصية",
+        "accountSettings": "إعدادات الحساب",
+        "settings": "الإعدادات",
+        "language": "اللغة",
+        "notifications": "الإشعارات",
+        "logout": "تسجيل الخروج",
+        "confirmLogout": "هل أنت متأكد من تسجيل الخروج؟",
+        "name": "الاسم الكامل",
+        "namePlaceholder": "أدخل اسمك الكامل",
+        "email": "البريد الإلكتروني",
+        "emailPlaceholder": "أدخل بريدك الإلكتروني",
+        "phoneNumber": "رقم الهاتف",
+        "dateOfBirth": "تاريخ الميلاد",
+        "dateOfBirthPlaceholder": "اختر تاريخ ميلادك",
+        "gender": "الجنس",
+        "genderPlaceholder": "اختر الجنس",
+        "male": "ذكر",
+        "female": "أنثى",
+        "other": "آخر",
+        "city": "المدينة",
+        "cityPlaceholder": "اختر مدينتك",
+        "address": "العنوان",
+        "addressPlaceholder": "أدخل عنوانك",
+        "saveChanges": "حفظ التغييرات",
+        "cancel": "إلغاء",
+        "updateSuccess": "تم تحديث الملف الشخصي بنجاح",
+        "updateError": "فشل تحديث الملف الشخصي",
+        "invalidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+        "requiredField": "هذا الحقل مطلوب"
+    },
+    "settings": {
+        "title": "الإعدادات",
+        "language": "اللغة",
+        "selectLanguage": "اختر اللغة",
+        "english": "الإنجليزية",
+        "arabic": "العربية",
+        "theme": "المظهر",
+        "darkMode": "الوضع الداكن",
+        "notifications": "الإشعارات",
+        "privacy": "الخصوصية والأمان",
+        "about": "حول التطبيق",
+        "help": "المساعدة والدعم",
+        "notificationPreferences": "تفضيلات الإشعارات",
+        "notificationEvents": "الفعاليات",
+        "notificationEventsDesc": "احصل على إشعارات حول الفعاليات القادمة في مدينتك",
+        "notificationOffers": "العروض والترويجات",
+        "notificationOffersDesc": "استقبل عروض خاصة من الأعمال المحلية",
+        "notificationUpdates": "تحديثات التطبيق",
+        "notificationUpdatesDesc": "ابق على اطلاع بالميزات الجديدة والتحسينات",
+        "notificationMessages": "الرسائل",
+        "notificationMessagesDesc": "احصل على إشعارات عند استلام رسائل جديدة",
+        "notificationInfo": "يمكنك إدارة تفضيلات الإشعارات هنا. ستدخل التغييرات حيز التنفيذ فوراً.",
+        "termsOfService": "شروط الخدمة",
+        "privacyPolicy": "سياسة الخصوصية",
+        "dataManagement": "إدارة البيانات",
+        "appPermissions": "أذونات التطبيق",
+        "privacyInfo": "خصوصيتك مهمة بالنسبة لنا. نحن نحمي بياناتك بإجراءات أمنية متوافقة مع معايير الصناعة.",
+        "website": "الموقع الإلكتروني",
+        "contactEmail": "البريد الإلكتروني",
+        "contactPhone": "الهاتف",
+        "contactUs": "اتصل بنا",
+        "followUs": "تابعنا",
+        "appDescription": "اكتشف أفضل الأماكن والفعاليات والأعمال في فلسطين. دليلك لاستكشاف المدن الفلسطينية."
+    },
+    "categories": {
+        "health": "صحة",
+        "pharmacy": "صيدلية",
+        "bank": "بنك",
+        "university": "جامعة",
+        "hospital": "مستشفى",
+        "hotel": "فندق",
+        "restaurant": "مطعم",
+        "supermarket": "سوبرماركت",
+        "event": "فعالية",
+        "school": "مدرسة",
+        "taxi": "تاكسي"
+    },
+    "onboarding": {
+        "welcome": "مرحباً بك في بال سيتي",
+        "selectCity": "اختر مدينتك لنعرض لك المحتوى المناسب",
+        "searchCity": "ابحث عن مدينة...",
+        "popularCities": "المدن الشائعة",
+        "showAllCities": "عرض جميع المدن",
+        "continue": "متابعة"
+    },
+    "cities": {
+        "jerusalem": "القدس",
+        "hebron": "الخليل",
+        "ramallah": "رام الله",
+        "nablus": "نابلس",
+        "tubas": "طوباس",
+        "tulkarm": "طولكرم",
+        "qalqilya": "قلقيلية",
+        "salfit": "سلفيت",
+        "bethlehem": "بيت لحم",
+        "jenin": "جنين"
+    },
+    "welcomeScreen": {
+        "title": "مرحباً!",
+        "subtitle": "اكتشف أفضل الأماكن والفعاليات والمزيد في مدينتك",
+        "getStarted": "ابدأ الآن",
+        "skip": "تخطي",
+        "features": {
+            "feature_1": {
+                "title": "استكشف مدينتك",
+                "description": "اعثر على الأماكن والخدمات بالقرب منك"
+            },
+            "feature_2": {
+                "title": "الفعاليات المحلية",
+                "description": "ابق على اطلاع بأحدث الفعاليات"
+            },
+            "feature_3": {
+                "title": "الأعمال المحلية",
+                "description": "ادعم الأعمال المحلية"
+            }
+        }
+    },
+    "citySelectionScreen": {
+        "title": "أين تسكن؟",
+        "subtitle": "اختر مدينتك حتى نتمكن من تخصيص تجربتك",
+        "popularCities": "المدن الشائعة"
+    },
+    "auth": {
+        "loginOrRegister": "تسجيل الدخول أو إنشاء حساب",
+        "phoneSubtitle": "أدخل رقم هاتفك للبدء",
+        "verifyOtp": "تحقق من رقمك",
+        "otpSubtitle": "أدخل رمز التحقق المرسل إلى هاتفك",
+        "phoneNumber": "رقم الهاتف",
+        "phonePlaceholder": "5X XXX XXXX",
+        "phoneHint": "سنرسل لك رمز التحقق",
+        "otpCode": "رمز التحقق",
+        "sendOtp": "إرسال الرمز",
+        "verify": "تحقق ومتابعة",
+        "resendOtp": "إعادة إرسال الرمز",
+        "skip": "تخطي",
+        "error": "خطأ",
+        "invalidPhone": "الرجاء إدخال رقم هاتف صحيح",
+        "invalidOtp": "رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.",
+        "otpSent": "تم إرسال الرمز!",
+        "otpSentMessage": "تم إرسال رمز التحقق إلى هاتفك",
+        "secureLogin": "تسجيل دخول آمن ومشفر",
+        "quickAccess": "وصول سريع وسهل"
+    },
+    "notificationsScreen": {
+        "title": "الإشعارات",
+        "empty": "لا توجد إشعارات حتى الآن",
+        "markAllRead": "تحديد الكل كمقروء",
+        "new": "جديد",
+        "earlier": "سابقاً"
+    }
+}
