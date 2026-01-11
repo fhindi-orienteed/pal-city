@@ -4,7 +4,7 @@
  */
 
 export const API_CONFIG = {
-  BASE_URL: 'http://pal-city-api.orienteed.ps',
+  BASE_URL: 'http://pal-city-api.orienteed.ps/',
   TIMEOUT: 30000, // 30 seconds
 } as const;
 
