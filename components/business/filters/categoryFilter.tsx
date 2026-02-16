@@ -55,7 +55,7 @@ export default function CategoryFilter({ selectedCategory, onCategoryChange, exp
         >
             {expanded && (
                 <View style={styles.categoryOptionsContainer}>
-                    {appConfig.businessCategories.map((category) => (
+                    {Object.values(appConfig.businessCategories).map((category: any) => (
                         <FilterOption key={category.id} category={category} />
                     ))}
                 </View>
