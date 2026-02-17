@@ -73,4 +73,8 @@ export const API_ENDPOINTS = {
     FEED: "/api/businesses/categories/feed",
     BY_ID: (id: string) => `/api/categories/${id}`,
   },
+
+  EXPLORE: {
+    CONFIG: "/api/explore/config", 
+  },
 } as const;
