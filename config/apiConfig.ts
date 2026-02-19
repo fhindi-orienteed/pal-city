@@ -66,4 +66,15 @@ export const API_ENDPOINTS = {
     UPDATE: (id: string) => `/api/offers/${id}`,
     DELETE: (id: string) => `/api/offers/${id}`,
   },
+
+  // Categories
+  CATEGORIES: {
+    LIST: "/api/businesses/categories",
+    FEED: "/api/businesses/categories/feed",
+    BY_ID: (id: string) => `/api/categories/${id}`,
+  },
+
+  EXPLORE: {
+    CONFIG: "/api/explore/config", 
+  },
 } as const;
