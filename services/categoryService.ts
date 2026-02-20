@@ -6,7 +6,7 @@ export class CategoryService {
     /**
      * Fetch categories list
      */
-    public static async getCategories(): Promise<IGlobalProperties[]> {
+    public static async getCategories(): Promise<any> {
         try {
             const response = await apiClient.get<IGlobalProperties[]>(
                 API_ENDPOINTS.CATEGORIES.LIST,

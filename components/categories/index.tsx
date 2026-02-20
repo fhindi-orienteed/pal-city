@@ -5,36 +5,40 @@ import { ActivityIndicator, Text, View } from "react-native";
 import CategoriesCard from "./card";
 import styles from "./styles";
 
-interface IExploreCategory {
-  id: string;
-  group: string;
+interface ICategory {
+  id: number;
   status: string;
-  name: string;
+  title: string;
   thumbnail: string;
   totalItems: number;
   sequence: number;
 }
 
+interface IGroup {
+  id: number;
+  title: string;
+  status: string;
+  totalItems: number;
+  categories: ICategory[];
+}
+
 export default function Categories() {
   const { t } = useTranslation();
-  const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [groups, setGroups] = useState<IGroup[]>([]);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await CategoryService.getCategories();
-        const mappedData = data.map((item: any) => ({
-          id: item.id?.toString(),
-          group: item.group,
-          status: item.status,
-          name: item.name,
-          thumbnail: item.thumbnail || "apps-outline",
-          totalItems: item.totalItems || 0,
-          sequence: item.sequence || 0,
+        setLoading(true);
+        const response = await CategoryService.getCategories();
+        const filteredGroups = response.groups
+        .filter((group: any) => group.status === "active").map((group: any) => ({
+          ...group,
+          categories: group.categories.filter((cat: any) => cat.status === "active"),
         }));
 
-        setCategories(mappedData);
+        setGroups(filteredGroups);
       } catch (error) {
         console.error("Error loading categories:", error);
       } finally {
@@ -55,14 +59,22 @@ export default function Categories() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>{"categories"}</Text>
+    {groups.map((group) => (
+      <View key={group.id} style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>{group.title}</Text>
+      
         <View style={styles.gridContainer}>
-          {categories.map((category) => (
-            <CategoriesCard key={category.id} category={category} />
+          {group.categories.map((category) => (
+            <CategoriesCard key={category.id} 
+            category={{
+              id:category.id.toString(),
+              name:category.title,
+              thumbnail:category.thumbnail.replace('icon:','')
+            }} />
           ))}
         </View>
       </View>
+    ))}
     </View>
   );
 }

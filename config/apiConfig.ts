@@ -69,7 +69,7 @@ export const API_ENDPOINTS = {
 
   // Categories
   CATEGORIES: {
-    LIST: "/api/businesses/categories",
+    LIST: "/api/mobile/explore/categories",
     FEED: "/api/businesses/categories/feed",
     BY_ID: (id: string) => `/api/categories/${id}`,
   },
